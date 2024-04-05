@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:movies_app/Presentation/layouts/home/home_screen.dart';
 import 'package:movies_app/Presentation/layouts/splash/splash_screen.dart';
-import 'package:movies_app/core/routes.dart';
+import 'package:movies_app/core/Utils/routes.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
