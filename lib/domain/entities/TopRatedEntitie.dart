@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-
 /// adult : false
 /// backdrop_path : "/kXfqcdQKsToO0OUXHcrrNCHDBzO.jpg"
 /// genre_ids : [18,80]
@@ -9,18 +7,20 @@ import 'package:flutter/material.dart';
 /// release_date : "1994-09-23"
 /// title : "The Shawshank Redemption"
 /// vote_average : 8.704
+library;
 
-class TopRatedEntitie{
+class TopRatedEntitie {
   TopRatedEntitie({
-      this.adult, 
-      this.backdropPath, 
-      this.genreIds, 
-      this.id,
-      this.originalTitle, 
-      this.posterPath, 
-      this.releaseDate, 
-      this.title,
-      this.voteAverage,});
+    this.adult,
+    this.backdropPath,
+    this.genreIds,
+    this.id,
+    this.originalTitle,
+    this.posterPath,
+    this.releaseDate,
+    this.title,
+    this.voteAverage,
+  });
 
   TopRatedEntitie.fromJson(dynamic json) {
     adult = json['adult'];
@@ -56,5 +56,4 @@ class TopRatedEntitie{
     map['vote_average'] = voteAverage;
     return map;
   }
-
 }
