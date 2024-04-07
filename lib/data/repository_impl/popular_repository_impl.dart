@@ -1,14 +1,14 @@
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
-import 'package:movies_app/data/data_source_contract/remote/popular_movie_datasource.dart';
-import 'package:movies_app/domain/entities/populer_entitie.dart';
-import 'package:movies_app/domain/repository_contract/popular_movie_repository_contract.dart';
+import 'package:movies_app/data/data_source_contract/remote/popular_datasource.dart';
+import 'package:movies_app/domain/entities/PopularEntitie.dart';
+import 'package:movies_app/domain/repository_contract/popular_repository_contract.dart';
 
-@Injectable(as: PopularMovieRepository)
-class PopularMoviesRepositoryImpl extends PopularMovieRepository {
-  PopularMovieDataSource popularMovie;
+@Injectable(as: PopularRepository)
+class PopularRepositoryImpl extends PopularRepository {
+  PopularDataSource popularMovie;
   @factoryMethod
-  PopularMoviesRepositoryImpl(this.popularMovie);
+  PopularRepositoryImpl(this.popularMovie);
   @override
   Future<Either<List<PopularEntitie>, String>> getPopulerMovies() async {
     var result = await popularMovie.getPopulerMovies();

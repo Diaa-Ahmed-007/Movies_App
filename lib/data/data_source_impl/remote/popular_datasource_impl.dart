@@ -4,14 +4,14 @@ import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
 import 'package:movies_app/core/api/api_endpoints.dart';
 import 'package:movies_app/core/api/api_manger.dart';
-import 'package:movies_app/data/data_source_contract/remote/popular_movie_datasource.dart';
-import 'package:movies_app/data/models/popular_api_model/popular_model.dart';
+import 'package:movies_app/data/data_source_contract/remote/popular_datasource.dart';
+import 'package:movies_app/data/models/popular_model/popular_response.dart';
 
-@Injectable(as: PopularMovieDataSource)
-class PopularMovieDataSourceImpl extends PopularMovieDataSource {
+@Injectable(as: PopularDataSource)
+class PopularDataSourceImpl extends PopularDataSource {
   ApiManger apiManger;
   @factoryMethod
-  PopularMovieDataSourceImpl({required this.apiManger});
+  PopularDataSourceImpl({required this.apiManger});
   @override
   Future<Either<PopularResponse, String>> getPopulerMovies() async {
     try {

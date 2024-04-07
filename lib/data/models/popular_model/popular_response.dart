@@ -1,4 +1,4 @@
-import 'package:movies_app/data/models/popular_api_model/popular_movie_model.dart';
+import 'package:movies_app/data/models/popular_model/popular_movie_model.dart';
 
 class PopularResponse {
   PopularResponse({

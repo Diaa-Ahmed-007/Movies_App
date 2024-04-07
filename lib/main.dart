@@ -7,5 +7,4 @@ void main() async {
   ApiManger.init();
    configureDependencies(); 
    runApp(const MyApp());
- 
 }

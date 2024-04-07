@@ -1,7 +1,23 @@
-import 'package:movies_app/domain/entities/populer_entitie.dart';
+/// adult : false
+/// backdrop_path : "/sR0SpCrXamlIkYMdfz83sFn5JS6.jpg"
+/// genre_ids : [28,878,12,14]
+/// id : 823464
+/// original_language : "en"
+/// original_title : "Godzilla x Kong: The New Empire"
+/// overview : "بعد المواجهة النارية بينهما، يجب على Godzilla x Kong الاتحاد مرة أخرى ضد تهديد غامض ضخم مختفٍ داخل عالمنا، يمثل تحديًا لوجودهم الذاتي - ولوجودنا الخاص."
+/// popularity : 3537.982
+/// poster_path : "/tMefBSflR6PGQLv7WvFPpKLZkyk.jpg"
+/// release_date : "2024-03-27"
+/// title : "Godzilla x Kong: الإمبراطورية الجديدة"
+/// video : false
+/// vote_average : 6.71
+/// vote_count : 460
+library;
 
-class PopularMovieModel {
-   PopularMovieModel({
+import 'package:movies_app/domain/entities/UpcomingEntitie.dart';
+
+class UpcomingModel {
+  UpcomingModel({
     this.adult,
     this.backdropPath,
     this.genreIds,
@@ -15,9 +31,10 @@ class PopularMovieModel {
     this.title,
     this.video,
     this.voteAverage,
-    this.voteCount,});
+    this.voteCount,
+  });
 
-  PopularMovieModel.fromJson(dynamic json) {
+  UpcomingModel.fromJson(dynamic json) {
     adult = json['adult'];
     backdropPath = json['backdrop_path'];
     genreIds = json['genre_ids'] != null ? json['genre_ids'].cast<num>() : [];
@@ -66,14 +83,13 @@ class PopularMovieModel {
     map['vote_count'] = voteCount;
     return map;
   }
-  PopularEntitie toPopularEntitie() {
-    return PopularEntitie(
-      adult: adult,
+
+  UpcomingEntitie toUpcomingEntitie() {
+    return UpcomingEntitie(
       backdropPath: backdropPath,
+      genreIds: genreIds,
       id: id,
-      posterPath: posterPath,
-      releaseDate: releaseDate,
-      title: title,
+      posterPath: posterPath
     );
   }
 }

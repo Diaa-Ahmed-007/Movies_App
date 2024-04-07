@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movies_app/Presentation/layouts/home/tabs/home_tab/view_model/home_tab_view_model.dart';
+import 'package:movies_app/Presentation/layouts/home/tabs/home_tab/view_model/upcoming_home_tab_view_model.dart';
 import 'package:movies_app/core/DI/di.dart';
-import 'package:movies_app/domain/entities/populer_entitie.dart';
+import 'package:movies_app/domain/entities/UpcomingEntitie.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -11,21 +11,21 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       body: BlocProvider(
           create: (BuildContext context) =>
-              getIt<HomeTabViewModel>()..getPopular(),
-          child: BlocBuilder<HomeTabViewModel, HomeTabStates>(
+              getIt<UpcomingHomeTabViewModel>()..getUpcoming(),
+          child: BlocBuilder<UpcomingHomeTabViewModel, UpcomingHomeTabStates>(
             builder: (context, state) {
-              if (state is HomeTabErrorState) {
+              if (state is UpcomingHomeTabErrorState) {
                 return Center(child: Text(state.error));
               }
-              if (state is HomeTabSuccessState) {
-                List<PopularEntitie> popular = state.categories;
+              if (state is UpcomingHomeTabSuccessState) {
+                List<UpcomingEntitie> upcoming = state.upcoming;
+
                 return ListView.separated(
                   itemBuilder: (context, index) {
                     return Column(
                       children: [
                         Image.network(
-                            "https://image.tmdb.org/t/p/w500${popular[index].backdropPath ?? ""}"),
-                        Text(popular[index].title ?? "")
+                            "https://image.tmdb.org/t/p/w500${upcoming[index].backdropPath ?? ""}"),
                       ],
                     );
                   },
@@ -34,7 +34,7 @@ class HomeScreen extends StatelessWidget {
                       height: 16,
                     );
                   },
-                  itemCount: popular.length,
+                  itemCount: upcoming.length,
                 );
               }
               return const Center(
