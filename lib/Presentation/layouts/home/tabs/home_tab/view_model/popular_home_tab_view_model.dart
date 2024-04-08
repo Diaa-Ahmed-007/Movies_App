@@ -8,7 +8,7 @@ class PopularHomeTabViewModel extends Cubit<PopularHomeTabStates> {
   PopularHomeTabViewModel(this.popularUseCase)
       : super(PopularHomeTabInitialState());
   @factoryMethod
-  PopularUseCase popularUseCase;
+  PoplularUseCase popularUseCase;
 
   getPopular() async {
     emit(PopularHomeTabLoadingState());
