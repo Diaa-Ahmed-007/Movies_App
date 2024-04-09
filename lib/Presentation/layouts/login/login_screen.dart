@@ -1,53 +1,120 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:movies_app/core/Utils/routes.dart';
+import 'package:movies_app/core/constants.dart';
+import 'package:movies_app/core/reusableComponents/customTextFiled.dart';
 
-class loginScreen extends StatelessWidget {
+class loginScreen extends StatefulWidget {
   const loginScreen({super.key});
 
   @override
+  State<loginScreen> createState() => _loginScreenState();
+}
+
+class _loginScreenState extends State<loginScreen> {
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  GlobalKey<FormState> formfkey = GlobalKey();
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xff121312),
-      body: Column(
-        children: [
-          Text(
-            "Welcome Back",
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 22,
-              fontWeight: FontWeight.w400,
-            ),
+      resizeToAvoidBottomInset: false,
+      backgroundColor: Theme.of(context).colorScheme.background,
+      body: Padding(
+        padding: REdgeInsets.symmetric(horizontal: 26.w),
+        child: Form(
+          key: formfkey,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                "Welcome Back",
+                style: Theme.of(context).textTheme.displayMedium,
+              ),
+              SizedBox(height: 22.h),
+              Text(
+                "Enjoy your watch",
+                style: Theme.of(context).textTheme.displayLarge,
+              ),
+              SizedBox(height: 104.h),
+              customTextFiled(
+                hintText: 'Email',
+                textController: emailController,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return "this field can't be empty";
+                  }
+                  if (!RegExp(constants.RegExValidateEmail).hasMatch(value)) {
+                    return "Enter valid Email";
+                  }
+                  return null;
+                },
+              ),
+              SizedBox(height: 98.h),
+              customTextFiled(
+                hintText: 'Password',
+                textController: passwordController,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return "this field can't be empty";
+                  }
+                  if (value.length > 8) {
+                    return "password must less than 8 char ";
+                  }
+                  return null;
+                },
+              ),
+              SizedBox(height: 158.h),
+              Padding(
+                padding: REdgeInsets.symmetric(horizontal: 35),
+                child: ElevatedButton(
+                  onPressed: () {
+                    if (formfkey.currentState?.validate() ?? false) {}
+                  },
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor: Theme.of(context).colorScheme.primary,
+                      fixedSize: Size(280.w, 49.h),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(25))),
+                  child: Text(
+                    "Login",
+                    style: Theme.of(context).textTheme.displayMedium!.copyWith(
+                        color: Colors.black, fontWeight: FontWeight.w700),
+                  ),
+                ),
+              ),
+              SizedBox(height: 58.h),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    'Don’t have an account?',
+                    style: Theme.of(context)
+                        .textTheme
+                        .displayMedium!
+                        .copyWith(fontWeight: FontWeight.w400, fontSize: 18),
+                  ),
+                  SizedBox(
+                    width: 5.w,
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.of(context).pushNamed(Routes.registerRouteName);
+                    },
+                    child: Text(
+                      "register",
+                      style: Theme.of(context)
+                          .textTheme
+                          .displayLarge!
+                          .copyWith(fontWeight: FontWeight.w400, fontSize: 18),
+                    ),
+                  )
+                ],
+              ),
+            ],
           ),
-          Text(
-            "Enjoy your watch",
-            style: TextStyle(
-              color: Color(0xffFFBB3B),
-              fontSize: 30,
-              fontWeight: FontWeight.w700,
-            ),
-          ),
-          TextField(
-            autofocus: true,
-            decoration: InputDecoration(
-              hintText: "Email",
-              hintStyle: TextStyle(
-                  color: Colors.white,
-                  fontSize: 22,
-                  fontWeight: FontWeight.w400),
-              border: UnderlineInputBorder(
-                borderSide: BorderSide(color: Colors.white, width: 4,strokeAlign: 3),
-              ),
-              disabledBorder: UnderlineInputBorder(
-                borderSide: BorderSide(color: Colors.white, width: 4,strokeAlign: 3),
-              ),
-              enabledBorder: UnderlineInputBorder(
-                borderSide: BorderSide(color: Colors.white, width: 1),
-              ),
-              focusedBorder:  UnderlineInputBorder(
-                borderSide: BorderSide(color: Color(0xffFFBB3B), width: 1),
-              ),
-            ),
-          ),
-        ],
+        ),
       ),
     );
   }
