@@ -3,7 +3,6 @@ import 'package:movies_app/core/Utils/app_colors.dart';
 import 'package:movies_app/core/Utils/texts_styles.dart';
 
 class DarkTheme {
-  
   static ThemeData darkTheme=ThemeData(
     colorScheme: ColorScheme.fromSeed(
       seedColor:AppColors.primaryColor,
@@ -51,6 +50,5 @@ class DarkTheme {
       selectedLabelStyle: TextsStyles.selectedLabelInBottomNavigationBar,
       unselectedLabelStyle:TextsStyles.unselectedLabelInBottomNavigationBar,
     ),
-
   );
 }
