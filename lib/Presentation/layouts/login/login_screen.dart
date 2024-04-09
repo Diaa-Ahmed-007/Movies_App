@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies_app/core/Utils/routes.dart';
 import 'package:movies_app/core/constants.dart';
-import 'package:movies_app/core/reusableComponents/customTextFiled.dart';
+import 'package:movies_app/core/reusableComponents/custom_text_filed.dart';
 
 class loginScreen extends StatefulWidget {
   const loginScreen({super.key});
@@ -50,6 +50,7 @@ class _loginScreenState extends State<loginScreen> {
                   }
                   return null;
                 },
+                keyboard: TextInputType.emailAddress,
               ),
               SizedBox(height: 98.h),
               customTextFiled(
@@ -64,6 +65,7 @@ class _loginScreenState extends State<loginScreen> {
                   }
                   return null;
                 },
+                keyboard: TextInputType.text,
               ),
               SizedBox(height: 158.h),
               Padding(

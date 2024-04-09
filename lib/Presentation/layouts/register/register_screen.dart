@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies_app/core/Utils/routes.dart';
 import 'package:movies_app/core/constants.dart';
-import 'package:movies_app/core/reusableComponents/customTextFiled.dart';
+import 'package:movies_app/core/reusableComponents/custom_text_filed.dart';
 
 class registerScreen extends StatefulWidget {
   const registerScreen({super.key});
@@ -52,11 +52,12 @@ class _registerScreenState extends State<registerScreen> {
                   }
                   return null;
                 },
+                keyboard: TextInputType.name,
               ),
               SizedBox(height: 59.h),
               customTextFiled(
                 hintText: 'Last Name',
-                textController:lastNameController,
+                textController: lastNameController,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return "this field can't be empty";
@@ -66,6 +67,7 @@ class _registerScreenState extends State<registerScreen> {
                   }
                   return null;
                 },
+                keyboard: TextInputType.name,
               ),
               SizedBox(height: 59.h),
               customTextFiled(
@@ -80,6 +82,7 @@ class _registerScreenState extends State<registerScreen> {
                   }
                   return null;
                 },
+                keyboard: TextInputType.emailAddress,
               ),
               SizedBox(height: 59.h),
               customTextFiled(
@@ -94,6 +97,7 @@ class _registerScreenState extends State<registerScreen> {
                   }
                   return null;
                 },
+                keyboard: TextInputType.visiblePassword,
               ),
               SizedBox(height: 89.h),
               Padding(
