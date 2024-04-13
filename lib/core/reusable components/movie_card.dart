@@ -1,28 +1,28 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:movies_app/core/constants.dart';
-import 'package:movies_app/domain/entities/TopRatedEntitie.dart';
+typedef OnCardClicked = void Function();
 class MovieCard extends StatefulWidget {
   late double height;
   late double width;
   bool isFullView;
   bool? isLarge;
+  OnCardClicked cardClicked;
   late bool isChecked;
-  TopRatedEntitie movie;
-  MovieCard({super.key,required this.isFullView,this.isLarge,required this.movie,this.isChecked = false}){
+  var movie;
+  MovieCard({super.key,required this.isFullView,this.isLarge,required this.movie,this.isChecked = false,required this.cardClicked}){
     if(isFullView){
       if(isLarge??false){
-        height = 199.h;
-        width =129.w;
+        height = 200.h;
+        width =130.w;
       }else{
-        height = 127.74.h;
-        width = 96.87.w;
+        height = 130.h;
+        width = 100.w;
       }
     }else{
-      height = 186.h;
-      width = 97.w;
+      height = 225.h;
+      width = 120.w;
     }
   }
 
@@ -36,14 +36,16 @@ class _MovieCardState extends State<MovieCard> {
     return Stack(
       alignment: Alignment.topLeft,
       children: [
-        InkWell(onTap: (){},
+        InkWell(
+          onTap: () => widget.cardClicked!()
+          ,
           child: Container(
             height: widget.height,
             width: widget.width,
             decoration: BoxDecoration(
               color: Theme.of(context).colorScheme.primaryContainer,
               borderRadius: BorderRadius.circular(5),
-              image: widget.isFullView? DecorationImage(image: NetworkImage("${Constants.imageBasePath}${widget.movie.posterPath}"),fit: BoxFit.fill,):null,
+              image: widget.isFullView? DecorationImage(image: NetworkImage("${Constants.imageBasePath}${widget.movie.backdropPath}"),fit: BoxFit.cover):null,
             ),
             child: widget.isFullView?null:Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -78,6 +80,7 @@ class _MovieCardState extends State<MovieCard> {
                                   scrollDirection: Axis.vertical,
                                   child: Text(widget.movie.title??"",style: Theme.of(context).textTheme.headlineLarge?.copyWith(fontSize: 10)))),
                           SizedBox(height: 2.h),
+                          // function calculate and date format
                           Text("2018  R  1h 59m",style: Theme.of(context).textTheme.labelMedium?.copyWith(fontSize: 8)),
                         ],
                       ),
@@ -106,4 +109,10 @@ class _MovieCardState extends State<MovieCard> {
       ]
     );
   }
+}
+
+class SelectedMovie{
+  String title;
+  num id;
+  SelectedMovie({required this.id, required this.title});
 }

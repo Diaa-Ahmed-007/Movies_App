@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies_app/Presentation/layouts/home/home_screen.dart';
+import 'package:movies_app/Presentation/layouts/movie_details/movie_details_screen.dart';
 import 'package:movies_app/Presentation/layouts/splash/splash_screen.dart';
 import 'package:movies_app/core/Utils/routes.dart';
 
@@ -18,6 +19,7 @@ class MyApp extends StatelessWidget {
       builder: (context,child)=> MaterialApp(
         routes: {
           Routes.homeRouteName: (context) =>  HomeScreen(),
+          Routes.movieDetailsScreenRouteName: (context) =>  MovieDetailsScreen(),
           Routes.splashRouteName: (context) => const SplashScreen()
         },
         theme: DarkTheme.darkTheme,

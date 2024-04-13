@@ -19,6 +19,7 @@ class DarkTheme {
     appBarTheme: const AppBarTheme(
       color: AppColors.appBarColor,
       titleTextStyle: TextsStyles.appBarTitle,
+      centerTitle: true,
       iconTheme: IconThemeData(
         color: Colors.white,
         size: 30
