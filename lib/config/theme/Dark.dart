@@ -4,6 +4,8 @@ import 'package:movies_app/core/Utils/texts_styles.dart';
 
 class DarkTheme {
   static ThemeData darkTheme=ThemeData(
+    scaffoldBackgroundColor: AppColors.backgroundColor,
+    useMaterial3: true,
     colorScheme: ColorScheme.fromSeed(
       seedColor:AppColors.primaryColor,
       primary: AppColors.primaryColor,
@@ -17,6 +19,7 @@ class DarkTheme {
     appBarTheme: const AppBarTheme(
       color: AppColors.appBarColor,
       titleTextStyle: TextsStyles.appBarTitle,
+      centerTitle: true,
       iconTheme: IconThemeData(
         color: Colors.white,
         size: 30
@@ -28,8 +31,9 @@ class DarkTheme {
     bodyMedium: TextsStyles.movieDescription, // for movieDescription in movie details screen and movieCategoryInBorderTitle in same screen => resize it to 10
     headlineLarge: TextsStyles.mainMovieName, // for main movie name in home * movie details => resize it to 18 * any white title , search&Watchlist card => resize to 15 * in film card => resize it to 10
     labelMedium: TextsStyles.movieMiniDetails, // for year and PG film hours in home and movie details * in card resize it to 8
-    labelSmall: TextsStyles.movieDetailsInSearchAndWatchListColor // for search&Watchlist card Details
-      ),
+    labelSmall: TextsStyles.movieDetailsInSearchAndWatchListColor,// for search&Watchlist card Details
+    titleSmall: TextsStyles.movieRating // for movie rating in movie card
+  ),
     iconTheme: const IconThemeData(
       color: Colors.white,
       size: 12,
