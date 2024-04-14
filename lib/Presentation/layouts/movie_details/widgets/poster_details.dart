@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -33,12 +34,24 @@ class PosterDetails extends StatelessWidget {
                   Stack(
                     alignment: Alignment.center,
                     children: [
-                      Image.network(
-                          "${Constants.imageBasePath}${movie.posterPath}",
-                          height: 217.h,
-                          width: 412.w,
-                          fit: BoxFit.fill),
-                      Icon(Icons.play_circle_outline_rounded, size: 60.sp),
+                      //edit it with cached network image
+                      CachedNetworkImage(
+                        height: 217.h,
+                        width: 412.w,
+                        imageUrl: "${Constants.imageBasePath}${movie.posterPath}",
+                        fit: BoxFit.fill,
+                        placeholder: (context, url) => const Center(child: CircularProgressIndicator()),
+                        errorWidget: (context, url, error) =>  Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Container(
+                            height: 217.h,
+                            width: 412.w,
+                            clipBehavior: Clip.antiAlias,
+                            decoration: BoxDecoration(borderRadius: BorderRadius.circular(10.r),color: Colors.white24),
+                          )
+                        ),
+                      ),
+                      movie.posterPath == null ? Text("") : Icon(Icons.play_circle_outline_rounded, color: Theme.of(context).colorScheme.primary,size: 60.sp),
                     ],
                   ),
                   Padding(
@@ -61,8 +74,7 @@ class PosterDetails extends StatelessWidget {
                             MovieCard(
                                 isFullView: true,
                                 isLarge: true,
-                                movie: movie,
-                                cardClicked: () {}),
+                                movie: movie),
                             SizedBox(width: 10.w),
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -91,8 +103,8 @@ class PosterDetails extends StatelessWidget {
                                     width: 231.w,
                                     child: SingleChildScrollView(
                                         child: Padding(
-                                      padding: EdgeInsets.all(3.sp),
-                                      child: Text(movie.overview ?? "",
+                                           padding: EdgeInsets.all(3.sp),
+                                           child: Text(movie.overview ?? "",
                                           style: Theme.of(context)
                                               .textTheme
                                               .bodyMedium),

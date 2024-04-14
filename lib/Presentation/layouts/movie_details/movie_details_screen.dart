@@ -21,7 +21,8 @@ class MovieDetailsScreen extends StatelessWidget {
             children: [
               PosterDetails(movieId: movie.id),
               SizedBox(height: 10.h),
-              SimilerBuilder(movie: movie,)
+              SimilerBuilder(movie: movie),
+              SizedBox(height: 20.h)
             ],
           ),
         ));

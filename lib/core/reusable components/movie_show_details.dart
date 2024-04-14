@@ -17,23 +17,23 @@ class MovieSmallDetails extends StatelessWidget {
         ..getMovieDetails(movieId: movieId),
       child:
           BlocBuilder<MovieDetailsHomeTabViewModel, MovieDetailsHomeTabStates>(
-        builder: (context, state) {
-          if (state is MovieDetailsHomeTabSuccessState) {
-            MovieDetailsEntitie movie = state.details;
-            return RichText(
-              text: TextSpan(
-                children: [
-                  TextSpan(
+             builder: (context, state) {
+             if (state is MovieDetailsHomeTabSuccessState) {
+               MovieDetailsEntitie movie = state.details;
+               return RichText(
+                  text: TextSpan(
+                  children: [
+                    TextSpan(
                       text: "${toYearFormat(movie.releaseDate!)}  ",
                       style: style),
-                  TextSpan(
+                    TextSpan(
                       text: durationToString(movie.timeOfMovie!.toInt()),
                       style: style)
-                ],
-              ),
-            );
-          }
-          return const Text("");
+                 ],
+               ),
+              );
+           }
+           return const Text("");
         },
       ),
     );
