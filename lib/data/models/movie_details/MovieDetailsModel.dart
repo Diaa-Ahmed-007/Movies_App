@@ -1,5 +1,3 @@
-
-
 import 'package:movies_app/data/models/movie_details/Genres.dart';
 import 'package:movies_app/domain/entities/MovieDetailsEntitie.dart';
 
@@ -178,17 +176,16 @@ class MovieDetailsModel {
 
   MovieDetailsEntitie toMovieDetailsEntitie() {
     return MovieDetailsEntitie(
-      adult: adult,
-      backdropPath: backdropPath,
-      genres: genres,
-      id: id,
-      originalTitle: originalTitle,
-      overview: overview,
-      posterPath: posterPath,
-      releaseDate: releaseDate,
-      runtime: runtime,
-      title: title,
-      voteAverage: voteAverage
-    );
+        adult: adult,
+        backdropPath: backdropPath,
+        genres: genres,
+        id: id,
+        originalTitle: originalTitle,
+        overview: overview,
+        posterPath: posterPath,
+        releaseDate: releaseDate,
+        timeOfMovie: runtime,
+        title: title,
+        voteAverage: voteAverage);
   }
 }

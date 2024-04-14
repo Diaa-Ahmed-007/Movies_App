@@ -12,6 +12,7 @@
 library;
 
 import 'package:movies_app/data/models/movie_details/Genres.dart';
+import 'package:movies_app/domain/entities/PopularEntitie.dart';
 
 class MovieDetailsEntitie {
   MovieDetailsEntitie({
@@ -23,7 +24,7 @@ class MovieDetailsEntitie {
     this.overview,
     this.posterPath,
     this.releaseDate,
-    this.runtime,
+    this.timeOfMovie,
     this.title,
     this.voteAverage,
   });
@@ -42,7 +43,7 @@ class MovieDetailsEntitie {
     overview = json['overview'];
     posterPath = json['poster_path'];
     releaseDate = json['release_date'];
-    runtime = json['runtime'];
+    timeOfMovie = json['runtime'];
     title = json['title'];
     voteAverage = json['vote_average'];
   }
@@ -54,7 +55,7 @@ class MovieDetailsEntitie {
   String? overview;
   String? posterPath;
   String? releaseDate;
-  num? runtime;
+  num? timeOfMovie;
   String? title;
   num? voteAverage;
 
@@ -70,7 +71,7 @@ class MovieDetailsEntitie {
     map['overview'] = overview;
     map['poster_path'] = posterPath;
     map['release_date'] = releaseDate;
-    map['runtime'] = runtime;
+    map['runtime'] = timeOfMovie;
     map['title'] = title;
     map['vote_average'] = voteAverage;
     return map;

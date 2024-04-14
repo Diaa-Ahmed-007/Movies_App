@@ -13,19 +13,19 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
-      designSize: const Size(412, 892),
-      minTextAdapt: true,
-      splitScreenMode: true,
-      builder: (context,child)=> MaterialApp(
-        routes: {
-          Routes.homeRouteName: (context) =>  HomeScreen(),
-          Routes.movieDetailsScreenRouteName: (context) =>  MovieDetailsScreen(),
-          Routes.splashRouteName: (context) => const SplashScreen()
-        },
-        theme: DarkTheme.darkTheme,
-        debugShowCheckedModeBanner: false,
-        initialRoute: Routes.homeRouteName,
-      )
-    );
+        designSize: const Size(412, 892),
+        minTextAdapt: true,
+        splitScreenMode: true,
+        builder: (context, child) => MaterialApp(
+              routes: {
+                Routes.homeRouteName: (context) => const HomeScreen(),
+                Routes.movieDetailsScreenRouteName: (context) =>
+                    const MovieDetailsScreen(),
+                Routes.splashRouteName: (context) => const SplashScreen()
+              },
+              theme: DarkTheme.darkTheme,
+              debugShowCheckedModeBanner: false,
+              initialRoute: Routes.homeRouteName,
+            ));
   }
 }
