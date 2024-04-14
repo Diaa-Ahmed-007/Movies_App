@@ -38,10 +38,16 @@ dependencies:
   flutter_screenutil: ^5.9.0
   firebase_core: ^2.29.0
   firebase_auth: ^4.19.1
+  flutter_bloc: ^8.1.5
+  dartz: ^0.10.1
+  injectable:  
+  get_it:  
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  injectable_generator:  
+  build_runner: 
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
