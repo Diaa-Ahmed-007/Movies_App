@@ -9,14 +9,15 @@
 
 class PopularEntitie {
   PopularEntitie({
-      this.adult, 
-      this.backdropPath, 
-      this.genreIds, 
-      this.id, 
-      this.originalTitle, 
-      this.posterPath, 
-      this.releaseDate, 
-      this.title,});
+    this.adult,
+    this.backdropPath,
+    this.genreIds,
+    this.id,
+    this.originalTitle,
+    this.posterPath,
+    this.releaseDate,
+    this.title,
+  });
 
   PopularEntitie.fromJson(dynamic json) {
     adult = json['adult'];
@@ -49,5 +50,4 @@ class PopularEntitie {
     map['title'] = title;
     return map;
   }
-
 }

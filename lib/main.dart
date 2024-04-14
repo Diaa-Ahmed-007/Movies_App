@@ -5,8 +5,8 @@ import 'package:movies_app/core/DI/Di.dart';
 import 'package:movies_app/core/api/api_manger.dart';
 
 void main() async {
-  ApiManger.init();
+   ApiManger.init();
    configureDependencies();
-  await ScreenUtil.ensureScreenSize();
+   await ScreenUtil.ensureScreenSize();
    runApp(const MyApp());
 }
