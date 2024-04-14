@@ -44,18 +44,20 @@ class HomeScreen extends StatelessWidget {
                             padding: EdgeInsets.only(left: 10.w),
                             child: ListView.separated(
                                 scrollDirection: Axis.horizontal,
-                                itemBuilder: (context, index) => MovieCard(
-                                      movie: movies[index],
-                                      isFullView: false,
-                                      cardClicked: () {
-                                        Navigator.pushNamed(context,
-                                            Routes.movieDetailsScreenRouteName,
-                                            arguments: SelectedMovie(
-                                                id: movies[index].id ?? 0,
-                                                title:
-                                                    movies[index].title ?? ""));
-                                      },
-                                    ),
+                                itemBuilder: (context, index) => InkWell(
+                                  onTap: (){
+                                    Navigator.pushNamed(context,
+                                        Routes.movieDetailsScreenRouteName,
+                                        arguments: SelectedMovie(
+                                            id: movies[index].id ?? 0,
+                                            title:
+                                            movies[index].title ?? ""));
+                                  },
+                                  child: MovieCard(
+                                        movie: movies[index],
+                                        isFullView: false,
+                                      ),
+                                ),
                                 separatorBuilder: (context, index) =>
                                     SizedBox(width: 8.w),
                                 itemCount: movies.length),

@@ -38,22 +38,24 @@ class SimilerBuilder extends StatelessWidget {
                   SizedBox(height: 15.h),
                   Expanded(
                     child: Padding(
-                      padding: EdgeInsets.only(left: 10.w),
+                      padding: EdgeInsets.symmetric(horizontal: 10.w),
                       child: ListView.separated(
                           scrollDirection: Axis.horizontal,
-                          itemBuilder: (context, index) => MovieCard(
-                                movie: movies[index],
-                                isFullView: false,
-                                cardClicked: () {
-                                  Navigator.pushReplacementNamed(context,
-                                      Routes.movieDetailsScreenRouteName,
-                                      arguments: SelectedMovie(
-                                          id: movies[index].id ?? 0,
-                                          title: movies[index].title ?? ""));
-                                },
-                              ),
+                          itemBuilder: (context, index) => InkWell(
+                            onTap: (){
+                              Navigator.pushReplacementNamed(context,
+                                  Routes.movieDetailsScreenRouteName,
+                                  arguments: SelectedMovie(
+                                      id: movies[index].id ?? 0,
+                                      title: movies[index].title ?? ""));
+                            },
+                            child: MovieCard(
+                                  movie: movies[index],
+                                  isFullView: false,
+                                ),
+                          ),
                           separatorBuilder: (context, index) =>
-                              SizedBox(width: 8.w),
+                              SizedBox(width: 10.w),
                           itemCount: movies.length),
                     ),
                   ),
