@@ -5,6 +5,9 @@ import 'package:movies_app/Presentation/layouts/movie_details/movie_details_scre
 import 'package:movies_app/Presentation/layouts/splash/splash_screen.dart';
 import 'package:movies_app/core/Utils/routes.dart';
 
+import 'Presentation/layouts/home/home_screen.dart';
+import 'Presentation/layouts/home/tabs/home_tab/Recomended.dart';
+import 'Presentation/layouts/home/tabs/home_tab/home_tab.dart';
 import 'config/theme/Dark.dart';
 
 class MyApp extends StatelessWidget {
@@ -18,14 +21,15 @@ class MyApp extends StatelessWidget {
         splitScreenMode: true,
         builder: (context, child) => MaterialApp(
               routes: {
-                Routes.homeRouteName: (context) => const HomeScreen(),
+               // Routes.homeRouteName: (context) => const HomeScreen(),
                 Routes.movieDetailsScreenRouteName: (context) =>
                     const MovieDetailsScreen(),
-                Routes.splashRouteName: (context) => const SplashScreen()
+                Routes.splashRouteName: (context) => const SplashScreen(),
+                Routes.HomeScreen: (context) =>  HomeScreen()
               },
               theme: DarkTheme.darkTheme,
               debugShowCheckedModeBanner: false,
-              initialRoute: Routes.homeRouteName,
+              initialRoute: Routes.HomeScreen,
             ));
   }
 }

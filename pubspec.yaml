@@ -80,6 +80,7 @@ flutter:
   # we will remove assets it is dummy data
   assets:
     - assets/Icons/
+    - assets/images/
 
   #   - images/a_dot_ham.jpeg
 
