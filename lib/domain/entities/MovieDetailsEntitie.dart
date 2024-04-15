@@ -12,7 +12,6 @@
 library;
 
 import 'package:movies_app/data/models/movie_details/Genres.dart';
-import 'package:movies_app/domain/entities/PopularEntitie.dart';
 
 class MovieDetailsEntitie {
   MovieDetailsEntitie({

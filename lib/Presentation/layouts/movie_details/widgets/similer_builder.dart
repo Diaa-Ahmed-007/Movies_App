@@ -6,6 +6,7 @@ import 'package:movies_app/core/DI/di.dart';
 import 'package:movies_app/core/Utils/routes.dart';
 import 'package:movies_app/core/reusable%20components/movie_card.dart';
 
+// ignore: must_be_immutable
 class SimilerBuilder extends StatelessWidget {
   SimilerBuilder({super.key, required this.movie});
   var movie;

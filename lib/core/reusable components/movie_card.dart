@@ -5,6 +5,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:movies_app/core/constants.dart';
 import 'package:movies_app/core/reusable%20components/movie_show_details.dart';
 
+// ignore: must_be_immutable
 class MovieCard extends StatefulWidget {
   late double height;
   late double width;
@@ -13,13 +14,13 @@ class MovieCard extends StatefulWidget {
   late bool isChecked;
   var movie;
 
-  MovieCard(
-      {super.key,
-      required this.isFullView,
-      this.isLarge,
-      required this.movie,
-      this.isChecked = false,
-      }) {
+  MovieCard({
+    super.key,
+    required this.isFullView,
+    this.isLarge,
+    required this.movie,
+    this.isChecked = false,
+  }) {
     if (isFullView) {
       if (isLarge ?? false) {
         height = 200.h;
@@ -41,26 +42,25 @@ class MovieCard extends StatefulWidget {
 class _MovieCardState extends State<MovieCard> {
   @override
   Widget build(BuildContext context) {
-    return Stack(
-        alignment: Alignment.topLeft,
-        children: [
-          Container(
-            height: widget.height,
-            width: widget.width,
-            clipBehavior: Clip.antiAlias,
-            decoration: BoxDecoration(
-              color: Theme.of(context).colorScheme.primaryContainer,
-              borderRadius: BorderRadius.circular(5)
-            ),
-            child: widget.isFullView ?
-            CachedNetworkImage(
-              imageUrl: "${Constants.imageBasePath}${widget.movie.backdropPath}",
-              fit: BoxFit.cover,
-              placeholder: (context, url) => const Center(child: CircularProgressIndicator()),
-              errorWidget: (context, url, error) => const Icon(Icons.error),
-            ) :
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+    return Stack(alignment: Alignment.topLeft, children: [
+      Container(
+        height: widget.height,
+        width: widget.width,
+        clipBehavior: Clip.antiAlias,
+        decoration: BoxDecoration(
+            color: Theme.of(context).colorScheme.primaryContainer,
+            borderRadius: BorderRadius.circular(5)),
+        child: widget.isFullView
+            ? CachedNetworkImage(
+                imageUrl:
+                    "${Constants.imageBasePath}${widget.movie.backdropPath}",
+                fit: BoxFit.cover,
+                placeholder: (context, url) =>
+                    const Center(child: CircularProgressIndicator()),
+                errorWidget: (context, url, error) => const Icon(Icons.error),
+              )
+            : Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Expanded(
                     flex: 2,
@@ -68,16 +68,18 @@ class _MovieCardState extends State<MovieCard> {
                       width: double.infinity,
                       clipBehavior: Clip.antiAlias,
                       decoration: const BoxDecoration(
-                        borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(5),
-                            topRight: Radius.circular(5))
-                      ),
+                          borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(5),
+                              topRight: Radius.circular(5))),
                       child: CachedNetworkImage(
-                        imageUrl: "${Constants.imageBasePath}${widget.movie.posterPath}",
+                        imageUrl:
+                            "${Constants.imageBasePath}${widget.movie.posterPath}",
                         fit: BoxFit.fill,
-                        placeholder: (context, url) => const Center(child: CircularProgressIndicator()),
-                        errorWidget: (context, url, error) => const Icon(Icons.error),
-                    ),
+                        placeholder: (context, url) =>
+                            const Center(child: CircularProgressIndicator()),
+                        errorWidget: (context, url, error) =>
+                            const Icon(Icons.error),
+                      ),
                     ),
                   ),
                   Expanded(
@@ -96,9 +98,8 @@ class _MovieCardState extends State<MovieCard> {
                                     size: 15.sp),
                                 SizedBox(width: 2.w),
                                 Text(widget.movie.voteAverage.toString(),
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .titleSmall)
+                                    style:
+                                        Theme.of(context).textTheme.titleSmall)
                               ],
                             ),
 
@@ -111,16 +112,14 @@ class _MovieCardState extends State<MovieCard> {
                             MovieSmallDetails(
                               movieId: widget.movie.id,
                               style: Theme.of(context)
-                                    .textTheme
-                                    .labelMedium
-                                    ?.copyWith(fontSize: 8),
+                                  .textTheme
+                                  .labelMedium
+                                  ?.copyWith(fontSize: 8),
                             ),
                             // function calculate and date format
-
                           ],
                         ),
-                      )
-                  )
+                      ))
                 ],
               ),
       ),
