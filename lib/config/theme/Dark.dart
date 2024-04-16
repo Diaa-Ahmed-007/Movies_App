@@ -16,11 +16,11 @@ class DarkTheme {
             .unselectedBookmarkAndBoarderMovieCategoryAndFilledSearchTextFieldColor,
         secondary: AppColors.navigatorBarColor,
         onSecondary: AppColors.unselectedNavigatorBarIconColor),
-    appBarTheme: AppBarTheme(
+    appBarTheme: const AppBarTheme(
         color: AppColors.appBarColor,
         titleTextStyle: TextsStyles.appBarTitle,
         centerTitle: true,
-        iconTheme: const IconThemeData(color: Colors.white, size: 30)),
+        iconTheme: IconThemeData(color: Colors.white, size: 30)),
     textTheme: TextTheme(
         displayLarge: TextsStyles
             .loginRegisterPrimeTitle, // for login and register yellow titles can use copyWith to control size and wight in same page
@@ -40,23 +40,21 @@ class DarkTheme {
       color: Colors.white,
       size: 12,
     ),
-    filledButtonTheme: FilledButtonThemeData(
+    filledButtonTheme: const FilledButtonThemeData(
         style: ButtonStyle(
-      backgroundColor: const MaterialStatePropertyAll(AppColors.primaryColor),
+      backgroundColor: MaterialStatePropertyAll(AppColors.primaryColor),
       textStyle: MaterialStatePropertyAll(TextsStyles.filledButton),
-      padding:
-          const MaterialStatePropertyAll(EdgeInsets.symmetric(horizontal: 50)),
+      padding: MaterialStatePropertyAll(EdgeInsets.symmetric(horizontal: 50)),
     )),
-    bottomNavigationBarTheme: BottomNavigationBarThemeData(
+    bottomNavigationBarTheme: const BottomNavigationBarThemeData(
       backgroundColor: AppColors.navigatorBarColor,
-      selectedIconTheme:
-          const IconThemeData(size: 25, color: AppColors.primaryColor),
-      unselectedIconTheme: const IconThemeData(
+      selectedIconTheme: IconThemeData(size: 25, color: AppColors.primaryColor),
+      unselectedIconTheme: IconThemeData(
           size: 25, color: AppColors.unselectedNavigatorBarIconColor),
       selectedItemColor: AppColors.primaryColor,
       unselectedItemColor: AppColors.unselectedNavigatorBarIconColor,
       showSelectedLabels: true,
-      showUnselectedLabels: false,
+      showUnselectedLabels: true,
       selectedLabelStyle: TextsStyles.selectedLabelInBottomNavigationBar,
       unselectedLabelStyle: TextsStyles.unselectedLabelInBottomNavigationBar,
     ),
