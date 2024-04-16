@@ -1,3 +1,7 @@
+class constants {
+  static const String RegExValidateEmail =r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+";
+}
+
 class Constants {
   static const String baseMoviesApiUrl = "https://api.themoviedb.org";
   static const String apiKey =
