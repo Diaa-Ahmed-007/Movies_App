@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:injectable/injectable.dart';
+
 @singleton
 class AuthHelper {
   Future<UserCredential> register({
@@ -10,7 +11,7 @@ class AuthHelper {
   }) async {
     UserCredential credential = await FirebaseAuth.instance
         .createUserWithEmailAndPassword(email: email, password: password);
-    log(credential.user?.uid ?? "");
+    log("AuthHelper");
     return credential;
     // } on FirebaseAuthException catch (e) {
     //   return e.message ?? "";

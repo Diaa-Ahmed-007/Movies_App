@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:injectable/injectable.dart';
 import 'package:movies_app/core/firebase/auth_helper.dart';
@@ -11,18 +12,19 @@ class registerDataSourceImpl extends RegisterDataSource {
   @factoryMethod
   registerDataSourceImpl(this.authHelper);
   @override
-  Future<String> register({
+  Future<Either<String, UserCredential>> register({
     required String email,
     required String password,
   }) async {
     try {
-      UserCredential reg= await authHelper.register(email: email, password: password);
-      log(reg.user?.uid ?? "");
-      return "success";
+      UserCredential reg =
+          await authHelper.register(email: email, password: password);
+      log("registerDataSourceImpl");
+      return Right(reg);
     } on FirebaseAuthException catch (e) {
-      return e.message ?? "";
+      return Left(e.message ?? "");
     } catch (e) {
-      return e.toString();
+      return Left(e.toString());
     }
   }
 }
