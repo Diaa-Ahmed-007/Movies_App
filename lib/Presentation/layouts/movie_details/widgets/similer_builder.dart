@@ -40,24 +40,31 @@ class SimilerBuilder extends StatelessWidget {
                   Expanded(
                     child: Padding(
                       padding: EdgeInsets.symmetric(horizontal: 10.w),
-                      child: ListView.separated(
-                          scrollDirection: Axis.horizontal,
-                          itemBuilder: (context, index) => InkWell(
-                            onTap: (){
-                              Navigator.pushReplacementNamed(context,
-                                  Routes.movieDetailsScreenRouteName,
-                                  arguments: SelectedMovie(
-                                      id: movies[index].id ?? 0,
-                                      title: movies[index].title ?? ""));
-                            },
-                            child: MovieCard(
-                                  movie: movies[index],
-                                  isFullView: false,
-                                ),
-                          ),
-                          separatorBuilder: (context, index) =>
-                              SizedBox(width: 10.w),
-                          itemCount: movies.length),
+                      child: Align(
+                        alignment: Alignment.bottomCenter,
+                        child: ListView.separated(
+                            scrollDirection: Axis.horizontal,
+                            itemBuilder: (context, index) => Material(
+                              borderRadius: BorderRadius.circular(5),
+                              clipBehavior: Clip.antiAlias,
+                              child: InkWell(
+                                onTap: (){
+                                  Navigator.pushReplacementNamed(context,
+                                      Routes.movieDetailsScreenRouteName,
+                                      arguments: SelectedMovie(
+                                          id: movies[index].id ?? 0,
+                                          title: movies[index].title ?? ""));
+                                },
+                                child: MovieCard(
+                                      movie: movies[index],
+                                      isFullView: false,
+                                    ),
+                              ),
+                            ),
+                            separatorBuilder: (context, index) =>
+                                SizedBox(width: 10.w),
+                            itemCount: movies.length),
+                      ),
                     ),
                   ),
                   SizedBox(height: 17.h)

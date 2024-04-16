@@ -72,18 +72,22 @@ class PosterDetails extends StatelessWidget {
                         SizedBox(height: 15.h),
                         Row(
                           children: [
-                            MovieCard(
-                                isFullView: true,
-                                isLarge: true,
-                                movie: movie),
+                            Material(
+                              borderRadius: BorderRadius.circular(5),
+                              clipBehavior: Clip.antiAlias,
+                              child: MovieCard(
+                                  isFullView: true,
+                                  isLarge: true,
+                                  movie: movie),
+                            ),
                             SizedBox(width: 10.w),
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Container(
                                   color: Colors.transparent,
-                                  height: categories.length <= 3 ? 35.h : 70.h,
-                                  width: 210.w,
+                                  height: categories.isEmpty? 0 : categories.length <= 3 ? 35.h : 70.h,
+                                  width: categories.isEmpty? 0 : 210.w,
                                   child: GridView.builder(
                                       gridDelegate:
                                           SliverGridDelegateWithFixedCrossAxisCount(
@@ -98,10 +102,10 @@ class PosterDetails extends StatelessWidget {
                                       physics:
                                           const NeverScrollableScrollPhysics()),
                                 ),
-                                SizedBox(height: 12.h),
+                                SizedBox(height: categories.isEmpty? 0:12.h),
                                 SizedBox(
-                                    height: 80.h,
-                                    width: 231.w,
+                                    height: movie.overview == null|| movie.overview == "" ? 0 : 80.h,
+                                    width: movie.overview == null|| movie.overview == "" ? 0 :231.w,
                                     child: SingleChildScrollView(
                                         child: Padding(
                                            padding: EdgeInsets.all(3.sp),

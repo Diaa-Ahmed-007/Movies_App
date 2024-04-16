@@ -43,10 +43,9 @@ class _MovieCardState extends State<MovieCard> {
   @override
   Widget build(BuildContext context) {
     return Stack(alignment: Alignment.topLeft, children: [
-      Container(
+      Ink(
         height: widget.height,
         width: widget.width,
-        clipBehavior: Clip.antiAlias,
         decoration: BoxDecoration(
             color: Theme.of(context).colorScheme.primaryContainer,
             borderRadius: BorderRadius.circular(5)),
@@ -104,10 +103,13 @@ class _MovieCardState extends State<MovieCard> {
                             ),
 
                             Text(widget.movie.title ?? "",
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .headlineLarge
-                                    ?.copyWith(fontSize: 10)),
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .headlineLarge
+                                  ?.copyWith(fontSize: 10),
+                              maxLines: 2,
+                              overflow: TextOverflow.ellipsis,
+                            ),
                             SizedBox(height: 2.h),
                             MovieSmallDetails(
                               movieId: widget.movie.id,
