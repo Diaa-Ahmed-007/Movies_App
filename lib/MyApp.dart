@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies_app/Presentation/layouts/home/home_screen.dart';
+import 'package:movies_app/Presentation/layouts/home/provider/home_provider.dart';
 import 'package:movies_app/Presentation/layouts/movie_details/movie_details_screen.dart';
 import 'package:movies_app/Presentation/layouts/splash/splash_screen.dart';
 import 'package:movies_app/core/Utils/routes.dart';
+import 'package:provider/provider.dart';
 
 import 'config/theme/Dark.dart';
 
@@ -21,7 +23,9 @@ class MyApp extends StatelessWidget {
           Routes.movieDetailsScreenRouteName: (context) =>
               const MovieDetailsScreen(),
           Routes.splashRouteName: (context) => const SplashScreen(),
-          Routes.HomeScreen: (context) => const HomeScreen()
+          Routes.HomeScreen: (context) =>  ChangeNotifierProvider<Homeprovider>(
+            create: (context) => Homeprovider(),
+            child: HomeScreen())
         },
         theme: DarkTheme.darkTheme,
         debugShowCheckedModeBanner: false,
