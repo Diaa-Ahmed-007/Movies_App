@@ -11,6 +11,7 @@ import 'package:movies_app/Presentation/layouts/splash/splash_screen.dart';
 import 'package:movies_app/config/theme/Dark.dart';
 import 'package:movies_app/core/DI/di.dart';
 import 'package:movies_app/core/Utils/routes.dart';
+import 'package:provider/provider.dart';
 
 import 'config/theme/Dark.dart';
 
@@ -24,22 +25,19 @@ class MyApp extends StatelessWidget {
       designSize: const Size(412, 892),
       minTextAdapt: true,
       splitScreenMode: true,
-      builder: (_, child) {
-        return MaterialApp(
-          routes: {
-            Routes.homeRouteName: (context) => const HomeScreen(),
-            Routes.splashRouteName: (context) => const SplashScreen(),
-            Routes.loginRouteName: (context) => loginScreen(),
-            Routes.registerRouteName: (context) => BlocProvider(
-                  create: (context) =>getIt<registerViewModel>(),
-                  child: registerScreen(),
-                ),
-          },
-          initialRoute: Routes.loginRouteName,
-          debugShowCheckedModeBanner: false,
-          theme: DarkTheme.darkTheme,
-        );
-      },
+      builder: (context, child) => MaterialApp(
+        routes: {
+          Routes.movieDetailsScreenRouteName: (context) =>
+              const MovieDetailsScreen(),
+          Routes.splashRouteName: (context) => const SplashScreen(),
+          Routes.HomeScreen: (context) =>  ChangeNotifierProvider<Homeprovider>(
+            create: (context) => Homeprovider(),
+            child: HomeScreen())
+        },
+        theme: DarkTheme.darkTheme,
+        debugShowCheckedModeBanner: false,
+        initialRoute: Routes.HomeScreen,
+      ),
     );
   }
 }
