@@ -24,7 +24,7 @@ class MovieSmallDetails extends StatelessWidget {
                   text: TextSpan(
                   children: [
                     TextSpan(
-                      text: "${toYearFormat(movie.releaseDate!)}  ",
+                      text: "${toYearFormat(movie.releaseDate)}  ",
                       style: style),
                     TextSpan(
                       text: durationToString(movie.timeOfMovie!.toInt()),
@@ -39,18 +39,18 @@ class MovieSmallDetails extends StatelessWidget {
     );
   }
 
-  String durationToString(int minutes) {
-    var d = Duration(minutes: minutes);
+  String durationToString(int? minutes) {
+    var d = Duration(minutes: minutes??0);
     List<String> parts = d.toString().split(':');
     return '${parts[0].padLeft(2, '')}h ${parts[1].padLeft(2, '')}m';
   }
 
-  String toYearFormat(String date) {
+  String toYearFormat(String? date) {
     DateFormat dateFormat = DateFormat("yyyy");
-
+    if(date==""||date==null){
+      date ="0000";
+    }
     DateTime fudgeThis = dateFormat.parse(date);
-
-    String dateTime = DateFormat("yyyy").format(DateTime(fudgeThis.year));
-    return dateTime;
+    return fudgeThis.year.toString();
   }
 }
