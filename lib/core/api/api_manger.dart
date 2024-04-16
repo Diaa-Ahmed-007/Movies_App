@@ -4,7 +4,6 @@ import 'package:movies_app/core/constants.dart';
 
 @singleton
 class ApiManger {
-  static const apiKey = '';
   static late Dio dio;
   static init() {
     dio = Dio(

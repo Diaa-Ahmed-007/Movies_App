@@ -15,8 +15,8 @@ class PopularDataSourceImpl extends PopularDataSource {
   @override
   Future<Either<PopularResponse, String>> getPopulerMovies() async {
     try {
-      var response =
-          await apiManger.getRequest(endPoints: EndPoints.populerEndPoint);
+      var response = await apiManger.getRequest(
+          endPoints: EndPoints.populerEndPoint, queryParameters: {"page": 1});
 
       PopularResponse populerMovieModel =
           PopularResponse.fromJson(response.data);

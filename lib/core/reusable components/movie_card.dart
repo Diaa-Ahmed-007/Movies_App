@@ -26,7 +26,7 @@ class MovieCard extends StatefulWidget {
         height = 200.h;
         width = 130.w;
       } else {
-        height = 130.h;
+        height = 170.h;
         width = 100.w;
       }
     } else {
@@ -101,8 +101,8 @@ class _MovieCardState extends State<MovieCard> {
                                         Theme.of(context).textTheme.titleSmall)
                               ],
                             ),
-
-                            Text(widget.movie.title ?? "",
+                            Text(
+                              widget.movie.title ?? "",
                               style: Theme.of(context)
                                   .textTheme
                                   .headlineLarge
@@ -118,15 +118,12 @@ class _MovieCardState extends State<MovieCard> {
                                   .labelMedium
                                   ?.copyWith(fontSize: 8),
                             ),
-                            // function calculate and date format
                           ],
                         ),
                       ))
                 ],
               ),
       ),
-
-      //bookMark
       InkWell(
         onTap: () {
           widget.isChecked = !widget.isChecked;

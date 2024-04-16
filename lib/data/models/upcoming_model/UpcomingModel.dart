@@ -89,7 +89,8 @@ class UpcomingModel {
       backdropPath: backdropPath,
       genreIds: genreIds,
       id: id,
-      posterPath: posterPath
+      posterPath: posterPath,
+      title:title,
     );
   }
 }
