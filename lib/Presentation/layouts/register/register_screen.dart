@@ -4,11 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies_app/Presentation/layouts/register/register_viewmodel/register_view_model.dart';
-import 'package:movies_app/Presentation/layouts/register/ssss.dart';
-import 'package:movies_app/core/DI/di.dart';
 import 'package:movies_app/core/Utils/routes.dart';
 import 'package:movies_app/core/constants.dart';
-import 'package:movies_app/core/firebase/auth_helper.dart';
 import 'package:movies_app/core/reusableComponents/custom_text_filed.dart';
 
 class registerScreen extends StatefulWidget {
@@ -138,7 +135,7 @@ class _registerScreenState extends State<registerScreen> {
                             //  Navigator.of(context).push(MaterialPageRoute(
                             //   builder: (context) => ssss(),
                             // ));
-                            return AlertDialog(
+                            return const AlertDialog(
                               content: Text("success"),
                               actions: [],
                             );
@@ -146,11 +143,11 @@ class _registerScreenState extends State<registerScreen> {
                           if (state is registerErrorState) {
                             return AlertDialog(
                               content: Text(state.errorMessage),
-                              actions: [],
+                              actions: const [],
                             );
                           }
                           log("success");
-                          return AlertDialog(
+                          return const AlertDialog(
                             content: Center(
                                 child: CircularProgressIndicator.adaptive()),
                           );

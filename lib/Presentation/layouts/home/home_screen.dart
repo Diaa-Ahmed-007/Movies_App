@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:movies_app/Presentation/layouts/home/provider/home_provider.dart';
 import 'package:movies_app/Presentation/layouts/home/tabs/home_tab/home_tab.dart';
+import 'package:movies_app/Presentation/layouts/home/tabs/search_tab/search_tab.dart';
 import 'package:provider/provider.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -10,9 +11,7 @@ class HomeScreen extends StatelessWidget {
   });
   final List<Widget> navWidget = [
     const HomeTab(),
-    Container(
-      color: Colors.red,
-    ),
+    const SearchTab(),
     Container(
       color: Colors.blue,
     ),
@@ -25,6 +24,7 @@ class HomeScreen extends StatelessWidget {
     Homeprovider provider = Provider.of<Homeprovider>(context);
     return Scaffold(
         bottomNavigationBar: BottomNavigationBar(
+          
           enableFeedback: false,
           currentIndex: provider.homeTapIndex,
           onTap: (value) {

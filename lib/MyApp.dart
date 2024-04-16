@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies_app/Presentation/layouts/home/home_screen.dart';
+import 'package:movies_app/Presentation/layouts/home/provider/home_provider.dart';
 import 'package:movies_app/Presentation/layouts/login/login_screen.dart';
 import 'package:movies_app/Presentation/layouts/register/register_screen.dart';
 import 'package:movies_app/Presentation/layouts/register/register_viewmodel/register_view_model.dart';
@@ -30,13 +31,13 @@ class MyApp extends StatelessWidget {
           Routes.movieDetailsScreenRouteName: (context) =>
               const MovieDetailsScreen(),
           Routes.splashRouteName: (context) => const SplashScreen(),
-          Routes.HomeScreen: (context) =>  ChangeNotifierProvider<Homeprovider>(
+          Routes.homeRouteName: (context) =>  ChangeNotifierProvider<Homeprovider>(
             create: (context) => Homeprovider(),
             child: HomeScreen())
         },
         theme: DarkTheme.darkTheme,
         debugShowCheckedModeBanner: false,
-        initialRoute: Routes.HomeScreen,
+        initialRoute: Routes.homeRouteName,
       ),
     );
   }
