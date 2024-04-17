@@ -5,18 +5,20 @@ import 'package:injectable/injectable.dart';
 
 @singleton
 class AuthHelper {
-  Future<UserCredential> register({
+  Future<UserCredential> createNewUser({
     required String email,
     required String password,
   }) async {
     UserCredential credential = await FirebaseAuth.instance
         .createUserWithEmailAndPassword(email: email, password: password);
-    log("AuthHelper");
+    log("createNewUser");
     return credential;
-    // } on FirebaseAuthException catch (e) {
-    //   return e.message ?? "";
-    // } catch (e) {
-    //   return e.toString();
-    // }
+  }
+
+  Future<UserCredential> login({required String email,required String password}) async {
+    UserCredential credential = await FirebaseAuth.instance
+        .signInWithEmailAndPassword(email: email, password: password);
+    log("login");
+    return credential;
   }
 }
