@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:movies_app/Presentation/layouts/home/tabs/home_tab/view_model/similer_view_model.dart';
+import 'package:movies_app/Presentation/layouts/movie_details/view_model/similer_view_model.dart';
 import 'package:movies_app/core/DI/di.dart';
 import 'package:movies_app/core/Utils/routes.dart';
 import 'package:movies_app/core/reusable%20components/movie_card.dart';

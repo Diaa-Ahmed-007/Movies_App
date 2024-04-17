@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../data/models/movie_details/Genres.dart';
+import '../../../../data/models/movie_details_model/Genres.dart';
 
 class MovieCategory extends StatelessWidget {
   final Genres category;

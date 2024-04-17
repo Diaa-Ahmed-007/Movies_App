@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:movies_app/domain/entities/UpcomingEntitie.dart';
-import 'package:movies_app/domain/use_cases/upcoming_usecase.dart';
+import 'package:movies_app/domain/use_cases/remote/upcoming_usecase.dart';
 
 @injectable
 class UpcomingHomeTabViewModel extends Cubit<UpcomingHomeTabStates> {

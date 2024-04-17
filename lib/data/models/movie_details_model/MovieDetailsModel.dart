@@ -1,4 +1,4 @@
-import 'package:movies_app/data/models/movie_details/Genres.dart';
+import 'package:movies_app/data/models/movie_details_model/Genres.dart';
 import 'package:movies_app/domain/entities/MovieDetailsEntitie.dart';
 
 import 'ProductionCompanies.dart';
