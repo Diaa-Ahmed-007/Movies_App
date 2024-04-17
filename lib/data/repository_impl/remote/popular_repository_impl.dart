@@ -2,7 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
 import 'package:movies_app/data/data_source_contract/remote/popular_datasource.dart';
 import 'package:movies_app/domain/entities/PopularEntitie.dart';
-import 'package:movies_app/domain/repository_contract/popular_repository.dart';
+import 'package:movies_app/domain/repository_contract/remote/popular_repository.dart';
 
 @Injectable(as: PopularRepository)
 class PopularRepositoryImpl extends PopularRepository {

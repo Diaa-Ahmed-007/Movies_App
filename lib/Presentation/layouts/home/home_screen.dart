@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:movies_app/Presentation/layouts/home/provider/home_provider.dart';
 import 'package:movies_app/Presentation/layouts/home/tabs/home_tab/home_tab.dart';
 import 'package:movies_app/Presentation/layouts/home/tabs/search_tab/search_tab.dart';
+import 'package:movies_app/Presentation/layouts/home/tabs/search_tab/view_model/search_view_model.dart';
+import 'package:movies_app/core/DI/Di.dart';
 import 'package:provider/provider.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -11,7 +14,10 @@ class HomeScreen extends StatelessWidget {
   });
   final List<Widget> navWidget = [
     const HomeTab(),
-    const SearchTab(),
+    BlocProvider(
+       create: (context) => getIt<SearchTabViewModel>(),
+      child: const SearchTab(),
+    ),
     Container(
       color: Colors.blue,
     ),
@@ -23,9 +29,10 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     Homeprovider provider = Provider.of<Homeprovider>(context);
     return Scaffold(
+        resizeToAvoidBottomInset: false,
         bottomNavigationBar: BottomNavigationBar(
-          
           enableFeedback: false,
+          type: BottomNavigationBarType.fixed,
           currentIndex: provider.homeTapIndex,
           onTap: (value) {
             provider.changeHomeTapIndex(value);

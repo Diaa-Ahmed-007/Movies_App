@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies_app/core/Utils/routes.dart';
 import 'package:movies_app/core/constants.dart';
-import 'package:movies_app/core/reusableComponents/custom_text_filed.dart';
+import 'package:movies_app/core/reusable%20components/custom_text_filed.dart';
 
 class loginScreen extends StatefulWidget {
   const loginScreen({super.key});

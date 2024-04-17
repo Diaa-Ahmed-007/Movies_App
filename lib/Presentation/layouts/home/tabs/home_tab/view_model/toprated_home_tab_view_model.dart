@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:movies_app/domain/entities/TopRatedEntitie.dart';
-import 'package:movies_app/domain/use_cases/toprated_usecase.dart';
+import 'package:movies_app/domain/use_cases/remote/toprated_usecase.dart';
 
 @injectable
 class TopRatedHomeTabViewModel extends Cubit<TopRatedHomeTabStates> {

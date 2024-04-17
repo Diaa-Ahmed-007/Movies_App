@@ -3,7 +3,7 @@ import 'package:injectable/injectable.dart';
 import 'package:movies_app/data/data_source_contract/remote/upcoming_datasource.dart';
 import 'package:movies_app/data/models/upcoming_model/UpcomingModel.dart';
 import 'package:movies_app/domain/entities/UpcomingEntitie.dart';
-import 'package:movies_app/domain/repository_contract/upcoming_repository.dart';
+import 'package:movies_app/domain/repository_contract/remote/upcoming_repository.dart';
 
 @Injectable(as: UpcomingRepository)
 class UpcomingRepositoryImpl extends UpcomingRepository {

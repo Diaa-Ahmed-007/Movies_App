@@ -2,13 +2,13 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:movies_app/Presentation/layouts/home/tabs/home_tab/view_model/movie_details_view_model.dart';
+import 'package:movies_app/Presentation/layouts/movie_details/view_model/movie_details_view_model.dart';
 import 'package:movies_app/core/DI/Di.dart';
 import 'package:movies_app/core/reusable%20components/movie_show_details.dart';
 
 import '../../../../core/constants.dart';
 import '../../../../core/reusable components/movie_card.dart';
-import '../../../../data/models/movie_details/Genres.dart';
+import '../../../../data/models/movie_details_model/Genres.dart';
 import '../../../../domain/entities/MovieDetailsEntitie.dart';
 import 'movie_category.dart';
 

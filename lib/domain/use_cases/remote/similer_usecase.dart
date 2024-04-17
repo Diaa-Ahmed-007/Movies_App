@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
 import 'package:movies_app/domain/entities/SimilerEntitie.dart';
-import 'package:movies_app/domain/repository_contract/similer_repository.dart';
+import 'package:movies_app/domain/repository_contract/remote/similer_repository.dart';
 @injectable
 class SimilerUseCase {
   SimilerRepository similerRepository;

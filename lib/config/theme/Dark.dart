@@ -15,7 +15,9 @@ class DarkTheme {
         onPrimaryContainer: AppColors
             .unselectedBookmarkAndBoarderMovieCategoryAndFilledSearchTextFieldColor,
         secondary: AppColors.navigatorBarColor,
-        onSecondary: AppColors.unselectedNavigatorBarIconColor),
+        onSecondary: AppColors.unselectedNavigatorBarIconColor,
+        inversePrimary: AppColors.cursor,
+        ),
     appBarTheme: const AppBarTheme(
         color: AppColors.appBarColor,
         titleTextStyle: TextsStyles.appBarTitle,
@@ -40,6 +42,7 @@ class DarkTheme {
       color: Colors.white,
       size: 12,
     ),
+    
     filledButtonTheme: const FilledButtonThemeData(
         style: ButtonStyle(
       backgroundColor: MaterialStatePropertyAll(AppColors.primaryColor),

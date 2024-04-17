@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
-import 'package:movies_app/Presentation/layouts/home/tabs/home_tab/view_model/movie_details_view_model.dart';
+import 'package:movies_app/Presentation/layouts/movie_details/view_model/movie_details_view_model.dart';
 import 'package:movies_app/core/DI/di.dart';
 import 'package:movies_app/domain/entities/MovieDetailsEntitie.dart';
 
