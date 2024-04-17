@@ -9,24 +9,25 @@ import 'package:movies_app/core/DI/Di.dart';
 import 'package:provider/provider.dart';
 
 class HomeScreen extends StatelessWidget {
-  HomeScreen({
+  const HomeScreen({
     super.key,
   });
-  final List<Widget> navWidget = [
-    const HomeTab(),
-    BlocProvider(
-       create: (context) => getIt<SearchTabViewModel>(),
-      child: const SearchTab(),
-    ),
-    Container(
-      color: Colors.blue,
-    ),
-    Container(
-      color: Colors.amber,
-    ),
-  ];
+
   @override
   Widget build(BuildContext context) {
+    final List<Widget> navWidget = [
+      const HomeTab(),
+      BlocProvider(
+        create: (context) => getIt<SearchTabViewModel>(),
+        child: const SearchTab(),
+      ),
+      Container(
+        color: Colors.blue,
+      ),
+      Container(
+        color: Colors.amber,
+      ),
+    ];
     Homeprovider provider = Provider.of<Homeprovider>(context);
     return Scaffold(
         resizeToAvoidBottomInset: false,

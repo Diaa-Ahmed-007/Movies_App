@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies_app/Presentation/cubit/auth&firestore_viewmodel.dart';
 import 'package:movies_app/Presentation/layouts/home/home_screen.dart';
 import 'package:movies_app/Presentation/layouts/login/login_Viewmodel/login_view_model.dart';
@@ -26,16 +26,16 @@ class MyApp extends StatelessWidget {
           routes: {
             Routes.homeRouteName: (context) => const HomeScreen(),
             Routes.splashRouteName: (context) => BlocProvider(
-              create: (context) => getIt<AuthAndFirestoreViewmodel>(),
+                  create: (context) => getIt<AuthAndFirestoreViewmodel>(),
                   child: const splachScreen(),
                 ),
             Routes.loginRouteName: (context) => BlocProvider(
                   create: (context) => getIt<loginViewModel>(),
-                  child: loginScreen(),
+                  child: const loginScreen(),
                 ),
             Routes.registerRouteName: (context) => BlocProvider(
                   create: (context) => getIt<registerViewModel>(),
-                  child: registerScreen(),
+                  child: const registerScreen(),
                 ),
           },
           initialRoute: Routes.loginRouteName,
