@@ -18,7 +18,7 @@ class registerDataSourceImpl extends RegisterDataSource {
   }) async {
     try {
       UserCredential reg =
-          await authHelper.register(email: email, password: password);
+          await authHelper.createNewUser(email: email, password: password);
       log("registerDataSourceImpl");
       return Right(reg);
     } on FirebaseAuthException catch (e) {

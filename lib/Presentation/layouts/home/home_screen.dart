@@ -11,10 +11,13 @@ import 'package:movies_app/core/DI/Di.dart';
 import 'package:provider/provider.dart';
 
 class HomeScreen extends StatelessWidget {
-  HomeScreen({
+  const HomeScreen({
     super.key,
   });
-  final List<Widget> navWidget = [
+
+  @override
+  Widget build(BuildContext context) {
+     final List<Widget> navWidget = [
     const HomeTab(),
     BlocProvider(
        create: (context) => getIt<SearchTabViewModel>(),
@@ -27,8 +30,6 @@ class HomeScreen extends StatelessWidget {
       color: Colors.amber,
     ),
   ];
-  @override
-  Widget build(BuildContext context) {
     Homeprovider provider = Provider.of<Homeprovider>(context);
     return Scaffold(
         resizeToAvoidBottomInset: false,
