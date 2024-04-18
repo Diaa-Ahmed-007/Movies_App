@@ -13,5 +13,6 @@ class TextsStyles{
   static const TextStyle movieMiniDetails = TextStyle(color: AppColors.detailsForMovieColor,fontSize: 10,fontWeight: FontWeight.w400,fontFamily: "Inter");
   static const TextStyle movieRating = TextStyle(color: Colors.white,fontSize: 10,fontWeight: FontWeight.w400,fontFamily: "Poppins");
   static TextStyle movieDetailsInSearchAndWatchListColor = TextStyle(color: AppColors.movieDetailsInSearchAndWatchListColor,fontSize: 13,fontWeight: FontWeight.w400,fontFamily: "Inter");
+  static const TextStyle category = TextStyle(color: Colors.white,fontSize: 14,fontWeight: FontWeight.w600,fontFamily: "Poppins");
 
 }

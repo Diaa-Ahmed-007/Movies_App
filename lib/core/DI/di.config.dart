@@ -13,21 +13,33 @@ import 'package:injectable/injectable.dart' as _i2;
 
 import '../../data/data_source_contract/local/login_data_source.dart' as _i13;
 import '../../data/data_source_contract/local/register_data_source.dart' as _i7;
+import '../../data/data_source_contract/remote/categories_datasource.dart'
+    as _i14;
 import '../../data/data_source_contract/remote/movieDetails_datasource.dart'
     as _i11;
-import '../../data/data_source_contract/remote/popular_datasource.dart' as _i30;
+
+import '../../data/data_source_contract/remote/popular_datasource.dart' as _i28;
+
 import '../../data/data_source_contract/remote/search_datasource.dart' as _i20;
 import '../../data/data_source_contract/remote/similer_datasource.dart' as _i18;
 import '../../data/data_source_contract/remote/toprated_datasource.dart' as _i5;
 import '../../data/data_source_contract/remote/upcoming_datasource.dart'
     as _i16;
+
 import '../../data/data_source_impl/local/login_data_source_impl.dart' as _i14;
+
 import '../../data/data_source_impl/local/register_data_source_impl.dart'
     as _i8;
+import '../../data/data_source_impl/remote/categories_datasource_impl.dart'
+    as _i15;
 import '../../data/data_source_impl/remote/movie_details_datasource_impl.dart'
     as _i12;
 import '../../data/data_source_impl/remote/popular_datasource_impl.dart'
+
+    as _i29;
+
     as _i31;
+
 import '../../data/data_source_impl/remote/search_datasource_impl.dart' as _i21;
 import '../../data/data_source_impl/remote/similer_datasource_impl.dart'
     as _i19;
@@ -37,8 +49,11 @@ import '../../data/data_source_impl/remote/upcoming_datasource_impl.dart'
     as _i17;
 import '../../data/repository_impl/local/login_repository_impl.dart' as _i25;
 import '../../data/repository_impl/local/register_repository_impl.dart' as _i10;
+import '../../data/repository_impl/remote/categories_repository_impl.dart'
+    as _i36;
 import '../../data/repository_impl/remote/movie_details_repository_impl.dart'
     as _i23;
+
 import '../../data/repository_impl/remote/popular_repository_impl.dart' as _i47;
 import '../../data/repository_impl/remote/search_repository_impl.dart' as _i33;
 import '../../data/repository_impl/remote/similer_repository_impl.dart' as _i27;
@@ -47,10 +62,14 @@ import '../../data/repository_impl/remote/toprated_repository_impl.dart'
 import '../../data/repository_impl/remote/upcoming_repository_impl.dart'
     as _i41;
 import '../../domain/repository_contract/local/login_repository.dart' as _i24;
+
 import '../../domain/repository_contract/local/register_repository.dart' as _i9;
+import '../../domain/repository_contract/remote/categories_repository.dart'
+    as _i35;
 import '../../domain/repository_contract/remote/movie_details_repository.dart'
     as _i22;
 import '../../domain/repository_contract/remote/popular_repository.dart'
+
     as _i46;
 import '../../domain/repository_contract/remote/search_repository.dart' as _i32;
 import '../../domain/repository_contract/remote/similer_repository.dart'
@@ -84,6 +103,7 @@ import '../../Presentation/layouts/movie_details/view_model/similer_view_model.d
     as _i37;
 import '../../Presentation/layouts/register/register_viewmodel/register_view_model.dart'
     as _i39;
+
 import '../api/api_manger.dart' as _i3;
 import '../firebase/auth_helper.dart' as _i4;
 
@@ -108,10 +128,12 @@ extension GetItInjectableX on _i1.GetIt {
         registerDataSource: gh<_i7.RegisterDataSource>()));
     gh.factory<_i11.MovieDetailsDataSource>(
         () => _i12.MovieDetailsDataSourceImpl(gh<_i3.ApiManger>()));
+
     gh.factory<_i13.LoginDataSource>(
         () => _i14.LoginDataSourceImpl(gh<_i4.AuthHelper>()));
     gh.factory<_i15.RegisterUsecase>(
         () => _i15.RegisterUsecase(gh<_i9.RegisterRepository>()));
+
     gh.factory<_i16.UpcomingDataSorce>(
         () => _i17.UpcomingDataSourceImpl(gh<_i3.ApiManger>()));
     gh.factory<_i18.SimilerDataSource>(

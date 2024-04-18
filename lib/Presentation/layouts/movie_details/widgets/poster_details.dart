@@ -5,10 +5,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies_app/Presentation/layouts/movie_details/view_model/movie_details_view_model.dart';
 import 'package:movies_app/core/DI/Di.dart';
 import 'package:movies_app/core/reusable%20components/movie_show_details.dart';
-
 import '../../../../core/constants.dart';
 import '../../../../core/reusable components/movie_card.dart';
-import '../../../../data/models/movie_details_model/Genres.dart';
+import '../../../../data/models/categories/Genres.dart';
 import '../../../../domain/entities/MovieDetailsEntitie.dart';
 import 'movie_category.dart';
 
@@ -123,8 +122,8 @@ class PosterDetails extends StatelessWidget {
                                         : 231.w,
                                     child: SingleChildScrollView(
                                         child: Padding(
-                                      padding: EdgeInsets.all(3.sp),
-                                      child: Text(movie.overview ?? "",
+                                          padding: EdgeInsets.all(3.sp),
+                                          child: Text(movie.overview ?? "",
                                           style: Theme.of(context)
                                               .textTheme
                                               .bodyMedium),

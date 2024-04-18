@@ -36,7 +36,8 @@ class DarkTheme {
             .movieMiniDetails, // for year and PG film hours in home and movie details * in card resize it to 8
         labelSmall: TextsStyles
             .movieDetailsInSearchAndWatchListColor, // for search&Watchlist card Details
-        titleSmall: TextsStyles.movieRating // for movie rating in movie card
+        titleSmall: TextsStyles.movieRating, // for movie rating in movie card
+        titleMedium: TextsStyles.category
         ),
     iconTheme: const IconThemeData(
       color: Colors.white,
