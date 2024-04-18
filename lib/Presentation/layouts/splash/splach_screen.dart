@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:movies_app/Presentation/cubit/auth&firestore_viewmodel.dart';
 import 'package:movies_app/core/Utils/routes.dart';
-import 'package:provider/provider.dart';
 
 class splachScreen extends StatefulWidget {
   const splachScreen({super.key});
@@ -14,7 +13,7 @@ class _splachScreenState extends State<splachScreen> {
   @override
   Widget build(BuildContext context) {
     Future.delayed(
-      Duration(
+      const Duration(
         seconds: 3,
       ),
       () {

@@ -71,7 +71,7 @@ class _loginScreenState extends State<loginScreen> {
                   style: Theme.of(context).textTheme.displayLarge,
                 ),
                 SizedBox(height: 104.h),
-                customTextFiled(
+                CustomTextFiled(
                   hintText: 'Email',
                   textController: emailController,
                   validator: (value) {
@@ -86,7 +86,7 @@ class _loginScreenState extends State<loginScreen> {
                   keyboard: TextInputType.emailAddress,
                 ),
                 SizedBox(height: 98.h),
-                customTextFiled(
+                CustomTextFiled(
                   hintText: 'Password',
                   textController: passwordController,
                   validator: (value) {

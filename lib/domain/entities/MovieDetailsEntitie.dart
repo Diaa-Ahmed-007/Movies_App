@@ -11,7 +11,6 @@
 /// vote_average : 8.038
 library;
 
-import '';
 import '../../data/models/categories/Genres.dart';
 
 class MovieDetailsEntitie {

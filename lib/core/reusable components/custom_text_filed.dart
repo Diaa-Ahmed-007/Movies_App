@@ -1,19 +1,21 @@
 import 'package:flutter/material.dart';
 
-typedef validationFieled = String? Function(String?)?;
+typedef ValidationFieled = String? Function(String?)?;
 
-class customTextFiled extends StatelessWidget {
+// ignore: must_be_immutable
+class CustomTextFiled extends StatelessWidget {
   String hintText;
   TextInputType keyboard;
   TextEditingController textController;
-  bool ObscureText;
+  bool obscureText;
   Widget? suffixIcon;
-  validationFieled validator;
-  customTextFiled({
+  ValidationFieled validator;
+  CustomTextFiled({
+    super.key,
     required this.hintText,
     required this.keyboard,
     required this.textController,
-    this.ObscureText = false,
+    this.obscureText = false,
     this.suffixIcon,
     this.validator,
   });
@@ -22,18 +24,22 @@ class customTextFiled extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextFormField(
       decoration: InputDecoration(
-          hintText: hintText,
-          hintStyle: Theme.of(context).textTheme.displayMedium,
-          suffixIcon: suffixIcon,
-          disabledBorder: const UnderlineInputBorder(borderSide: BorderSide(width: 1,color: Colors.white)),
-          enabledBorder: const UnderlineInputBorder(borderSide: BorderSide(width: 1,color: Colors.white)),
-          border: const UnderlineInputBorder(borderSide: BorderSide(width: 1,color: Colors.white)),
-          focusedBorder: const UnderlineInputBorder(borderSide: BorderSide(width: 1,color: Colors.white)),
-          ),
-      style:Theme.of(context).textTheme.displayMedium ,
+        hintText: hintText,
+        hintStyle: Theme.of(context).textTheme.displayMedium,
+        suffixIcon: suffixIcon,
+        disabledBorder: const UnderlineInputBorder(
+            borderSide: BorderSide(width: 1, color: Colors.white)),
+        enabledBorder: const UnderlineInputBorder(
+            borderSide: BorderSide(width: 1, color: Colors.white)),
+        border: const UnderlineInputBorder(
+            borderSide: BorderSide(width: 1, color: Colors.white)),
+        focusedBorder: const UnderlineInputBorder(
+            borderSide: BorderSide(width: 1, color: Colors.white)),
+      ),
+      style: Theme.of(context).textTheme.displayMedium,
       keyboardType: keyboard,
       controller: textController,
-      obscureText: ObscureText,
+      obscureText: obscureText,
       obscuringCharacter: "*",
       validator: validator,
     );

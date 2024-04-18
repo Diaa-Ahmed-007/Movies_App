@@ -98,7 +98,7 @@ class _registerScreenState extends State<registerScreen> {
                   style: Theme.of(context).textTheme.displayMedium,
                 ),
                 SizedBox(height: 73.h),
-                customTextFiled(
+                CustomTextFiled(
                   hintText: 'First Name',
                   textController: firstNameController,
                   validator: (value) {
@@ -110,7 +110,7 @@ class _registerScreenState extends State<registerScreen> {
                   keyboard: TextInputType.name,
                 ),
                 SizedBox(height: 59.h),
-                customTextFiled(
+                CustomTextFiled(
                   hintText: 'Last Name',
                   textController: lastNameController,
                   validator: (value) {
@@ -122,7 +122,7 @@ class _registerScreenState extends State<registerScreen> {
                   keyboard: TextInputType.name,
                 ),
                 SizedBox(height: 59.h),
-                customTextFiled(
+                CustomTextFiled(
                   hintText: 'Email',
                   textController: emailController,
                   validator: (value) {
@@ -137,7 +137,7 @@ class _registerScreenState extends State<registerScreen> {
                   keyboard: TextInputType.emailAddress,
                 ),
                 SizedBox(height: 59.h),
-                customTextFiled(
+                CustomTextFiled(
                   hintText: 'Password',
                   textController: passwordController,
                   validator: (value) {
