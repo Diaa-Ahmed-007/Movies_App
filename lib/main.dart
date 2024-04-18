@@ -9,8 +9,6 @@ import 'package:movies_app/core/DI/di.dart';
 import 'package:movies_app/firebase_options.dart';
 
 
-
-
 void main()async {
   Bloc.observer = MyBlocObserver();
   await ScreenUtil.ensureScreenSize();

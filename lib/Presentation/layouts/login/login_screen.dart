@@ -21,8 +21,7 @@ class _loginScreenState extends State<loginScreen> {
   GlobalKey<FormState> formfkey = GlobalKey();
   @override
   Widget build(BuildContext context) {
-
-    return BlocListener<loginViewModel,loginState>(
+    return BlocListener<loginViewModel, loginState>(
       listenWhen: (previous, current) {
         if (current is loginSuccessState ||
             current is loginErrorState ||
@@ -35,7 +34,7 @@ class _loginScreenState extends State<loginScreen> {
         if (state is loginSuccessState) {
           log(state.usercredential.user?.uid ?? "");
           log("Login");
-          AlertDialog(
+          const AlertDialog(
             content: Text("success"),
             actions: [],
           );
@@ -44,10 +43,10 @@ class _loginScreenState extends State<loginScreen> {
           log(state.errorMessage);
           AlertDialog(
             content: Text(state.errorMessage),
-            actions: [],
+            actions: const [],
           );
         }
-        AlertDialog(
+        const AlertDialog(
           content: Center(child: CircularProgressIndicator.adaptive()),
         );
       },
@@ -79,7 +78,7 @@ class _loginScreenState extends State<loginScreen> {
                     if (value == null || value.isEmpty) {
                       return "this field can't be empty";
                     }
-                    if (!RegExp(constants.RegExValidateEmail).hasMatch(value)) {
+                    if (!RegExp(Constants.RegExValidateEmail).hasMatch(value)) {
                       return "Enter valid Email";
                     }
                     return null;

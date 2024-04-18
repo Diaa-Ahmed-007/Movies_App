@@ -7,7 +7,7 @@ import 'package:movies_app/Presentation/layouts/home/tabs/browse_tab/widgets/cat
 import '../../../../../data/models/categories/Genres.dart';
 
 class BrowseTab extends StatefulWidget {
-  const BrowseTab({Key? key}) : super(key: key);
+  const BrowseTab({super.key});
 
   @override
   State<BrowseTab> createState() => _BrowseTabState();
@@ -24,7 +24,10 @@ class _BrowseTabState extends State<BrowseTab> {
           sliver: SliverToBoxAdapter(
             child: Text(
               "Browse Category",
-              style: Theme.of(context).textTheme.headlineLarge?.copyWith(fontSize: 22),
+              style: Theme.of(context)
+                  .textTheme
+                  .headlineLarge
+                  ?.copyWith(fontSize: 22),
             ),
           ),
         ),
@@ -34,11 +37,11 @@ class _BrowseTabState extends State<BrowseTab> {
               List<Genres> categories = state.categories;
               return SliverPadding(
                 padding: EdgeInsets.all(25.sp),
-                sliver: SliverGrid(
-                  delegate: SliverChildBuilderDelegate(
-                        (context, index) => CategoryWidget(title: categories[index].name??"" , imageName: Genres.categoriesImagesList[index]),
-                    childCount: categories.length,
-                  ),
+                sliver: SliverGrid.builder(
+                  itemCount: categories.length,
+                  itemBuilder: (context, index) => CategoryWidget(
+                      title: categories[index].name ?? "",
+                      imageName: Genres.categoriesImagesList[index]),
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
                     childAspectRatio: 2,
@@ -56,7 +59,7 @@ class _BrowseTabState extends State<BrowseTab> {
                 ),
               );
             }
-            return SliverToBoxAdapter(
+            return const SliverToBoxAdapter(
               child: Center(
                 child: CircularProgressIndicator.adaptive(),
               ),
