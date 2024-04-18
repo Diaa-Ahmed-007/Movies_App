@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:movies_app/Presentation/layouts/home/provider/home_provider.dart';
+import 'package:movies_app/Presentation/layouts/home/tabs/browse_tab/browse_tab.dart';
+import 'package:movies_app/Presentation/layouts/home/tabs/browse_tab/view_model/browse_view_model.dart';
 import 'package:movies_app/Presentation/layouts/home/tabs/home_tab/home_tab.dart';
 import 'package:movies_app/Presentation/layouts/home/tabs/search_tab/search_tab.dart';
 import 'package:movies_app/Presentation/layouts/home/tabs/search_tab/view_model/search_view_model.dart';
@@ -18,9 +20,9 @@ class HomeScreen extends StatelessWidget {
        create: (context) => getIt<SearchTabViewModel>(),
       child: const SearchTab(),
     ),
-    Container(
-      color: Colors.blue,
-    ),
+    BlocProvider(
+        create: (BuildContext context) => getIt<BrowsTabViewModel>()..getCategory(),
+        child: BrowseTab()),
     Container(
       color: Colors.amber,
     ),
