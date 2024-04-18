@@ -21,7 +21,7 @@ class HomeScreen extends StatelessWidget {
       child: const SearchTab(),
     ),
     BlocProvider(
-        create: (BuildContext context) => getIt<BrowsTabViewModel>()..getCategory(),
+        create: (BuildContext context) => getIt<BrowseTabViewModel>()..getCategory(),
         child: BrowseTab()),
     Container(
       color: Colors.amber,

@@ -28,9 +28,9 @@ class _BrowseTabState extends State<BrowseTab> {
             ),
           ),
         ),
-        BlocBuilder<BrowsTabViewModel, BrowsTabStates>(
+        BlocBuilder<BrowseTabViewModel, BrowseTabStates>(
           builder: (context, state) {
-            if (state is BrowsTabSuccessState) {
+            if (state is BrowseTabSuccessState) {
               List<Genres> categories = state.categories;
               return SliverPadding(
                 padding: EdgeInsets.all(25.sp),
@@ -48,7 +48,7 @@ class _BrowseTabState extends State<BrowseTab> {
                 ),
               );
             }
-            if (state is BrowsTabErrorState) {
+            if (state is BrowseTabErrorState) {
               return SliverToBoxAdapter(
                 child: Text(
                   "No Categories found",

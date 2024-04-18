@@ -157,8 +157,8 @@ extension GetItInjectableX on _i1.GetIt {
         () => _i46.SearchTabViewModel(gh<_i42.SearchUseCase>()));
     gh.factory<_i47.MovieDetailsHomeTabViewModel>(() =>
         _i47.MovieDetailsHomeTabViewModel(gh<_i40.MovieDetailsUseCase>()));
-    gh.factory<_i48.BrowsTabViewModel>(
-        () => _i48.BrowsTabViewModel(gh<_i43.CategoryUseCase>()));
+    gh.factory<_i48.BrowseTabViewModel>(
+        () => _i48.BrowseTabViewModel(gh<_i43.CategoryUseCase>()));
     gh.factory<_i49.UpcomingUseCase>(
         () => _i49.UpcomingUseCase(gh<_i38.UpcomingRepository>()));
     gh.factory<_i50.PoplularUseCase>(

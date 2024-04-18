@@ -5,16 +5,16 @@ import 'package:movies_app/data/models/categories/Genres.dart';
 import '../../../../../../domain/use_cases/remote/category_usecase.dart';
 
 @injectable
-class BrowsTabViewModel extends Cubit<BrowsTabStates> {
-  BrowsTabViewModel(this.categoryUseCase) : super(BrowsTabInitialState());
+class BrowseTabViewModel extends Cubit<BrowseTabStates> {
+  BrowseTabViewModel(this.categoryUseCase) : super(BrowseTabInitialState());
   @factoryMethod
   CategoryUseCase categoryUseCase;
   getCategory() async {
-    emit(BrowsTabLoadingState());
+    emit(BrowseTabLoadingState());
     var categories = await categoryUseCase.call();
     categories.fold(
-            (response) => emit(BrowsTabSuccessState(response)),
-            (error) => emit(BrowsTabErrorState(error))
+            (response) => emit(BrowseTabSuccessState(response)),
+            (error) => emit(BrowseTabErrorState(error))
     );
   }
 }
@@ -24,18 +24,18 @@ class BrowsTabViewModel extends Cubit<BrowsTabStates> {
 
 
 
-abstract class BrowsTabStates {}
+abstract class BrowseTabStates {}
 
-class BrowsTabInitialState extends BrowsTabStates {}
+class BrowseTabInitialState extends BrowseTabStates {}
 
-class BrowsTabLoadingState extends BrowsTabStates {}
+class BrowseTabLoadingState extends BrowseTabStates {}
 
-class BrowsTabSuccessState extends BrowsTabStates {
+class BrowseTabSuccessState extends BrowseTabStates {
 List<Genres> categories;
-BrowsTabSuccessState(this.categories);
+BrowseTabSuccessState(this.categories);
 }
 
-class BrowsTabErrorState extends BrowsTabStates {
+class BrowseTabErrorState extends BrowseTabStates {
   String error;
-  BrowsTabErrorState(this.error);
+  BrowseTabErrorState(this.error);
 }

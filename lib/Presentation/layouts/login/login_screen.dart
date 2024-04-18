@@ -45,7 +45,7 @@ class _loginScreenState extends State<loginScreen> {
                   if (value == null || value.isEmpty) {
                     return "this field can't be empty";
                   }
-                  if (!RegExp(constants.RegExValidateEmail).hasMatch(value)) {
+                  if (!RegExp(Constants.RegExValidateEmail).hasMatch(value)) {
                     return "Enter valid Email";
                   }
                   return null;
