@@ -11,6 +11,7 @@ class MovieCard extends StatefulWidget {
   late double width;
   bool isFullView;
   bool? isLarge;
+  bool? isPosterPath;
   late bool isChecked;
   var movie;
 
@@ -72,7 +73,7 @@ class _MovieCardState extends State<MovieCard> {
                               topRight: Radius.circular(5))),
                       child: CachedNetworkImage(
                         imageUrl:
-                            "${Constants.imageBasePath}${widget.movie.posterPath}",
+                            "${Constants.imageBasePath}${widget.movie.backdropPath}",
                         fit: BoxFit.fill,
                         placeholder: (context, url) =>
                             const Center(child: CircularProgressIndicator()),
