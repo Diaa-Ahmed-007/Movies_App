@@ -7,6 +7,7 @@ import 'package:movies_app/Presentation/layouts/home/home_screen.dart';
 import 'package:movies_app/Presentation/layouts/home/provider/home_provider.dart';
 import 'package:movies_app/Presentation/layouts/login/login_Viewmodel/login_view_model.dart';
 import 'package:movies_app/Presentation/layouts/login/login_screen.dart';
+import 'package:movies_app/Presentation/layouts/movie_details/movie_details_screen.dart';
 import 'package:movies_app/Presentation/layouts/register/register_screen.dart';
 import 'package:movies_app/Presentation/layouts/register/register_viewmodel/register_view_model.dart';
 import 'package:movies_app/Presentation/layouts/splash/splach_screen.dart';
@@ -43,6 +44,7 @@ class MyApp extends StatelessWidget {
                   create: (context) => getIt<RegisterViewModel>(),
                   child: const RegisterScreen(),
                 ),
+            Routes.movieDetailsScreenRouteName:(context)=>MovieDetailsScreen(),
             Routes.categoryFilterRouteName: (context) =>
                 const CategoryFilterScreen()
           },

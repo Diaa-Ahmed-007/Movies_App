@@ -40,7 +40,16 @@ class PosterDetails extends StatelessWidget {
                             "${Constants.imageBasePath}${movie.posterPath}",
                         fit: BoxFit.fill,
                         placeholder: (context, url) =>
-                            const Center(child: CircularProgressIndicator()),
+                            Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Container(
+                                  height: 217.h,
+                                  width: 412.w,
+                                  clipBehavior: Clip.antiAlias,
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(10.r),
+                                      color: Colors.white24),
+                                )),
                         errorWidget: (context, url, error) => Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Container(
