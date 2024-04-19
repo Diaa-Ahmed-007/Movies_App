@@ -1,18 +1,25 @@
-class userModel {
-  String? id;
+class UserModel {
+  String? userid;
   String? email;
-  String? name;
-  userModel({required this.email, required this.id, required this.name});
-  userModel.fromFireStore(Map<String, dynamic> data) {
-    id = data["id"];
-    email = data["data"];
-    name = data["name"];
+  String? firstName;
+  String? lastName;
+  UserModel(
+      {required this.email,
+      required this.userid,
+      required this.firstName,
+      required this.lastName});
+  UserModel.fromFireStore(Map<String, dynamic> data) {
+    userid = data["userid"];
+    email = data["email"];
+    firstName = data["firstName"];
+    lastName = data["lastName"];
   }
   Map<String, dynamic> toFirestore() {
     return {
-      "id": id,
+      "userid": userid,
       "email": email,
-      "name": name,
+      "firstName": firstName,
+      "lastName": lastName
     };
   }
 }
