@@ -49,7 +49,7 @@ class _MovieCardState extends State<MovieCard> {
         width: widget.width,
         decoration: BoxDecoration(
             color: Theme.of(context).colorScheme.primaryContainer,
-            borderRadius: BorderRadius.circular(5)),
+            borderRadius: BorderRadius.circular(5.r)),
         child: widget.isFullView
             ? CachedNetworkImage(
                 imageUrl:

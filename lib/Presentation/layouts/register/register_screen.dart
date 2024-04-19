@@ -4,11 +4,14 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:movies_app/Presentation/layouts/provider/auth_provider.dart';
 import 'package:movies_app/Presentation/layouts/register/register_viewmodel/register_view_model.dart';
 import 'package:movies_app/core/Utils/routes.dart';
 import 'package:movies_app/core/constants.dart';
 import 'package:movies_app/core/firebase/firestore_helper.dart';
 import 'package:movies_app/core/reusable%20components/custom_text_filed.dart';
+import 'package:movies_app/data/models/user_model.dart';
+import 'package:provider/provider.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
@@ -26,6 +29,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   @override
   Widget build(BuildContext context) {
+    AuthProvider authProvider = Provider.of<AuthProvider>(context);
     return BlocListener<RegisterViewModel, RegisterState>(
       listenWhen: (previous, current) {
         if (current is RegisteSuccessState ||
@@ -38,11 +42,18 @@ class _RegisterScreenState extends State<RegisterScreen> {
       listener: (context, state) {
         if (state is RegisteSuccessState) {
           Navigator.pop(context);
-           FireStoreHelper.addUser(
+          FireStoreHelper.addUser(
               userId: state.usercredential.user!.uid,
               email: emailController.text,
               firstName: firstNameController.text,
               lastName: lastNameController.text);
+          authProvider.setUsers(
+              state.usercredential.user,
+              UserModel(
+                  email: emailController.text,
+                  userid: state.usercredential.user!.uid,
+                  firstName: firstNameController.text,
+                  lastName: lastNameController.text));
           Future.delayed(
             const Duration(seconds: 1),
             () =>

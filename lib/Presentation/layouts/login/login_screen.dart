@@ -2,9 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies_app/Presentation/layouts/login/login_Viewmodel/login_view_model.dart';
+import 'package:movies_app/Presentation/layouts/provider/auth_provider.dart';
 import 'package:movies_app/core/Utils/routes.dart';
 import 'package:movies_app/core/constants.dart';
+import 'package:movies_app/core/firebase/firestore_helper.dart';
 import 'package:movies_app/core/reusable%20components/custom_text_filed.dart';
+import 'package:movies_app/data/models/user_model.dart';
+import 'package:provider/provider.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -19,6 +23,7 @@ class _LoginScreenState extends State<LoginScreen> {
   GlobalKey<FormState> formfkey = GlobalKey();
   @override
   Widget build(BuildContext context) {
+    AuthProvider provider = Provider.of<AuthProvider>(context);
     return BlocListener<loginViewModel, loginState>(
       listenWhen: (previous, current) {
         if (current is loginSuccessState ||
@@ -28,9 +33,11 @@ class _LoginScreenState extends State<LoginScreen> {
         }
         return false;
       },
-      listener: (context, state) {
+      listener: (context, state) async {
         if (state is loginSuccessState) {
           Navigator.pop(context);
+          UserModel? user =await FireStoreHelper.getUser(userId: state.usercredential.user!.uid);
+provider.setUsers(state.usercredential.user,user );
           Future.delayed(
             const Duration(seconds: 1),
             () => Navigator.pushReplacementNamed(context, Routes.homeRouteName),
@@ -126,9 +133,9 @@ class _LoginScreenState extends State<LoginScreen> {
                   child: ElevatedButton(
                     onPressed: () {
                       if (formfkey.currentState?.validate() ?? false) {
-                        loginViewModel log = loginViewModel.get(context);
-                        log.login(
-                            emailController.text, passwordController.text);
+                        loginViewModel login = loginViewModel.get(context);
+                        login.login(emailController.text,
+                            passwordController.text, context);
                       }
                     },
                     style: ElevatedButton.styleFrom(

@@ -33,8 +33,8 @@ class MyApp extends StatelessWidget {
                   child: const HomeScreen(),
                 ),
             Routes.splashRouteName: (context) => BlocProvider(
-                  create: (context) => getIt<AuthAndFirestoreViewmodel>(),
-                  child: const splachScreen(),
+                  create: (context) => AuthAndFirestoreViewmodel(),
+                  child: const SplachScreen(),
                 ),
             Routes.loginRouteName: (context) => BlocProvider(
                   create: (context) => getIt<loginViewModel>(),
@@ -44,11 +44,12 @@ class MyApp extends StatelessWidget {
                   create: (context) => getIt<RegisterViewModel>(),
                   child: const RegisterScreen(),
                 ),
-            Routes.movieDetailsScreenRouteName:(context)=>MovieDetailsScreen(),
+            Routes.movieDetailsScreenRouteName: (context) =>
+                const MovieDetailsScreen(),
             Routes.categoryFilterRouteName: (context) =>
                 const CategoryFilterScreen()
           },
-          initialRoute: Routes.loginRouteName,
+          initialRoute: Routes.splashRouteName,
           debugShowCheckedModeBanner: false,
           theme: DarkTheme.darkTheme,
           themeMode: ThemeMode.dark,

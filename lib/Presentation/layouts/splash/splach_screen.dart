@@ -1,63 +1,54 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movies_app/Presentation/cubit/auth&firestore_viewmodel.dart';
 import 'package:movies_app/core/Utils/routes.dart';
 
-class splachScreen extends StatefulWidget {
-  const splachScreen({super.key});
+class SplachScreen extends StatefulWidget {
+  const SplachScreen({super.key});
 
   @override
-  State<splachScreen> createState() => _splachScreenState();
+  State<SplachScreen> createState() => _SplachScreenState();
 }
 
-class _splachScreenState extends State<splachScreen> {
+class _SplachScreenState extends State<SplachScreen> {
+  @override
+  void initState() {
+    AuthAndFirestoreViewmodel.get(context).isfirebaseAuthUser(context: context);
+  }
+
   @override
   Widget build(BuildContext context) {
-    Future.delayed(
-      const Duration(
-        seconds: 3,
-      ),
-      () {
-        AuthAndFirestoreViewmodel authAndFirestore =
-            AuthAndFirestoreViewmodel.get(context);
-        if (authAndFirestore.isfirebaseAuthUser()) {
-          Navigator.pushReplacementNamed(context, Routes.homeRouteName);
-        } else {
-          Navigator.pushReplacementNamed(context, Routes.loginRouteName);
+    return BlocListener<AuthAndFirestoreViewmodel, AuthAndFirestoreState>(
+      listenWhen: (previous, current) {
+        if (current is AuthAndFirestoreSuccessState ||
+            current is AuthAndFirestoreErrorState ||
+            current is AuthAndFirestoreLoadingState) {
+          return true;
         }
-        authAndFirestore.isfirebaseAuthUser();
+        return false;
       },
-    );
-    return Container(
-      width: double.infinity,
-      height: double.infinity,
-      decoration: const BoxDecoration(
-          gradient: LinearGradient(
-              colors: [Colors.orange, Colors.pink, Colors.purple],
-              begin: Alignment.topRight,
-              end: Alignment.bottomLeft)),
-      child: const Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Image(image: AssetImage("assets/images/movies.png")),
-          Text(
-            "Instagram",
-            style: TextStyle(
-                fontSize: 32, color: Colors.white, fontStyle: FontStyle.italic),
-          ),
-          Spacer(),
-          Image(image: AssetImage("assets/images/Group 23.png")),
-        ],
+      listener: (context, state) async {
+        if (state is AuthAndFirestoreSuccessState) {
+          log("fuck shalan");
+          Navigator.pushReplacementNamed(
+            context, Routes.homeRouteName,
+            // arguments: provider.dataBaseUser
+          );
+        }
+        if (state is AuthAndFirestoreErrorState) {
+          Navigator.pushReplacementNamed(
+            context,
+            Routes.loginRouteName,
+          );
+        }
+        log("fuck ahmed");
+        await Future.delayed(const Duration(seconds: 3));
+      },
+      child: Scaffold(
+        body: Center(child: Image.asset('assets/images/movies.png')),
       ),
     );
   }
-
-  // cheekAutologin() async {
-  //   authprovider provider = Provider.of<authprovider>(context, listen: false);
-  //   if (provider.isfirebaseAuthUser()) {
-  //     await provider.retriveDatabaseUserData();
-  //     Navigator.pushReplacementNamed(context, homeSreen.route_name);
-  //   } else {
-  //     Navigator.pushReplacementNamed(context, loginScreen.route_name);
-  //   }
-  // }
 }

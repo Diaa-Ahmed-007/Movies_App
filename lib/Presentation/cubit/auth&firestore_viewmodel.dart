@@ -1,22 +1,31 @@
 import 'dart:developer';
 
-import 'package:bloc/bloc.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:injectable/injectable.dart';
+import 'package:movies_app/Presentation/layouts/provider/auth_provider.dart'
+    as auth;
+import 'package:provider/provider.dart';
 
-@injectable
 class AuthAndFirestoreViewmodel extends Cubit<AuthAndFirestoreState> {
-  @factoryMethod
-  AuthAndFirestoreViewmodel(super.initialState);
-  User? firebaseAuthUser;
-  static AuthAndFirestoreViewmodel get(BuildContext context) => BlocProvider.of(context);
-  bool isfirebaseAuthUser() {
-    if (FirebaseAuth.instance.currentUser == null) return false;
-    firebaseAuthUser = FirebaseAuth.instance.currentUser;
-    log(firebaseAuthUser?.uid ?? "");
-    return true;
+  AuthAndFirestoreViewmodel() : super(InitalState());
+  static AuthAndFirestoreViewmodel get(BuildContext context) =>
+      BlocProvider.of(context);
+  isfirebaseAuthUser({required BuildContext context}) {
+    emit(AuthAndFirestoreLoadingState());
+    if (FirebaseAuth.instance.currentUser == null) {
+      emit(AuthAndFirestoreErrorState());
+    }
+
+    auth.AuthProvider provider =
+        Provider.of<auth.AuthProvider>(context, listen: false);
+
+    provider.fireBaseUserAuth = FirebaseAuth.instance.currentUser;
+    provider.retrieveDatabaseUserData();
+    log(provider.fireBaseUserAuth?.uid ?? "");
+    log(provider.dataBaseUser?.email??"");
+    emit(AuthAndFirestoreSuccessState());
   }
 }
 
@@ -26,9 +35,6 @@ class InitalState extends AuthAndFirestoreState {}
 
 class AuthAndFirestoreLoadingState extends AuthAndFirestoreState {}
 
-class AuthAndFirestoreErrorState extends AuthAndFirestoreState {
-  // String errorMessage;
-  // loginErrorState(this.errorMessage);
-}
+class AuthAndFirestoreErrorState extends AuthAndFirestoreState {}
 
 class AuthAndFirestoreSuccessState extends AuthAndFirestoreState {}

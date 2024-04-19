@@ -13,21 +13,19 @@ class CategoryWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-      borderRadius: BorderRadius.circular(5.r),
-      elevation: 15,
-      shadowColor: Theme.of(context).colorScheme.primary.withOpacity(0.24),
+      borderRadius: BorderRadius.circular(15.r),
+      clipBehavior: Clip.antiAlias,
       child: InkWell(
         onTap: () {
-          Navigator.pushNamed(context, Routes.categoryFilterRouteName,arguments: category);
+          Navigator.pushNamed(context, Routes.categoryFilterRouteName,
+              arguments: category);
         },
         child: Stack(
           alignment: Alignment.center,
           children: [
             Container(
-              height: 100.h,
-              width: 180.w,
               decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(5.r),
+                  borderRadius: BorderRadius.circular(15.r),
                   image: DecorationImage(
                       image: AssetImage(
                           "${Constants.categoryImageBasePath}$imageName"),
@@ -41,7 +39,7 @@ class CategoryWidget extends StatelessWidget {
               width: double.infinity,
             ),
             Text(
-              category.name??"",
+              category.name ?? "",
               style: Theme.of(context).textTheme.titleMedium,
             )
           ],
