@@ -1,24 +1,22 @@
+import 'dart:async';
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies_app/Presentation/layouts/register/register_viewmodel/register_view_model.dart';
-import 'package:movies_app/Presentation/layouts/register/ssss.dart';
-import 'package:movies_app/core/DI/di.dart';
 import 'package:movies_app/core/Utils/routes.dart';
 import 'package:movies_app/core/constants.dart';
-import 'package:movies_app/core/firebase/auth_helper.dart';
-import 'package:movies_app/core/reusableComponents/custom_text_filed.dart';
+import 'package:movies_app/core/reusable%20components/custom_text_filed.dart';
 
-class registerScreen extends StatefulWidget {
-  const registerScreen({super.key});
+class RegisterScreen extends StatefulWidget {
+  const RegisterScreen({super.key});
 
   @override
-  State<registerScreen> createState() => _registerScreenState();
+  State<RegisterScreen> createState() => _RegisterScreenState();
 }
 
-class _registerScreenState extends State<registerScreen> {
+class _RegisterScreenState extends State<RegisterScreen> {
   final TextEditingController firstNameController = TextEditingController();
   final TextEditingController lastNameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
@@ -27,37 +25,56 @@ class _registerScreenState extends State<registerScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<registerViewModel, registerState>(
+    return BlocListener<RegisterViewModel, RegisterState>(
       listenWhen: (previous, current) {
-        if (current is registeSuccessState ||
-            current is registerErrorState ||
-            current is registerLoadingState) {
+        if (current is RegisteSuccessState ||
+            current is RegisterErrorState ||
+            current is RegisterLoadingState) {
           return true;
         }
         return false;
       },
       listener: (context, state) {
-        if (state is registeSuccessState) {
-          log(state.usercredential.user?.uid ?? "");
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => ssss(),
-              ));
-          AlertDialog(
-            content: Text("success"),
-            actions: [],
+        if (state is RegisteSuccessState) {
+          Navigator.pop(context);
+          Future.delayed(
+            const Duration(seconds: 1),
+            () =>
+                Navigator.pushReplacementNamed(context, Routes.loginRouteName),
           );
         }
-        if (state is registerErrorState) {
-          log(state.errorMessage);
-          AlertDialog(
-            content: Text(state.errorMessage),
-            actions: [],
+        if (state is RegisterErrorState) {
+          Navigator.pop(context);
+          Future.delayed(
+            const Duration(seconds: 1),
+            () {
+              showDialog(
+                context: context,
+                builder: (context) {
+                  return AlertDialog(
+                    content: Text(state.errorMessage),
+                    actions: [
+                      ElevatedButton(
+                        onPressed: () {
+                          Navigator.pop(context);
+                          Navigator.pop(context);
+                        },
+                        child: const Text("try again"),
+                      ),
+                    ],
+                  );
+                },
+              );
+            },
           );
         }
-        AlertDialog(
-          content: Center(child: CircularProgressIndicator.adaptive()),
+        showDialog(
+          context: context,
+          builder: (context) {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          },
         );
       },
       child: Scaffold(
@@ -81,44 +98,38 @@ class _registerScreenState extends State<registerScreen> {
                   style: Theme.of(context).textTheme.displayMedium,
                 ),
                 SizedBox(height: 73.h),
-                customTextFiled(
+                CustomTextFiled(
                   hintText: 'First Name',
                   textController: firstNameController,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return "this field can't be empty";
                     }
-                    if (value.length > 10) {
-                      return "first Name must less than 8 char ";
-                    }
                     return null;
                   },
                   keyboard: TextInputType.name,
                 ),
                 SizedBox(height: 59.h),
-                customTextFiled(
+                CustomTextFiled(
                   hintText: 'Last Name',
                   textController: lastNameController,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return "this field can't be empty";
                     }
-                    if (value.length > 10) {
-                      return "Last Name must less than 8 char ";
-                    }
                     return null;
                   },
                   keyboard: TextInputType.name,
                 ),
                 SizedBox(height: 59.h),
-                customTextFiled(
+                CustomTextFiled(
                   hintText: 'Email',
                   textController: emailController,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return "this field can't be empty";
                     }
-                    if (!RegExp(constants.RegExValidateEmail).hasMatch(value)) {
+                    if (!RegExp(Constants.RegExValidateEmail).hasMatch(value)) {
                       return "Enter valid Email";
                     }
                     return null;
@@ -126,15 +137,15 @@ class _registerScreenState extends State<registerScreen> {
                   keyboard: TextInputType.emailAddress,
                 ),
                 SizedBox(height: 59.h),
-                customTextFiled(
+                CustomTextFiled(
                   hintText: 'Password',
                   textController: passwordController,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return "this field can't be empty";
                     }
-                    if (value.length > 8) {
-                      return "password must less than 8 char ";
+                    if (value.length < 8) {
+                      return "password must be more than 8 char ";
                     }
                     return null;
                   },
@@ -146,8 +157,10 @@ class _registerScreenState extends State<registerScreen> {
                   child: ElevatedButton(
                     onPressed: () {
                       if (formfkey.currentState?.validate() ?? false) {
-                        registerViewModel regViewModel =
-                            registerViewModel.get(context);
+                        log(emailController.text);
+                        log(passwordController.text);
+                        RegisterViewModel regViewModel =
+                            RegisterViewModel.get(context);
                         regViewModel.register(
                             emailController.text, passwordController.text);
                       }
