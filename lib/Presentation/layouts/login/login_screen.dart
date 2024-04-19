@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -8,14 +6,14 @@ import 'package:movies_app/core/Utils/routes.dart';
 import 'package:movies_app/core/constants.dart';
 import 'package:movies_app/core/reusable%20components/custom_text_filed.dart';
 
-class loginScreen extends StatefulWidget {
-  const loginScreen({super.key});
+class LoginScreen extends StatefulWidget {
+  const LoginScreen({super.key});
 
   @override
-  State<loginScreen> createState() => _loginScreenState();
+  State<LoginScreen> createState() => _LoginScreenState();
 }
 
-class _loginScreenState extends State<loginScreen> {
+class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   GlobalKey<FormState> formfkey = GlobalKey();
@@ -32,22 +30,44 @@ class _loginScreenState extends State<loginScreen> {
       },
       listener: (context, state) {
         if (state is loginSuccessState) {
-          log(state.usercredential.user?.uid ?? "");
-          log("Login");
-          const AlertDialog(
-            content: Text("success"),
-            actions: [],
+          Navigator.pop(context);
+          Future.delayed(
+            const Duration(seconds: 1),
+            () => Navigator.pushReplacementNamed(context, Routes.homeRouteName),
           );
         }
         if (state is loginErrorState) {
-          log(state.errorMessage);
-          AlertDialog(
-            content: Text(state.errorMessage),
-            actions: const [],
+          Navigator.pop(context);
+          Future.delayed(
+            const Duration(seconds: 1),
+            () {
+              showDialog(
+                context: context,
+                builder: (context) {
+                  return AlertDialog(
+                    content: Text(state.errorMessage),
+                    actions: [
+                      ElevatedButton(
+                        onPressed: () {
+                          Navigator.pop(context);
+                          Navigator.pop(context);
+                        },
+                        child: const Text("try again"),
+                      ),
+                    ],
+                  );
+                },
+              );
+            },
           );
         }
-        const AlertDialog(
-          content: Center(child: CircularProgressIndicator.adaptive()),
+        showDialog(
+          context: context,
+          builder: (context) {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          },
         );
       },
       child: Scaffold(

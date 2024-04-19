@@ -40,7 +40,7 @@ class _BrowseTabState extends State<BrowseTab> {
                 sliver: SliverGrid.builder(
                   itemCount: categories.length,
                   itemBuilder: (context, index) => CategoryWidget(
-                      title: categories[index].name ?? "",
+                      category: categories[index],
                       imageName: Genres.categoriesImagesList[index]),
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,

@@ -2,7 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
 import 'package:movies_app/core/api/api_manger.dart';
 import 'package:movies_app/data/data_source_contract/remote/similer_datasource.dart';
-import 'package:movies_app/data/models/similer_model/Similar.dart';
+import 'package:movies_app/data/models/similer_model/similar_response.dart';
 @Injectable(as: SimilerDataSource)
 class SimilerDataSourceImpl extends SimilerDataSource {
   ApiManger apiManger;

@@ -9,14 +9,14 @@ import 'package:movies_app/core/Utils/routes.dart';
 import 'package:movies_app/core/constants.dart';
 import 'package:movies_app/core/reusable%20components/custom_text_filed.dart';
 
-class registerScreen extends StatefulWidget {
-  const registerScreen({super.key});
+class RegisterScreen extends StatefulWidget {
+  const RegisterScreen({super.key});
 
   @override
-  State<registerScreen> createState() => _registerScreenState();
+  State<RegisterScreen> createState() => _RegisterScreenState();
 }
 
-class _registerScreenState extends State<registerScreen> {
+class _RegisterScreenState extends State<RegisterScreen> {
   final TextEditingController firstNameController = TextEditingController();
   final TextEditingController lastNameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
@@ -25,17 +25,17 @@ class _registerScreenState extends State<registerScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<registerViewModel, registerState>(
+    return BlocListener<RegisterViewModel, RegisterState>(
       listenWhen: (previous, current) {
-        if (current is registeSuccessState ||
-            current is registerErrorState ||
-            current is registerLoadingState) {
+        if (current is RegisteSuccessState ||
+            current is RegisterErrorState ||
+            current is RegisterLoadingState) {
           return true;
         }
         return false;
       },
       listener: (context, state) {
-        if (state is registeSuccessState) {
+        if (state is RegisteSuccessState) {
           Navigator.pop(context);
           Future.delayed(
             const Duration(seconds: 1),
@@ -43,7 +43,7 @@ class _registerScreenState extends State<registerScreen> {
                 Navigator.pushReplacementNamed(context, Routes.loginRouteName),
           );
         }
-        if (state is registerErrorState) {
+        if (state is RegisterErrorState) {
           Navigator.pop(context);
           Future.delayed(
             const Duration(seconds: 1),
@@ -159,8 +159,8 @@ class _registerScreenState extends State<registerScreen> {
                       if (formfkey.currentState?.validate() ?? false) {
                         log(emailController.text);
                         log(passwordController.text);
-                        registerViewModel regViewModel =
-                            registerViewModel.get(context);
+                        RegisterViewModel regViewModel =
+                            RegisterViewModel.get(context);
                         regViewModel.register(
                             emailController.text, passwordController.text);
                       }
