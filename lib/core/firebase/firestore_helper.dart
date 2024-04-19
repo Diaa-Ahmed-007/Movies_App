@@ -9,8 +9,8 @@ class FireStoreHelper {
         Map<String, dynamic>? data = snapshot.data();
         return UserModel.fromFireStore(data ?? {});
       },
-      toFirestore: (UserModel, options) {
-        return UserModel.toFirestore();
+      toFirestore: (UserModel user, options) {
+        return user.toFirestore();
       },
     );
     return refernce;

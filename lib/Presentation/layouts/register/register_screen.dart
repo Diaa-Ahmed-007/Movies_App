@@ -7,6 +7,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies_app/Presentation/layouts/register/register_viewmodel/register_view_model.dart';
 import 'package:movies_app/core/Utils/routes.dart';
 import 'package:movies_app/core/constants.dart';
+import 'package:movies_app/core/firebase/firestore_helper.dart';
 import 'package:movies_app/core/reusable%20components/custom_text_filed.dart';
 
 class RegisterScreen extends StatefulWidget {
@@ -37,6 +38,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
       listener: (context, state) {
         if (state is RegisteSuccessState) {
           Navigator.pop(context);
+           FireStoreHelper.addUser(
+              userId: state.usercredential.user!.uid,
+              email: emailController.text,
+              firstName: firstNameController.text,
+              lastName: lastNameController.text);
           Future.delayed(
             const Duration(seconds: 1),
             () =>
