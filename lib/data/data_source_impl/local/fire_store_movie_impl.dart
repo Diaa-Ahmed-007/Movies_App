@@ -15,9 +15,9 @@ class FireStoreMovieDateSourceImpl extends FireStoreMovieDataSource {
   Future<Either<Stream<List<FireBaseMovieModel>>, String>> getMovie(
       {required String userId}) async {
     try {
-      var response = fireStoreHelper.getMovies(userid: userId);
+      var response = fireStoreHelper.listenMovies(userid: userId);
       Stream<List<FireBaseMovieModel>> result = response;
-     return Left(result);
+      return Left(result);
     } catch (e) {
       return Right(e.toString());
     }

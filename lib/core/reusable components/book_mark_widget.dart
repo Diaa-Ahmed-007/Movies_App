@@ -15,13 +15,15 @@ class BookMarkWidget extends StatelessWidget {
 
   final AuthProvider authProvider;
   var movie;
-
+  late bool isChosen;
   @override
   Widget build(BuildContext context) {
     return InkWell(
         enableFeedback: false,
         onTap: () {
-          FireStoreHelper.addMovie(
+        isChosen?  FireStoreHelper.deleteTask(
+              userId: authProvider.fireBaseUserAuth!.uid, movieId: movie.id)
+          :FireStoreHelper.addMovie(
             userid: authProvider.fireBaseUserAuth?.uid ?? "",
             movie: FireBaseMovieModel(
                 backdropPath: movie.backdropPath,
@@ -35,13 +37,10 @@ class BookMarkWidget extends StatelessWidget {
           stream: FireStoreHelper.getIsCheck(
               userID: authProvider.fireBaseUserAuth!.uid, id: movie.id),
           builder: (context, snapshot) {
-            var movie = snapshot.data;
-            bool isSelected;
-            if (movie == []) {
-              isSelected = false;
-            } else {
-              isSelected = true;
-            }
+            FireBaseMovieModel movie =
+                snapshot.data ?? FireBaseMovieModel(isSelected: false);
+            bool isSelected = movie.isSelected!;
+            isChosen = movie.isSelected!;
             return Stack(
               alignment: Alignment.center,
               children: [

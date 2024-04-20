@@ -44,7 +44,6 @@ class WatchListTab extends StatelessWidget {
                 if (state is WatchListTabSuccessState) {
                   Stream<List<FireBaseMovieModel>> result =
                       state.fireBaseMovies;
-
                   return StreamBuilder(
                     stream: result,
                     builder: (context, snapshot) {

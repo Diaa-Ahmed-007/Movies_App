@@ -9,7 +9,6 @@ import 'package:movies_app/Presentation/layouts/home/tabs/search_tab/view_model/
 import 'package:movies_app/Presentation/layouts/home/tabs/watch%20list_tab/watch_list_tab.dart';
 import 'package:movies_app/Presentation/layouts/provider/home_provider.dart';
 import 'package:movies_app/core/DI/Di.dart';
-import 'package:movies_app/data/models/user_model.dart';
 import 'package:provider/provider.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -19,10 +18,10 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-     UserModel movie =
-        ModalRoute.of(context)?.settings.arguments as UserModel;
+    //  UserModel movie =
+    //     ModalRoute.of(context)?.settings.arguments as UserModel;
     final List<Widget> navWidget = [
-       HomeTab(user: movie,),
+      const HomeTab(),
       BlocProvider(
         create: (context) => getIt<SearchTabViewModel>(),
         child: const SearchTab(),

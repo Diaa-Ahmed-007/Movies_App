@@ -3,11 +3,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies_app/Presentation/layouts/home/tabs/home_tab/widgets/Recomended_widget.dart';
 import 'package:movies_app/Presentation/layouts/home/tabs/home_tab/widgets/popular_widget_builder.dart';
 import 'package:movies_app/Presentation/layouts/home/tabs/home_tab/widgets/releases_widget.dart';
-import 'package:movies_app/data/models/user_model.dart';
 
 class HomeTab extends StatelessWidget {
-  const HomeTab({super.key, required this.user});
-  final UserModel user;
+  const HomeTab({
+    super.key,
+  });
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(

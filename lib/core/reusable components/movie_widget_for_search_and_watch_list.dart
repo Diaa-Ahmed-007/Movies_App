@@ -2,9 +2,11 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:movies_app/Presentation/layouts/provider/auth_provider.dart';
 import 'package:movies_app/core/constants.dart';
+import 'package:movies_app/core/firebase/firestore_helper.dart';
 import 'package:movies_app/core/reusable%20components/movie_show_details.dart';
-import 'package:movies_app/domain/entities/SearchEntitie.dart';
+import 'package:provider/provider.dart';
 
 class MovieWidgetForSearchAndWatchList extends StatelessWidget {
   MovieWidgetForSearchAndWatchList(
@@ -14,6 +16,7 @@ class MovieWidgetForSearchAndWatchList extends StatelessWidget {
   final bool isSearchTab;
   @override
   Widget build(BuildContext context) {
+    AuthProvider authProvider = Provider.of<AuthProvider>(context);
     return Padding(
       padding: EdgeInsets.only(left: 20.w),
       child: Row(
@@ -24,51 +27,62 @@ class MovieWidgetForSearchAndWatchList extends StatelessWidget {
             child: Material(
               borderRadius: BorderRadius.circular(5.r),
               clipBehavior: Clip.antiAlias,
-              child:isSearchTab?
-              CachedNetworkImage(
-                    imageUrl: "${Constants.imageBasePath}${movie.backdropPath}",
-                    fit: BoxFit.cover,
-                    placeholder: (context, url) => Container(
-                      color: Theme.of(context).colorScheme.onPrimaryContainer,
-                    ),
-                    errorWidget: (context, url, error) => Container(
-                      color: Theme.of(context).colorScheme.onPrimaryContainer,
-                    ),
-              )
-              : Stack(
-                fit: StackFit.expand,
-                children: [
-                  CachedNetworkImage(
-                    imageUrl: "${Constants.imageBasePath}${movie.backdropPath}",
-                    fit: BoxFit.cover,
-                    placeholder: (context, url) => Container(
-                      color: Theme.of(context).colorScheme.onPrimaryContainer,
-                    ),
-                    errorWidget: (context, url, error) => Container(
-                      color: Theme.of(context).colorScheme.onPrimaryContainer,
-                    ),
-                  ),
-                  Align(
-                    alignment: Alignment.topLeft,
-                    child: InkWell(
-                      onTap: () {},
-                      child: Stack(
-                        alignment: Alignment.center,
-                        children: [
-                          SvgPicture.asset(
-                            "assets/Icons/bookmark.svg",
-                            colorFilter: ColorFilter.mode(
-                                Theme.of(context).colorScheme.primary,
-                                BlendMode.srcIn),
-                          ),
-                          const Icon(Icons.check_rounded,
-                              color: Colors.white, size: 15)
-                        ],
+              child: isSearchTab
+                  ? CachedNetworkImage(
+                      imageUrl:
+                          "${Constants.imageBasePath}${movie.backdropPath}",
+                      fit: BoxFit.cover,
+                      placeholder: (context, url) => Container(
+                        color: Theme.of(context).colorScheme.onPrimaryContainer,
                       ),
+                      errorWidget: (context, url, error) => Container(
+                        color: Theme.of(context).colorScheme.onPrimaryContainer,
+                      ),
+                    )
+                  : Stack(
+                      fit: StackFit.expand,
+                      children: [
+                        CachedNetworkImage(
+                          imageUrl:
+                              "${Constants.imageBasePath}${movie.backdropPath}",
+                          fit: BoxFit.cover,
+                          placeholder: (context, url) => Container(
+                            color: Theme.of(context)
+                                .colorScheme
+                                .onPrimaryContainer,
+                          ),
+                          errorWidget: (context, url, error) => Container(
+                            color: Theme.of(context)
+                                .colorScheme
+                                .onPrimaryContainer,
+                          ),
+                        ),
+                        Align(
+                          alignment: Alignment.topLeft,
+                          child: InkWell(
+                            onTap: () {
+                              stream:
+                              FireStoreHelper.deleteTask(
+                                  userId: authProvider.fireBaseUserAuth!.uid,
+                                  movieId: movie.id);
+                            },
+                            child: Stack(
+                              alignment: Alignment.center,
+                              children: [
+                                SvgPicture.asset(
+                                  "assets/Icons/bookmark.svg",
+                                  colorFilter: ColorFilter.mode(
+                                      Theme.of(context).colorScheme.primary,
+                                      BlendMode.srcIn),
+                                ),
+                                const Icon(Icons.check_rounded,
+                                    color: Colors.white, size: 15)
+                              ],
+                            ),
+                          ),
+                        )
+                      ],
                     ),
-                  )
-                ],
-              ),
             ),
           ),
           SizedBox(

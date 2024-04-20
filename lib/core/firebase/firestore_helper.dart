@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:injectable/injectable.dart';
 import 'package:movies_app/data/models/firebase_movie_model.dart';
@@ -58,25 +56,34 @@ class FireStoreHelper {
 
   static addMovie(
       {required String userid, required FireBaseMovieModel movie}) async {
-    await getMovieCollections(userid: userid)!.add(movie);
+    await getMovieCollections(userid: userid)!
+        .doc(movie.id.toString())
+        .set(movie);
   }
 
-  static Stream<List<FireBaseMovieModel>> getIsCheck(
+  static Stream<FireBaseMovieModel> getIsCheck(
       {required String userID, required int id}) async* {
-    var filter = getMovieCollections(userid: userID)!
-        .where("id", isEqualTo: id)
-        .snapshots();
-    Stream<List<FireBaseMovieModel>> snapshot =
-        filter.map((event) => event.docs.map((e) => e.data()).toList());
+    DocumentReference<FireBaseMovieModel> filter =
+        getMovieCollections(userid: userID)!.doc(id.toString());
+
+    Stream<FireBaseMovieModel> snapshot = filter
+        .snapshots()
+        .map((event) => event.data() ?? FireBaseMovieModel(isSelected: false));
     yield* snapshot;
   }
 
-  Stream<List<FireBaseMovieModel>> getMovies({required String userid}) async* {
+  Stream<List<FireBaseMovieModel>> listenMovies(
+      {required String userid}) async* {
     Stream<QuerySnapshot<FireBaseMovieModel>> movie =
         Stream.value(await getMovieCollections(userid: userid)!.get());
     Stream<List<FireBaseMovieModel>> movieList =
         movie.map((event) => event.docs.map((e) => e.data()).toList());
     yield* movieList;
+  }
+
+  static Future<void> deleteTask(
+      {required String userId, required int movieId}) async {
+    await getMovieCollections(userid: userId)?.doc(movieId.toString()).delete();
   }
   //   static Stream<List<TaskModel>> listenToTasks(
   //     {required String UserID, required int date}) async* {
