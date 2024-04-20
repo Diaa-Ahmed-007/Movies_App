@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -36,8 +38,10 @@ class _LoginScreenState extends State<LoginScreen> {
       listener: (context, state) async {
         if (state is loginSuccessState) {
           Navigator.pop(context);
-          UserModel? user =await FireStoreHelper.getUser(userId: state.usercredential.user!.uid);
-provider.setUsers(state.usercredential.user,user );
+          UserModel? user = await FireStoreHelper.getUser(
+              userId: state.usercredential.user!.uid);
+          provider.setUsers(state.usercredential.user, user);
+          provider.retrieveDatabaseUserData();
           Future.delayed(
             const Duration(seconds: 1),
             () => Navigator.pushReplacementNamed(context, Routes.homeRouteName),

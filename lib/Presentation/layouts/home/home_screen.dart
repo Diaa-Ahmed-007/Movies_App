@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:movies_app/Presentation/layouts/home/provider/home_provider.dart';
 import 'package:movies_app/Presentation/layouts/home/tabs/browse_tab/browse_tab.dart';
 import 'package:movies_app/Presentation/layouts/home/tabs/browse_tab/view_model/browse_view_model.dart';
 import 'package:movies_app/Presentation/layouts/home/tabs/home_tab/home_tab.dart';
 import 'package:movies_app/Presentation/layouts/home/tabs/search_tab/search_tab.dart';
 import 'package:movies_app/Presentation/layouts/home/tabs/search_tab/view_model/search_view_model.dart';
 import 'package:movies_app/Presentation/layouts/home/tabs/watch%20list_tab/watch_list_tab.dart';
+import 'package:movies_app/Presentation/layouts/provider/home_provider.dart';
 import 'package:movies_app/core/DI/Di.dart';
+import 'package:movies_app/data/models/user_model.dart';
 import 'package:provider/provider.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -18,8 +19,10 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+     UserModel movie =
+        ModalRoute.of(context)?.settings.arguments as UserModel;
     final List<Widget> navWidget = [
-      const HomeTab(),
+       HomeTab(user: movie,),
       BlocProvider(
         create: (context) => getIt<SearchTabViewModel>(),
         child: const SearchTab(),
@@ -30,7 +33,7 @@ class HomeScreen extends StatelessWidget {
           child: const BrowseTab()),
       const WatchListTab(),
     ];
-    Homeprovider provider = Provider.of<Homeprovider>(context);
+    HomeProvider provider = Provider.of<HomeProvider>(context);
     return Scaffold(
         resizeToAvoidBottomInset: false,
         bottomNavigationBar: BottomNavigationBar(

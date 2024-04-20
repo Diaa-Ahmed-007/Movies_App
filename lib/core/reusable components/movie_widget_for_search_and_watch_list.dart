@@ -7,10 +7,10 @@ import 'package:movies_app/core/reusable%20components/movie_show_details.dart';
 import 'package:movies_app/domain/entities/SearchEntitie.dart';
 
 class MovieWidgetForSearchAndWatchList extends StatelessWidget {
- const MovieWidgetForSearchAndWatchList(
+  MovieWidgetForSearchAndWatchList(
       {super.key, required this.movie, required this.isSearchTab});
 
-  final SearchEntitie movie;
+  var movie;
   final bool isSearchTab;
   @override
   Widget build(BuildContext context) {

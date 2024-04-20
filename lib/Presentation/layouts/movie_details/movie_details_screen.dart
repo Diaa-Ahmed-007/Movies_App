@@ -14,6 +14,11 @@ class MovieDetailsScreen extends StatelessWidget {
         ModalRoute.of(context)?.settings.arguments as SelectedMovie;
     return Scaffold(
         appBar: AppBar(
+          leading: IconButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              icon: const Icon(Icons.arrow_back)),
           title: Text(movie.title),
         ),
         body: SingleChildScrollView(

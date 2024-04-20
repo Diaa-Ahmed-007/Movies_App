@@ -4,7 +4,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies_app/Presentation/cubit/auth&firestore_viewmodel.dart';
 import 'package:movies_app/Presentation/layouts/category_filter/category_filter_screen.dart';
 import 'package:movies_app/Presentation/layouts/home/home_screen.dart';
-import 'package:movies_app/Presentation/layouts/home/provider/home_provider.dart';
 import 'package:movies_app/Presentation/layouts/login/login_Viewmodel/login_view_model.dart';
 import 'package:movies_app/Presentation/layouts/login/login_screen.dart';
 import 'package:movies_app/Presentation/layouts/movie_details/movie_details_screen.dart';
@@ -14,7 +13,6 @@ import 'package:movies_app/Presentation/layouts/splash/splach_screen.dart';
 import 'package:movies_app/config/theme/Dark.dart';
 import 'package:movies_app/core/DI/di.dart';
 import 'package:movies_app/core/Utils/routes.dart';
-import 'package:provider/provider.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -28,13 +26,10 @@ class MyApp extends StatelessWidget {
       builder: (_, child) {
         return MaterialApp(
           routes: {
-            Routes.homeRouteName: (context) => ChangeNotifierProvider(
-                  create: (context) => Homeprovider(),
-                  child: const HomeScreen(),
-                ),
+            Routes.homeRouteName: (context) => const HomeScreen(),
             Routes.splashRouteName: (context) => BlocProvider(
                   create: (context) => AuthAndFirestoreViewmodel(),
-                  child: const SplachScreen(),
+                  child: const SplashScreen(),
                 ),
             Routes.loginRouteName: (context) => BlocProvider(
                   create: (context) => getIt<loginViewModel>(),

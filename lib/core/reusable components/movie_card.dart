@@ -1,18 +1,18 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:movies_app/Presentation/layouts/provider/auth_provider.dart';
 import 'package:movies_app/core/constants.dart';
+import 'package:movies_app/core/reusable%20components/book_mark_widget.dart';
 import 'package:movies_app/core/reusable%20components/movie_show_details.dart';
+import 'package:provider/provider.dart';
 
 // ignore: must_be_immutable
-class MovieCard extends StatefulWidget {
+class MovieCard extends StatelessWidget {
   late double height;
   late double width;
   bool isFullView;
   bool? isLarge;
-  bool? isPosterPath;
-  late bool isChecked;
   var movie;
 
   MovieCard({
@@ -20,7 +20,6 @@ class MovieCard extends StatefulWidget {
     required this.isFullView,
     this.isLarge,
     required this.movie,
-    this.isChecked = false,
   }) {
     if (isFullView) {
       if (isLarge ?? false) {
@@ -37,27 +36,25 @@ class MovieCard extends StatefulWidget {
   }
 
   @override
-  State<MovieCard> createState() => _MovieCardState();
-}
-
-class _MovieCardState extends State<MovieCard> {
-  @override
   Widget build(BuildContext context) {
+    AuthProvider authProvider = Provider.of<AuthProvider>(context);
     return Stack(alignment: Alignment.topLeft, children: [
       Ink(
-        height: widget.height,
-        width: widget.width,
+        height: height,
+        width: width,
         decoration: BoxDecoration(
             color: Theme.of(context).colorScheme.primaryContainer,
             borderRadius: BorderRadius.circular(5.r)),
-        child: widget.isFullView
+        child: isFullView
             ? CachedNetworkImage(
-                imageUrl:
-                    "${Constants.imageBasePath}${widget.movie.backdropPath}",
+                imageUrl: "${Constants.imageBasePath}${movie.backdropPath}",
                 fit: BoxFit.cover,
-                placeholder: (context, url) =>
-                    const Center(child: CircularProgressIndicator()),
-                errorWidget: (context, url, error) => const Icon(Icons.error),
+                placeholder: (context, url) => Container(
+                  color: Theme.of(context).colorScheme.onPrimaryContainer,
+                ),
+                errorWidget: (context, url, error) => Container(
+                  color: Theme.of(context).colorScheme.onPrimaryContainer,
+                ),
               )
             : Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -73,12 +70,16 @@ class _MovieCardState extends State<MovieCard> {
                               topRight: Radius.circular(5))),
                       child: CachedNetworkImage(
                         imageUrl:
-                            "${Constants.imageBasePath}${widget.movie.backdropPath}",
+                            "${Constants.imageBasePath}${movie.backdropPath}",
                         fit: BoxFit.fill,
-                        placeholder: (context, url) =>
-                            const Center(child: CircularProgressIndicator()),
-                        errorWidget: (context, url, error) =>
-                            const Icon(Icons.error),
+                        placeholder: (context, url) => Container(
+                          color:
+                              Theme.of(context).colorScheme.onPrimaryContainer,
+                        ),
+                        errorWidget: (context, url, error) => Container(
+                          color:
+                              Theme.of(context).colorScheme.onPrimaryContainer,
+                        ),
                       ),
                     ),
                   ),
@@ -97,13 +98,13 @@ class _MovieCardState extends State<MovieCard> {
                                         Theme.of(context).colorScheme.primary,
                                     size: 15.sp),
                                 SizedBox(width: 2.w),
-                                Text(widget.movie.voteAverage.toString(),
+                                Text(movie.voteAverage.toString(),
                                     style:
                                         Theme.of(context).textTheme.titleSmall)
                               ],
                             ),
                             Text(
-                              widget.movie.title ?? "",
+                              movie.title ?? "",
                               style: Theme.of(context)
                                   .textTheme
                                   .headlineLarge
@@ -113,7 +114,7 @@ class _MovieCardState extends State<MovieCard> {
                             ),
                             SizedBox(height: 2.h),
                             MovieSmallDetails(
-                              movieId: widget.movie.id,
+                              movieId: movie.id,
                               style: Theme.of(context)
                                   .textTheme
                                   .labelMedium
@@ -125,27 +126,7 @@ class _MovieCardState extends State<MovieCard> {
                 ],
               ),
       ),
-      InkWell(
-        onTap: () {
-          widget.isChecked = !widget.isChecked;
-          setState(() {});
-        },
-        child: Stack(
-          alignment: Alignment.center,
-          children: [
-            SvgPicture.asset(
-              "assets/Icons/bookmark.svg",
-              colorFilter: ColorFilter.mode(
-                  widget.isChecked
-                      ? Theme.of(context).colorScheme.primary
-                      : Theme.of(context).colorScheme.onPrimaryContainer,
-                  BlendMode.srcIn),
-            ),
-            Icon(widget.isChecked ? Icons.check_rounded : Icons.add,
-                color: Colors.white, size: 15)
-          ],
-        ),
-      )
+      BookMarkWidget(authProvider: authProvider, movie: movie)
     ]);
   }
 }

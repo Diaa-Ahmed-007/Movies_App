@@ -1,54 +1,52 @@
-import 'dart:developer';
+// ignore_for_file: use_build_context_synchronously
 
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movies_app/Presentation/cubit/auth&firestore_viewmodel.dart';
+import 'package:movies_app/Presentation/layouts/provider/auth_provider.dart';
 import 'package:movies_app/core/Utils/routes.dart';
-
-class SplachScreen extends StatefulWidget {
-  const SplachScreen({super.key});
-
+import 'package:provider/provider.dart';
+class SplashScreen extends StatefulWidget {
+  const SplashScreen({super.key});
+  static const String routeName = 'splash';
   @override
-  State<SplachScreen> createState() => _SplachScreenState();
+  State<SplashScreen> createState() => _SplashScreenState();
 }
 
-class _SplachScreenState extends State<SplachScreen> {
+class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
-    AuthAndFirestoreViewmodel.get(context).isfirebaseAuthUser(context: context);
+    super.initState();
+    _navigatetohome();
+  }
+
+  _navigatetohome() async {
+    await Future.delayed(
+      const Duration(seconds: 2),
+      () {
+        checkAutoLogin();
+      },
+    );
   }
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<AuthAndFirestoreViewmodel, AuthAndFirestoreState>(
-      listenWhen: (previous, current) {
-        if (current is AuthAndFirestoreSuccessState ||
-            current is AuthAndFirestoreErrorState ||
-            current is AuthAndFirestoreLoadingState) {
-          return true;
-        }
-        return false;
+    return FutureBuilder(
+      future: Future.delayed(const Duration(seconds: 3)),
+      builder: (context, snapshot) {
+        return Scaffold(
+          body: Center(child: Image.asset('assets/images/movies.png')),
+        );
       },
-      listener: (context, state) async {
-        if (state is AuthAndFirestoreSuccessState) {
-          log("fuck shalan");
-          Navigator.pushReplacementNamed(
-            context, Routes.homeRouteName,
-            // arguments: provider.dataBaseUser
-          );
-        }
-        if (state is AuthAndFirestoreErrorState) {
-          Navigator.pushReplacementNamed(
-            context,
-            Routes.loginRouteName,
-          );
-        }
-        log("fuck ahmed");
-        await Future.delayed(const Duration(seconds: 3));
-      },
-      child: Scaffold(
-        body: Center(child: Image.asset('assets/images/movies.png')),
-      ),
     );
+  }
+
+  Future<void> checkAutoLogin() async {
+    AuthProvider provider = Provider.of<AuthProvider>(context, listen: false);
+    if (provider.isFirebaseUserLoggedIn()) {
+      await provider.retrieveDatabaseUserData();
+      Navigator.pushReplacementNamed(context, Routes.homeRouteName,
+          arguments: provider.dataBaseUser);
+    } else {
+      Navigator.pushReplacementNamed(context, Routes.loginRouteName);
+    }
   }
 }
