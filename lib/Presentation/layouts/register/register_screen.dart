@@ -166,6 +166,18 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     }
                     return null;
                   },
+                  obscureText: authProvider.isShowPassword,
+                  suffixIcon: IconButton(
+                      onPressed: () {
+                        // isObscure = !isObscure;
+                        authProvider.changeIsShowPassword(
+                            authProvider.isShowPassword == false
+                                ? true
+                                : false);
+                      },
+                      icon: authProvider.isShowPassword
+                          ? Icon(Icons.visibility_off)
+                          : Icon(Icons.visibility)),
                   keyboard: TextInputType.visiblePassword,
                 ),
                 SizedBox(height: 89.h),

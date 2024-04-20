@@ -36,8 +36,9 @@ class _LoginScreenState extends State<LoginScreen> {
       listener: (context, state) async {
         if (state is loginSuccessState) {
           Navigator.pop(context);
-          UserModel? user =await FireStoreHelper.getUser(userId: state.usercredential.user!.uid);
-provider.setUsers(state.usercredential.user,user );
+          UserModel? user = await FireStoreHelper.getUser(
+              userId: state.usercredential.user!.uid);
+          provider.setUsers(state.usercredential.user, user);
           Future.delayed(
             const Duration(seconds: 1),
             () => Navigator.pushReplacementNamed(context, Routes.homeRouteName),
@@ -125,6 +126,16 @@ provider.setUsers(state.usercredential.user,user );
                     }
                     return null;
                   },
+                  obscureText: provider.isShowPassword,
+                  suffixIcon: IconButton(
+                      onPressed: () {
+                        // isObscure = !isObscure;
+                        provider.changeIsShowPassword(
+                            provider.isShowPassword == false ? true : false);
+                      },
+                      icon: provider.isShowPassword
+                          ? Icon(Icons.visibility_off)
+                          : Icon(Icons.visibility)),
                   keyboard: TextInputType.text,
                 ),
                 SizedBox(height: 158.h),
