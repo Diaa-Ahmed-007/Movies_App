@@ -41,7 +41,9 @@ class _LoginScreenState extends State<LoginScreen> {
           UserModel? user = await FireStoreHelper.getUser(
               userId: state.usercredential.user!.uid);
           provider.setUsers(state.usercredential.user, user);
+
           provider.retrieveDatabaseUserData();
+
           Future.delayed(
             const Duration(seconds: 1),
             () => Navigator.pushReplacementNamed(context, Routes.homeRouteName),
@@ -129,6 +131,16 @@ class _LoginScreenState extends State<LoginScreen> {
                     }
                     return null;
                   },
+                  obscureText: provider.isShowPassword,
+                  suffixIcon: IconButton(
+                      onPressed: () {
+                        // isObscure = !isObscure;
+                        provider.changeIsShowPassword(
+                            provider.isShowPassword == false ? true : false);
+                      },
+                      icon: provider.isShowPassword
+                          ? Icon(Icons.visibility_off)
+                          : Icon(Icons.visibility)),
                   keyboard: TextInputType.text,
                 ),
                 SizedBox(height: 158.h),

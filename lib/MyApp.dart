@@ -44,7 +44,7 @@ class MyApp extends StatelessWidget {
             Routes.categoryFilterRouteName: (context) =>
                 const CategoryFilterScreen()
           },
-          initialRoute: Routes.splashRouteName,
+          initialRoute: Routes.loginRouteName,
           debugShowCheckedModeBanner: false,
           theme: DarkTheme.darkTheme,
           themeMode: ThemeMode.dark,

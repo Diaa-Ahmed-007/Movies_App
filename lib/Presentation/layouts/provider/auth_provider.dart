@@ -13,11 +13,13 @@ class AuthProvider extends ChangeNotifier {
     dataBaseUser = newDataBaseUser;
   }
 
+
   bool isFirebaseUserLoggedIn() {
     if (FirebaseAuth.instance.currentUser == null) return false;
     fireBaseUserAuth = FirebaseAuth.instance.currentUser;
     return true;
   }
+
 
   Future<void> retrieveDatabaseUserData() async {
     try {
@@ -33,5 +35,12 @@ class AuthProvider extends ChangeNotifier {
     fireBaseUserAuth = null;
     dataBaseUser = null;
     return await FirebaseAuth.instance.signOut();
+  }
+
+  bool isShowPassword = false;
+  changeIsShowPassword(bool newIsShowPassword) {
+    if (isShowPassword == newIsShowPassword) return;
+    isShowPassword = newIsShowPassword;
+    notifyListeners();
   }
 }
