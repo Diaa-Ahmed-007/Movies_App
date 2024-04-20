@@ -75,22 +75,14 @@ class FireStoreHelper {
   Stream<List<FireBaseMovieModel>> listenMovies(
       {required String userid}) async* {
     Stream<QuerySnapshot<FireBaseMovieModel>> movie =
-        Stream.value(await getMovieCollections(userid: userid)!.get());
+        getMovieCollections(userid: userid)!.snapshots();
     Stream<List<FireBaseMovieModel>> movieList =
         movie.map((event) => event.docs.map((e) => e.data()).toList());
     yield* movieList;
   }
 
-  static Future<void> deleteTask(
+  static Future<void> deleteMovie(
       {required String userId, required int movieId}) async {
     await getMovieCollections(userid: userId)?.doc(movieId.toString()).delete();
   }
-  //   static Stream<List<TaskModel>> listenToTasks(
-  //     {required String UserID, required int date}) async* {
-  //   Stream<QuerySnapshot<TaskModel>> taskStream =
-  //       getTaskCollection(UserID).where("date", isEqualTo: date).snapshots();
-  //   Stream<List<TaskModel>> tasks = taskStream
-  //       .map((event) => event.docs.map((snapshot) => snapshot.data()).toList());
-  //   yield* tasks;
-  // }
 }

@@ -62,7 +62,7 @@ class MovieWidgetForSearchAndWatchList extends StatelessWidget {
                           child: InkWell(
                             onTap: () {
                               stream:
-                              FireStoreHelper.deleteTask(
+                              FireStoreHelper.deleteMovie(
                                   userId: authProvider.fireBaseUserAuth!.uid,
                                   movieId: movie.id);
                             },

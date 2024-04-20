@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -188,8 +187,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   child: ElevatedButton(
                     onPressed: () {
                       if (formfkey.currentState?.validate() ?? false) {
-                        log(emailController.text);
-                        log(passwordController.text);
+                       
                         RegisterViewModel regViewModel =
                             RegisterViewModel.get(context);
                         regViewModel.register(

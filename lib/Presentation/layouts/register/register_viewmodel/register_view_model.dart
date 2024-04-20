@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -14,7 +12,6 @@ class RegisterViewModel extends Cubit<RegisterState> {
       BlocProvider.of(context);
   RegisterUsecase registerUsecase;
   register(String email, String password) async {
-    log("goin");
     emit(RegisterLoadingState());
     var credential = await registerUsecase.call(email, password);
     credential.fold((error) => emit(RegisterErrorState(error)),

@@ -21,17 +21,18 @@ class BookMarkWidget extends StatelessWidget {
     return InkWell(
         enableFeedback: false,
         onTap: () {
-        isChosen?  FireStoreHelper.deleteTask(
-              userId: authProvider.fireBaseUserAuth!.uid, movieId: movie.id)
-          :FireStoreHelper.addMovie(
-            userid: authProvider.fireBaseUserAuth?.uid ?? "",
-            movie: FireBaseMovieModel(
-                backdropPath: movie.backdropPath,
-                id: movie.id,
-                isSelected: true,
-                releaseDate: movie.releaseDate,
-                title: movie.title),
-          );
+          isChosen
+              ? FireStoreHelper.deleteMovie(
+                  userId: authProvider.fireBaseUserAuth!.uid, movieId: movie.id)
+              : FireStoreHelper.addMovie(
+                  userid: authProvider.fireBaseUserAuth?.uid ?? "",
+                  movie: FireBaseMovieModel(
+                      backdropPath: movie.backdropPath,
+                      id: movie.id,
+                      isSelected: true,
+                      releaseDate: movie.releaseDate,
+                      title: movie.title),
+                );
         },
         child: StreamBuilder(
           stream: FireStoreHelper.getIsCheck(
