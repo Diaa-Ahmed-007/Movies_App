@@ -47,6 +47,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               email: emailController.text,
               firstName: firstNameController.text,
               lastName: lastNameController.text);
+
           authProvider.setUsers(
               state.usercredential.user,
               UserModel(
@@ -54,6 +55,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   userid: state.usercredential.user!.uid,
                   firstName: firstNameController.text,
                   lastName: lastNameController.text));
+          authProvider.retrieveDatabaseUserData();
           Future.delayed(
             const Duration(seconds: 1),
             () =>

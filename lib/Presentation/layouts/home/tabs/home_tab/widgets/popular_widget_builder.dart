@@ -36,7 +36,13 @@ class PopularWidget extends StatelessWidget {
                   )),
             );
           }
-          return const CircularProgressIndicator.adaptive();
+          return SizedBox(
+            height: 230.h,
+            width: double.infinity,
+            child: const Center(
+              child: CircularProgressIndicator.adaptive(),
+            ),
+          );
         },
       ),
     );

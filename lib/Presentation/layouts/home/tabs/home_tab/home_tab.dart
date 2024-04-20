@@ -5,7 +5,9 @@ import 'package:movies_app/Presentation/layouts/home/tabs/home_tab/widgets/popul
 import 'package:movies_app/Presentation/layouts/home/tabs/home_tab/widgets/releases_widget.dart';
 
 class HomeTab extends StatelessWidget {
-  const HomeTab({super.key});
+  const HomeTab({
+    super.key,
+  });
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(

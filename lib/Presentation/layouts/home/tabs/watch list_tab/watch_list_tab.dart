@@ -2,18 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies_app/Presentation/layouts/home/tabs/search_tab/view_model/search_view_model.dart';
-import 'package:movies_app/Presentation/layouts/movie_details/view_model/movie_details_view_model.dart';
+import 'package:movies_app/Presentation/layouts/home/tabs/watch%20list_tab/view_model/watch_list_view_model.dart';
+import 'package:movies_app/Presentation/layouts/provider/auth_provider.dart';
 import 'package:movies_app/core/DI/di.dart';
-import 'package:movies_app/domain/entities/MovieDetailsEntitie.dart';
+import 'package:movies_app/core/reusable%20components/movie_widget_for_search_and_watch_list.dart';
+import 'package:movies_app/data/models/firebase_movie_model.dart';
+import 'package:provider/provider.dart';
 
 class WatchListTab extends StatelessWidget {
   const WatchListTab({super.key});
 
   @override
   Widget build(BuildContext context) {
+    var provider = Provider.of<AuthProvider>(context);
     return BlocProvider(
-      create: (context) =>
-          getIt<MovieDetailsHomeTabViewModel>()..getMovieDetails(movieId: 50),
+      create: (context) => getIt<WatchListTabViewModel>()
+        ..getFireStoreMovie(userId: provider.fireBaseUserAuth!.uid),
       child: Scaffold(
         body: CustomScrollView(
           slivers: [
@@ -30,29 +34,37 @@ class WatchListTab extends StatelessWidget {
                 ),
               ),
             ),
-            BlocBuilder<MovieDetailsHomeTabViewModel,
-                MovieDetailsHomeTabStates>(
+            SliverToBoxAdapter(
+              child: SizedBox(
+                height: 20.h,
+              ),
+            ),
+            BlocBuilder<WatchListTabViewModel, WatchListTabStates>(
               builder: (context, state) {
-                if (state is MovieDetailsHomeTabSuccessState) {
-                  MovieDetailsEntitie result = state.details;
-                  
-                  //   return Expanded(
-                  //     child: ListView.separated(
-                  //         itemBuilder: (context, index) =>
-                  //             MovieWidgetForSearchAndWatchList(
-                  // movie: result, isSearchTab: isSearchTab),
-                  //         separatorBuilder: (context, index) {
-                  //           return Padding(
-                  //             padding: EdgeInsets.symmetric(vertical: 10.h),
-                  //             child: Divider(
-                  //               thickness: 1,
-                  //               endIndent: 15.w,
-                  //               indent: 15.w,
-                  //             ),
-                  //           );
-                  //         },
-                  //         itemCount: result.length),
-                  //   );
+                if (state is WatchListTabSuccessState) {
+                  Stream<List<FireBaseMovieModel>> result =
+                      state.fireBaseMovies;
+                  return StreamBuilder(
+                    stream: result,
+                    builder: (context, snapshot) {
+                      var movie = snapshot.data;
+                      return SliverList.separated(
+                          itemBuilder: (context, index) =>
+                              MovieWidgetForSearchAndWatchList(
+                                  movie: movie?[index], isSearchTab: false),
+                          separatorBuilder: (context, index) {
+                            return Padding(
+                              padding: EdgeInsets.symmetric(vertical: 10.h),
+                              child: Divider(
+                                thickness: 1,
+                                endIndent: 15.w,
+                                indent: 15.w,
+                              ),
+                            );
+                          },
+                          itemCount: movie?.length ?? 0);
+                    },
+                  );
                 }
                 if (state is SearchTabErrorState) {
                   return SliverToBoxAdapter(

@@ -39,7 +39,7 @@ class FireStoreHelper {
     return user;
   }
 
-  static CollectionReference<FireBaseMovieModel> getMovieCollections(
+  static CollectionReference<FireBaseMovieModel>? getMovieCollections(
       {required String userid}) {
     var refernce =
         getUserCollections().doc(userid).collection("MyMovies").withConverter(
@@ -56,47 +56,41 @@ class FireStoreHelper {
 
   static addMovie(
       {required String userid, required FireBaseMovieModel movie}) async {
-    await getMovieCollections(userid: userid).add(movie);
+    await getMovieCollections(userid: userid)!
+        .doc(movie.id.toString())
+        .set(movie);
   }
 
-  static Future<List<FireBaseMovieModel>> getMovies({required String userid}) async {
-    QuerySnapshot<FireBaseMovieModel> movie =
-        await getMovieCollections(userid: userid).get();
-    List<FireBaseMovieModel> movieList =
-        movie.docs.map((e) => e.data()).toList();
-    return movieList;
+  static Stream<FireBaseMovieModel> getIsCheck(
+      {required String userID, required int id}) async* {
+    DocumentReference<FireBaseMovieModel> filter =
+        getMovieCollections(userid: userID)!.doc(id.toString());
+
+    Stream<FireBaseMovieModel> snapshot = filter
+        .snapshots()
+        .map((event) => event.data() ?? FireBaseMovieModel(isSelected: false));
+    yield* snapshot;
   }
-  // static CollectionReference<courseModel> getCoursesCollections() {
-  //   var refernce =
-  //       FirebaseFirestore.instance.collection("Courses").withConverter(
-  //             fromFirestore: (snapshot, options) {
-  //               Map<String, dynamic>? data = snapshot.data();
-  //               return courseModel.FromFirestore(data ?? {});
-  //             },
-  //             toFirestore: (courseModel, options) => courseModel.toFirestore(),
-  //           );
-  //   return refernce;
-  // }
 
-  // static Future<void> addCourse({required courseModel course}) async {
-  //   var doucment = getCoursesCollections().doc(course.courseId);
-  //   course.courseId = doucment.id;
-  //   await doucment.set(course);
-  // }
+  Stream<List<FireBaseMovieModel>> listenMovies(
+      {required String userid}) async* {
+    Stream<QuerySnapshot<FireBaseMovieModel>> movie =
+        Stream.value(await getMovieCollections(userid: userid)!.get());
+    Stream<List<FireBaseMovieModel>> movieList =
+        movie.map((event) => event.docs.map((e) => e.data()).toList());
+    yield* movieList;
+  }
 
-  // static Future<List<courseModel>> getAllCourse() async {
-  //   var courseQuery = await getCoursesCollections().get();
-  //   List<courseModel> coursesList =
-  //       courseQuery.docs.map((Snapshot) => Snapshot.data()).toList();
-  //   return coursesList;
-  // }
-
-  // static Future<List<courseModel>> getBestSellingCourse() async {
-  //   var courseQuery = await getCoursesCollections()
-  //       .orderBy("studentNum", descending: true)
-  //       .get();
-  //   List<courseModel> coursesList =
-  //       courseQuery.docs.map((Snapshot) => Snapshot.data()).toList();
-  //   return coursesList;
+  static Future<void> deleteTask(
+      {required String userId, required int movieId}) async {
+    await getMovieCollections(userid: userId)?.doc(movieId.toString()).delete();
+  }
+  //   static Stream<List<TaskModel>> listenToTasks(
+  //     {required String UserID, required int date}) async* {
+  //   Stream<QuerySnapshot<TaskModel>> taskStream =
+  //       getTaskCollection(UserID).where("date", isEqualTo: date).snapshots();
+  //   Stream<List<TaskModel>> tasks = taskStream
+  //       .map((event) => event.docs.map((snapshot) => snapshot.data()).toList());
+  //   yield* tasks;
   // }
 }

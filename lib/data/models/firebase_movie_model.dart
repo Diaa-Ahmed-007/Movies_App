@@ -9,7 +9,7 @@ class FireBaseMovieModel {
       this.id,
       this.releaseDate,
       this.title,
-      this.isSelected});
+      this.isSelected=true});
 
   FireBaseMovieModel.fromJson(dynamic json) {
     backdropPath = json['backdrop_path'];

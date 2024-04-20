@@ -91,6 +91,7 @@ class UpcomingModel {
       id: id,
       posterPath: posterPath,
       title:title,
+      releaseDate:releaseDate,
     );
   }
 }
