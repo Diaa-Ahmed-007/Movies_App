@@ -168,18 +168,18 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     }
                     return null;
                   },
-                  obscureText: authProvider.isShowPassword,
+                  obscureText: authProvider.isShowPasswordRegister,
                   suffixIcon: IconButton(
-                      onPressed: () {
-                        // isObscure = !isObscure;
-                        authProvider.changeIsShowPassword(
-                            authProvider.isShowPassword == false
-                                ? true
-                                : false);
-                      },
-                      icon: authProvider.isShowPassword
-                          ? Icon(Icons.visibility_off)
-                          : Icon(Icons.visibility)),
+                    onPressed: () {
+                      authProvider.changeIsShowPasswordRegister(
+                          authProvider.isShowPasswordRegister == false
+                              ? true
+                              : false);
+                    },
+                    icon: Icon(authProvider.isShowPasswordRegister
+                        ? Icons.visibility_off
+                        : Icons.visibility,color: Colors.white,),
+                  ),
                   keyboard: TextInputType.visiblePassword,
                 ),
                 SizedBox(height: 89.h),

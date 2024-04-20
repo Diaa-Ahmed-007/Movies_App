@@ -7,7 +7,7 @@ class CustomTextFiled extends StatelessWidget {
   String hintText;
   TextInputType keyboard;
   TextEditingController textController;
-  bool obscureText;
+  bool? obscureText;
   Widget? suffixIcon;
   ValidationFieled validator;
   CustomTextFiled({
@@ -39,7 +39,7 @@ class CustomTextFiled extends StatelessWidget {
       style: Theme.of(context).textTheme.displayMedium,
       keyboardType: keyboard,
       controller: textController,
-      obscureText: obscureText,
+      obscureText: obscureText??false,
       obscuringCharacter: "*",
       validator: validator,
     );

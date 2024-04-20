@@ -126,21 +126,21 @@ class _LoginScreenState extends State<LoginScreen> {
                     if (value == null || value.isEmpty) {
                       return "this field can't be empty";
                     }
-                    if (value.length > 8) {
+                    if (value.length < 8) {
                       return "password must less than 8 char ";
                     }
                     return null;
                   },
-                  obscureText: provider.isShowPassword,
+                  obscureText: provider.isShowPasswordLogin,
                   suffixIcon: IconButton(
                       onPressed: () {
                         // isObscure = !isObscure;
-                        provider.changeIsShowPassword(
-                            provider.isShowPassword == false ? true : false);
+                        provider.changeIsShowPassworLogin(
+                            provider.isShowPasswordLogin == false ? true : false);
                       },
-                      icon: provider.isShowPassword
-                          ? Icon(Icons.visibility_off)
-                          : Icon(Icons.visibility)),
+                      icon: Icon(provider.isShowPasswordLogin
+                        ? Icons.visibility_off
+                        : Icons.visibility,color: Colors.white,),),
                   keyboard: TextInputType.text,
                 ),
                 SizedBox(height: 158.h),

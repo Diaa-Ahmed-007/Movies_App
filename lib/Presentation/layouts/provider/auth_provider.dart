@@ -37,10 +37,17 @@ class AuthProvider extends ChangeNotifier {
     return await FirebaseAuth.instance.signOut();
   }
 
-  bool isShowPassword = false;
-  changeIsShowPassword(bool newIsShowPassword) {
-    if (isShowPassword == newIsShowPassword) return;
-    isShowPassword = newIsShowPassword;
+  bool isShowPasswordLogin = true;
+  changeIsShowPassworLogin(bool newIsShowPassword) {
+    if (isShowPasswordLogin == newIsShowPassword) return;
+    isShowPasswordLogin = newIsShowPassword;
+    notifyListeners();
+  }
+  
+  bool isShowPasswordRegister = true;
+  changeIsShowPasswordRegister(bool newIsShowPassword) {
+    if (isShowPasswordRegister == newIsShowPassword) return;
+    isShowPasswordRegister = newIsShowPassword;
     notifyListeners();
   }
 }
