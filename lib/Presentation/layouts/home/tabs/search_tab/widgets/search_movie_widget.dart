@@ -9,14 +9,6 @@ class SearchMovieWidget extends StatelessWidget {
   final SearchEntitie movie;
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      enableFeedback: false,
-      onTap: () {
-        Navigator.pushNamed(context, Routes.movieDetailsScreenRouteName,
-            arguments:
-                SelectedMovie(id: movie.id ?? 0, title: movie.title ?? ""));
-      },
-      child: MovieWidgetForSearchAndWatchList(movie: movie, isSearchTab: true,),
-    );
+    return MovieWidgetForSearchAndWatchList(movie: movie, isSearchTab: true,);
   }
 }

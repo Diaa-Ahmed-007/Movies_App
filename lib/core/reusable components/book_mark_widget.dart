@@ -1,11 +1,10 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:movies_app/Presentation/layouts/provider/auth_provider.dart';
 import 'package:movies_app/core/firebase/firestore_helper.dart';
 import 'package:movies_app/data/models/firebase_movie_model.dart';
 
+// ignore: must_be_immutable
 class BookMarkWidget extends StatelessWidget {
   BookMarkWidget({
     super.key,
