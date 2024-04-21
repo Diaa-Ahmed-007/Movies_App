@@ -28,7 +28,7 @@ void main()async {
       ChangeNotifierProvider(
         create: (context) => AuthProvider(),
         )
-    ],child: MyApp(),)
+    ],child: const MyApp(),)
       
   );
 }
