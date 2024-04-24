@@ -22,7 +22,6 @@ class PopularDataSourceImpl extends PopularDataSource {
           PopularResponse.fromJson(response.data);
       return Left(populerMovieModel);
     } catch (e) {
-      log(e.toString());
       return Right(e.toString());
     }
   }

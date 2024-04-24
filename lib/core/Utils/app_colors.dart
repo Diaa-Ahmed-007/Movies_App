@@ -19,4 +19,5 @@ class AppColors {
   static Color movieDetailsInSearchAndWatchListColor =
       Colors.white.withOpacity(0.6745);
   static const Color cursor = Color(0xff48CFAD);
+
 }
