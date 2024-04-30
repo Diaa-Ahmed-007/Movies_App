@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -60,6 +59,8 @@ class _LoginScreenState extends State<LoginScreen> {
                     content: Text(state.errorMessage),
                     actions: [
                       ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.black26),
                         onPressed: () {
                           Navigator.pop(context);
                           Navigator.pop(context);
@@ -132,14 +133,18 @@ class _LoginScreenState extends State<LoginScreen> {
                   },
                   obscureText: provider.isShowPasswordLogin,
                   suffixIcon: IconButton(
-                      onPressed: () {
-                        // isObscure = !isObscure;
-                        provider.changeIsShowPassworLogin(
-                            provider.isShowPasswordLogin == false ? true : false);
-                      },
-                      icon: Icon(provider.isShowPasswordLogin
-                        ? Icons.visibility_off
-                        : Icons.visibility,color: Colors.white,),),
+                    onPressed: () {
+                      // isObscure = !isObscure;
+                      provider.changeIsShowPassworLogin(
+                          provider.isShowPasswordLogin == false ? true : false);
+                    },
+                    icon: Icon(
+                      provider.isShowPasswordLogin
+                          ? Icons.visibility_off
+                          : Icons.visibility,
+                      color: Colors.white,
+                    ),
+                  ),
                   keyboard: TextInputType.text,
                 ),
                 SizedBox(height: 158.h),

@@ -46,13 +46,17 @@ class populer_widget extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        popular.title ?? "",
-                        maxLines: 2,
-                        style: Theme.of(context)
-                            .textTheme
-                            .headlineLarge!
-                            .copyWith(fontSize: 15.sp),
+                      SizedBox(
+                        width: 150.w,
+                        child: Text(
+                          popular.title ?? "",
+                          maxLines: 2,
+                          overflow: TextOverflow.clip,
+                          style: Theme.of(context)
+                              .textTheme
+                              .headlineLarge!
+                              .copyWith(fontSize: 15.sp),
+                        ),
                       ),
                       MovieSmallDetails(
                         movieId: popular.id ?? 0,

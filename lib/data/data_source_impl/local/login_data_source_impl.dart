@@ -23,9 +23,9 @@ class LoginDataSourceImpl extends LoginDataSource {
       } else if (e.code == FirebaseAuthErorrCodes.wrongPassword) {
         return const Left('Wrong password provided for that user.');
       }
+      return Left(e.code);
     } catch (e) {
       return Left(e.toString());
     }
-    return const Left("");
   }
 }

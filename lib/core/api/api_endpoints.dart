@@ -7,4 +7,6 @@ class EndPoints {
       "/3/movie/$movieId";
   static String searchEndPoint = "/3/search/movie";
   static String filterEndPoint = "/3/discover/movie";
+  static String videoTrailler({required num movieId}) =>
+      "/3/movie/$movieId/videos";
 }

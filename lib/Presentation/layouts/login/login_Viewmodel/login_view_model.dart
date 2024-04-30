@@ -1,4 +1,3 @@
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -20,19 +19,21 @@ class loginViewModel extends Cubit<loginState> {
   login(String email, String password, BuildContext context) async {
     emit(loginLoadingState());
     var credential = await loginUsecase.call(email, password);
-    credential.fold((error) => emit(loginErrorState(error)),
-        (usercredential) async {
-      auth.AuthProvider provider =
-          Provider.of<auth.AuthProvider>(context, listen: false);
-      try {
-        UserModel? user =
-            await FireStoreHelper.getUser(userId: usercredential.user!.uid);
-        provider.setUsers(usercredential.user, user);
-      } catch (e) {
-        emit(loginErrorState(e.toString()));
-      }
-      emit(loginSuccessState(usercredential));
-    });
+    credential.fold(
+      (error) => emit(loginErrorState(error)),
+      (usercredential) async {
+        auth.AuthProvider provider =
+            Provider.of<auth.AuthProvider>(context, listen: false);
+        try {
+          UserModel? user =
+              await FireStoreHelper.getUser(userId: usercredential.user!.uid);
+          provider.setUsers(usercredential.user, user);
+          emit(loginSuccessState(usercredential));
+        } catch (e) {
+          emit(loginErrorState(e.toString()));
+        }
+      },
+    );
   }
 }
 

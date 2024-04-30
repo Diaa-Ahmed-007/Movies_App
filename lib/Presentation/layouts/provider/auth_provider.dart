@@ -7,12 +7,11 @@ import 'package:movies_app/data/models/user_model.dart';
 
 class AuthProvider extends ChangeNotifier {
   User? fireBaseUserAuth;
-  UserModel?dataBaseUser;
+  UserModel? dataBaseUser;
   void setUsers(User? newFireBaseUserAuth, UserModel? newDataBaseUser) {
     fireBaseUserAuth = newFireBaseUserAuth;
     dataBaseUser = newDataBaseUser;
   }
-
 
   bool isFirebaseUserLoggedIn() {
     if (FirebaseAuth.instance.currentUser == null) return false;
@@ -20,12 +19,10 @@ class AuthProvider extends ChangeNotifier {
     return true;
   }
 
-
   Future<void> retrieveDatabaseUserData() async {
     try {
       dataBaseUser =
-          await FireStoreHelper.getUser(userId:fireBaseUserAuth!.uid);
-          
+          await FireStoreHelper.getUser(userId: fireBaseUserAuth!.uid);
     } catch (e) {
       log(e.toString());
     }
@@ -43,7 +40,7 @@ class AuthProvider extends ChangeNotifier {
     isShowPasswordLogin = newIsShowPassword;
     notifyListeners();
   }
-  
+
   bool isShowPasswordRegister = true;
   changeIsShowPasswordRegister(bool newIsShowPassword) {
     if (isShowPasswordRegister == newIsShowPassword) return;
