@@ -15,7 +15,11 @@ class TraillerViewMode extends Cubit<TraillerViewModelState> {
 
     var result = await traillerUseCase.call(movieId: movieId);
     return result.fold((response) {
-      emit(TraillerSuccessState(response));
+      if (response == []) {
+        emit(TraillerErrorState("no data"));
+      } else {
+        emit(TraillerSuccessState(response));
+      }
     }, (error) {
       emit(TraillerErrorState(error));
     });
