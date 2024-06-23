@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
-import 'package:movies_app/domain/entities/SearchEntitie.dart';
-import 'package:movies_app/domain/use_cases/remote/search_usecase.dart';
+import 'package:movies_app/domain/entities/movies/SearchEntitie.dart';
+import 'package:movies_app/domain/use_cases/remote/movies/search_usecase.dart';
 
 @injectable
 class SearchTabViewModel extends Cubit<SearchTabStates> {

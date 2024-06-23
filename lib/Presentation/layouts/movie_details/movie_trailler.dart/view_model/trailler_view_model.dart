@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
-import 'package:movies_app/domain/entities/TraillerEntity.dart';
-import 'package:movies_app/domain/use_cases/remote/trailler_usecase.dart';
+import 'package:movies_app/domain/entities/movies/TraillerEntity.dart';
+import 'package:movies_app/domain/use_cases/remote/movies/trailler_usecase.dart';
 
 @injectable
 class TraillerViewMode extends Cubit<TraillerViewModelState> {

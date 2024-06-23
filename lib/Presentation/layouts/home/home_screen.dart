@@ -18,8 +18,6 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //  UserModel movie =
-    //     ModalRoute.of(context)?.settings.arguments as UserModel;
     final List<Widget> navWidget = [
       const HomeTab(),
       BlocProvider(
@@ -34,11 +32,17 @@ class HomeScreen extends StatelessWidget {
     ];
     HomeProvider provider = Provider.of<HomeProvider>(context);
     return Scaffold(
-        resizeToAvoidBottomInset: false,
-        bottomNavigationBar: BottomNavigationBar(
+      resizeToAvoidBottomInset: false,
+      bottomNavigationBar: Container(
+        clipBehavior: Clip.hardEdge,
+        decoration: BoxDecoration(borderRadius: BorderRadius.circular(50)),
+        margin: const EdgeInsets.only(bottom: 10, left: 5, right: 5),
+        child: BottomNavigationBar(
           enableFeedback: false,
           type: BottomNavigationBarType.fixed,
           currentIndex: provider.homeTapIndex,
+          showSelectedLabels: false,
+          showUnselectedLabels: false,
           onTap: (value) {
             provider.changeHomeTapIndex(value);
           },
@@ -57,7 +61,7 @@ class HomeScreen extends StatelessWidget {
             BottomNavigationBarItem(
                 backgroundColor: Theme.of(context).colorScheme.secondary,
                 icon: SvgPicture.asset(
-                  "assets/Icons/search.svg",
+                  "assets/Icons/discover.svg",
                   colorFilter: ColorFilter.mode(
                       provider.homeTapIndex == 1
                           ? Theme.of(context).colorScheme.primary
@@ -68,7 +72,7 @@ class HomeScreen extends StatelessWidget {
             BottomNavigationBarItem(
                 backgroundColor: Theme.of(context).colorScheme.secondary,
                 icon: SvgPicture.asset(
-                  "assets/Icons/browse.svg",
+                  "assets/Icons/bookmark.svg",
                   colorFilter: ColorFilter.mode(
                       provider.homeTapIndex == 2
                           ? Theme.of(context).colorScheme.primary
@@ -79,7 +83,7 @@ class HomeScreen extends StatelessWidget {
             BottomNavigationBarItem(
                 backgroundColor: Theme.of(context).colorScheme.secondary,
                 icon: SvgPicture.asset(
-                  "assets/Icons/watchList.svg",
+                  "assets/Icons/profile.svg",
                   colorFilter: ColorFilter.mode(
                       provider.homeTapIndex == 3
                           ? Theme.of(context).colorScheme.primary
@@ -89,6 +93,28 @@ class HomeScreen extends StatelessWidget {
                 label: 'WATCHLIST'),
           ],
         ),
-        body: navWidget[provider.homeTapIndex]);
+      ),
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        title: Image.asset("assets/images/FILMORA-appbar.png"),
+        centerTitle: false,
+        actions: [
+          SvgPicture.asset(
+            "assets/Icons/search.svg",
+            colorFilter: ColorFilter.mode(
+                Theme.of(context).colorScheme.onSecondary, BlendMode.srcIn),
+          ),
+          const SizedBox(width: 20),
+          SvgPicture.asset("assets/Icons/menu.svg",
+              colorFilter: ColorFilter.mode(
+                  Theme.of(context).colorScheme.onSecondary, BlendMode.srcIn)),
+          const SizedBox(width: 10),
+        ],
+      ),
+      body: SafeArea(
+        child: navWidget[provider.homeTapIndex],
+      ),
+    );
   }
 }

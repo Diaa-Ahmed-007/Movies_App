@@ -5,7 +5,7 @@ import 'package:injectable/injectable.dart';
 import 'package:movies_app/Presentation/layouts/provider/auth_provider.dart'
     as auth;
 import 'package:movies_app/core/firebase/firestore_helper.dart';
-import 'package:movies_app/data/models/user_model.dart';
+import 'package:movies_app/data/models/firsbase_model/user_model.dart';
 import 'package:movies_app/domain/use_cases/Local/login_usecase.dart';
 import 'package:provider/provider.dart';
 

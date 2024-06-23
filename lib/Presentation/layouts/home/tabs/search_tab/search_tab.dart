@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies_app/Presentation/layouts/home/tabs/search_tab/view_model/search_view_model.dart';
 import 'package:movies_app/Presentation/layouts/home/tabs/search_tab/widgets/search_movie_widget.dart';
-import 'package:movies_app/domain/entities/SearchEntitie.dart';
+import 'package:movies_app/domain/entities/movies/SearchEntitie.dart';
 
 class SearchTab extends StatefulWidget {
   const SearchTab({super.key});

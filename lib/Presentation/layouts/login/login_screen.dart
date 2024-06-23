@@ -7,7 +7,7 @@ import 'package:movies_app/core/Utils/routes.dart';
 import 'package:movies_app/core/constants.dart';
 import 'package:movies_app/core/firebase/firestore_helper.dart';
 import 'package:movies_app/core/reusable%20components/custom_text_filed.dart';
-import 'package:movies_app/data/models/user_model.dart';
+import 'package:movies_app/data/models/firsbase_model/user_model.dart';
 import 'package:provider/provider.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -44,7 +44,11 @@ class _LoginScreenState extends State<LoginScreen> {
 
           Future.delayed(
             const Duration(seconds: 1),
-            () => Navigator.pushReplacementNamed(context, Routes.homeRouteName),
+            () => Navigator.pushNamedAndRemoveUntil(
+              context,
+              Routes.homeRouteName,
+              (route) => false,
+            ),
           );
         }
         if (state is loginErrorState) {
@@ -85,7 +89,7 @@ class _LoginScreenState extends State<LoginScreen> {
       },
       child: Scaffold(
         resizeToAvoidBottomInset: false,
-        backgroundColor: Theme.of(context).colorScheme.background,
+        backgroundColor: Theme.of(context).colorScheme.surface,
         body: Padding(
           padding: REdgeInsets.symmetric(horizontal: 26.w),
           child: Form(

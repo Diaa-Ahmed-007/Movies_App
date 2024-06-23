@@ -6,7 +6,7 @@ import 'package:movies_app/Presentation/layouts/home/tabs/watch%20list_tab/view_
 import 'package:movies_app/Presentation/layouts/provider/auth_provider.dart';
 import 'package:movies_app/core/DI/di.dart';
 import 'package:movies_app/core/reusable%20components/movie_widget_for_search_and_watch_list.dart';
-import 'package:movies_app/data/models/firebase_movie_model.dart';
+import 'package:movies_app/data/models/firsbase_model/firebase_movie_model.dart';
 import 'package:provider/provider.dart';
 
 class WatchListTab extends StatelessWidget {

@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
-import 'package:movies_app/domain/entities/FilterEntitie.dart';
-import 'package:movies_app/domain/use_cases/remote/filter_usecase.dart';
+import 'package:movies_app/domain/entities/movies/FilterEntitie.dart';
+import 'package:movies_app/domain/use_cases/remote/movies/filter_usecase.dart';
 
 @injectable
 class CategoryFilterViewModel extends Cubit<CategoryFilterStates> {

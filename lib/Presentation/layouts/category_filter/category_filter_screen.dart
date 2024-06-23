@@ -4,8 +4,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies_app/Presentation/layouts/category_filter/view_model/category_filter_view_model.dart';
 import 'package:movies_app/core/DI/di.dart';
 import 'package:movies_app/core/reusable%20components/movie_card.dart';
+import 'package:movies_app/core/reusable%20components/movie_card_old.dart';
 import 'package:movies_app/data/models/categories/Genres.dart';
-import 'package:movies_app/domain/entities/FilterEntitie.dart';
+import 'package:movies_app/domain/entities/movies/FilterEntitie.dart';
 
 import '../../../core/Utils/routes.dart';
 
@@ -40,7 +41,7 @@ class CategoryFilterScreen extends StatelessWidget {
                           title: movies[index].title ?? ""),
                     );
                   },
-                  child: MovieCard(isFullView: false, movie: movies[index]),
+                  child: MovieCardOld(isFullView: false, movie: movies[index]),
                 ),
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 3,

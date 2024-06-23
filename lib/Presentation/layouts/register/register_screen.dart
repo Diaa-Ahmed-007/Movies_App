@@ -9,7 +9,7 @@ import 'package:movies_app/core/Utils/routes.dart';
 import 'package:movies_app/core/constants.dart';
 import 'package:movies_app/core/firebase/firestore_helper.dart';
 import 'package:movies_app/core/reusable%20components/custom_text_filed.dart';
-import 'package:movies_app/data/models/user_model.dart';
+import 'package:movies_app/data/models/firsbase_model/user_model.dart';
 import 'package:provider/provider.dart';
 
 class RegisterScreen extends StatefulWidget {

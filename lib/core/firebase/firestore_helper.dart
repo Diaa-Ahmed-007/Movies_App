@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:injectable/injectable.dart';
-import 'package:movies_app/data/models/firebase_movie_model.dart';
-import 'package:movies_app/data/models/user_model.dart';
+import 'package:movies_app/data/models/firsbase_model/firebase_movie_model.dart';
+import 'package:movies_app/data/models/firsbase_model/user_model.dart';
 
 @singleton
 class FireStoreHelper {

@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:movies_app/Presentation/layouts/home/tabs/home_tab/widgets/Recomended_widget.dart';
-import 'package:movies_app/Presentation/layouts/home/tabs/home_tab/widgets/popular_widget_builder.dart';
-import 'package:movies_app/Presentation/layouts/home/tabs/home_tab/widgets/releases_widget.dart';
+import 'package:movies_app/Presentation/layouts/home/tabs/home_tab/widgets/popular/popular_widget_builder.dart';
+import 'package:movies_app/Presentation/layouts/home/tabs/home_tab/widgets/top_rated_series/top_rated_series_builder.dart';
 
 class HomeTab extends StatelessWidget {
   const HomeTab({
@@ -10,21 +8,22 @@ class HomeTab extends StatelessWidget {
   });
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          const PopularWidget(),
-          SizedBox(
-            height: 25.h,
+    return const CustomScrollView(
+      physics: BouncingScrollPhysics(),
+      slivers: [
+        SliverToBoxAdapter(
+          child: SizedBox(
+            height: 25,
           ),
-          const ReleasesWidget(),
-          SizedBox(
-            height: 25.h,
+        ),
+        SliverToBoxAdapter(child: TopRatedSeriesBuilder()),
+        SliverToBoxAdapter(
+          child: SizedBox(
+            height: 25,
           ),
-          const RecommendWidget(),
-        ],
-      ),
+        ),
+        SliverToBoxAdapter(child: PopularWidgetBuilder()),
+      ],
     );
   }
 }

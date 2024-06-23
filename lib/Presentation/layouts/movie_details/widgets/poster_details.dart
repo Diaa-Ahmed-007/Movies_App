@@ -8,10 +8,10 @@ import 'package:movies_app/Presentation/layouts/movie_details/view_model/movie_d
 import 'package:movies_app/core/DI/Di.dart';
 import 'package:movies_app/core/reusable%20components/movie_show_details.dart';
 
-import '../../../../core/constants.dart';
-import '../../../../core/reusable components/movie_card.dart';
-import '../../../../data/models/categories/Genres.dart';
-import '../../../../domain/entities/MovieDetailsEntitie.dart';
+import '../../../../../core/constants.dart';
+import '../../../../../data/models/categories/Genres.dart';
+import '../../../../core/reusable components/movie_card_old.dart';
+import '../../../../domain/entities/movies/MovieDetailsEntitie.dart';
 import 'movie_category.dart';
 
 class PosterDetails extends StatelessWidget {
@@ -152,7 +152,7 @@ class PosterDetails extends StatelessWidget {
                               Material(
                                 borderRadius: BorderRadius.circular(5),
                                 clipBehavior: Clip.antiAlias,
-                                child: MovieCard(
+                                child: MovieCardOld(
                                     isFullView: true,
                                     isLarge: true,
                                     movie: movie),

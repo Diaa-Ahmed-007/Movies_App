@@ -2,7 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:movies_app/data/models/categories/Genres.dart';
 
-import '../../../../../../domain/use_cases/remote/category_usecase.dart';
+import '../../../../../../domain/use_cases/remote/movies/category_usecase.dart';
 
 @injectable
 class BrowseTabViewModel extends Cubit<BrowseTabStates> {

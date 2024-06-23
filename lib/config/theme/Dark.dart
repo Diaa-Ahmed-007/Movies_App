@@ -7,22 +7,22 @@ class DarkTheme {
     scaffoldBackgroundColor: AppColors.backgroundColor,
     useMaterial3: true,
     colorScheme: ColorScheme.fromSeed(
-        seedColor: AppColors.primaryColor,
-        primary: AppColors.primaryColor,
-        background: AppColors.backgroundColor,
-        onBackground: AppColors.horizontalScrollableAreaColor,
-        primaryContainer: AppColors.movieCardWithDetailsColor,
-        onPrimaryContainer: AppColors
-            .unselectedBookmarkAndBoarderMovieCategoryAndFilledSearchTextFieldColor,
-        secondary: AppColors.navigatorBarColor,
-        onSecondary: AppColors.unselectedNavigatorBarIconColor,
-        inversePrimary: AppColors.cursor,
-        ),
+      seedColor: AppColors.primaryColor,
+      primary: AppColors.primaryColor,
+      surface: AppColors.backgroundColor,
+      onSurface: AppColors.horizontalScrollableAreaColor,
+      primaryContainer: AppColors.movieCardWithDetailsColor,
+      onPrimaryContainer: AppColors
+          .unselectedBookmarkAndBoarderMovieCategoryAndFilledSearchTextFieldColor,
+      secondary: AppColors.navigatorBarColor,
+      onSecondary: AppColors.unselectedNavigatorBarIconColor,
+      inversePrimary: AppColors.cursor,
+    ),
     appBarTheme: const AppBarTheme(
-        color: AppColors.appBarColor,
-        titleTextStyle: TextsStyles.appBarTitle,
-        centerTitle: true,
-        iconTheme: IconThemeData(color: Colors.white, size: 30)),
+      color: Colors.transparent,
+      titleTextStyle: TextsStyles.appBarTitle,
+      centerTitle: true,
+    ),
     textTheme: TextTheme(
         displayLarge: TextsStyles
             .loginRegisterPrimeTitle, // for login and register yellow titles can use copyWith to control size and wight in same page
@@ -37,18 +37,17 @@ class DarkTheme {
         labelSmall: TextsStyles
             .movieDetailsInSearchAndWatchListColor, // for search&Watchlist card Details
         titleSmall: TextsStyles.movieRating, // for movie rating in movie card
-        titleMedium: TextsStyles.category
-        ),
+        titleMedium: TextsStyles.category,
+        titleLarge: TextsStyles.seeAll),
     iconTheme: const IconThemeData(
       color: Colors.white,
       size: 12,
     ),
-    
     filledButtonTheme: const FilledButtonThemeData(
         style: ButtonStyle(
-      backgroundColor: MaterialStatePropertyAll(AppColors.primaryColor),
-      textStyle: MaterialStatePropertyAll(TextsStyles.filledButton),
-      padding: MaterialStatePropertyAll(EdgeInsets.symmetric(horizontal: 50)),
+      backgroundColor: WidgetStatePropertyAll(AppColors.primaryColor),
+      textStyle: WidgetStatePropertyAll(TextsStyles.filledButton),
+      padding: WidgetStatePropertyAll(EdgeInsets.symmetric(horizontal: 50)),
     )),
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(
       backgroundColor: AppColors.navigatorBarColor,

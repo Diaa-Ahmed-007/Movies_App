@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
-import 'package:movies_app/domain/entities/PopularEntitie.dart';
-import 'package:movies_app/domain/use_cases/remote/popular_usecase.dart';
+import 'package:movies_app/domain/entities/movies/PopularEntitie.dart';
+import 'package:movies_app/domain/use_cases/remote/movies/popular_usecase.dart';
 
 @injectable
 class PopularHomeTabViewModel extends Cubit<PopularHomeTabStates> {
@@ -9,7 +9,10 @@ class PopularHomeTabViewModel extends Cubit<PopularHomeTabStates> {
       : super(PopularHomeTabInitialState());
   @factoryMethod
   PoplularUseCase popularUseCase;
-
+static List<PopularEntitie> popularList = [];
+getPopularDirectly(){
+  emit(PopularHomeTabSuccessState(popularList));
+}
   getPopular() async {
     emit(PopularHomeTabLoadingState());
     var result = await popularUseCase.call();

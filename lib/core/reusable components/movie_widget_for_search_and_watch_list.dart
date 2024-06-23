@@ -22,7 +22,7 @@ class MovieWidgetForSearchAndWatchList extends StatelessWidget {
     AuthProvider authProvider = Provider.of<AuthProvider>(context);
     return InkWell(
       onTap: () {
-         Navigator.pushNamed(context, Routes.movieDetailsScreenRouteName,
+        Navigator.pushNamed(context, Routes.movieDetailsScreenRouteName,
             arguments:
                 SelectedMovie(id: movie.id ?? 0, title: movie.title ?? ""));
       },
@@ -42,10 +42,12 @@ class MovieWidgetForSearchAndWatchList extends StatelessWidget {
                             "${Constants.imageBasePath}${movie.backdropPath}",
                         fit: BoxFit.cover,
                         placeholder: (context, url) => Container(
-                          color: Theme.of(context).colorScheme.onPrimaryContainer,
+                          color:
+                              Theme.of(context).colorScheme.onPrimaryContainer,
                         ),
                         errorWidget: (context, url, error) => Container(
-                          color: Theme.of(context).colorScheme.onPrimaryContainer,
+                          color:
+                              Theme.of(context).colorScheme.onPrimaryContainer,
                         ),
                       )
                     : Stack(
@@ -70,7 +72,6 @@ class MovieWidgetForSearchAndWatchList extends StatelessWidget {
                             alignment: Alignment.topLeft,
                             child: InkWell(
                               onTap: () {
-                                
                                 FireStoreHelper.deleteMovie(
                                     userId: authProvider.fireBaseUserAuth!.uid,
                                     movieId: movie.id);

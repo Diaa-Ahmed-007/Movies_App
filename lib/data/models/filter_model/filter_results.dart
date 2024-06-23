@@ -14,7 +14,7 @@
 /// vote_count : 165
 library;
 
-import 'package:movies_app/domain/entities/FilterEntitie.dart';
+import 'package:movies_app/domain/entities/movies/FilterEntitie.dart';
 
 class FilterResults {
   FilterResults({

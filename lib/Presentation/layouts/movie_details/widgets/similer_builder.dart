@@ -5,6 +5,7 @@ import 'package:movies_app/Presentation/layouts/movie_details/view_model/similer
 import 'package:movies_app/core/DI/di.dart';
 import 'package:movies_app/core/Utils/routes.dart';
 import 'package:movies_app/core/reusable%20components/movie_card.dart';
+import 'package:movies_app/core/reusable%20components/movie_card_old.dart';
 
 // ignore: must_be_immutable
 class SimilerBuilder extends StatelessWidget {
@@ -22,7 +23,7 @@ class SimilerBuilder extends StatelessWidget {
             return Container(
               height: 300.h,
               width: 434.w,
-              color: Theme.of(context).colorScheme.onBackground,
+              color: Theme.of(context).colorScheme.onSurface,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -45,22 +46,23 @@ class SimilerBuilder extends StatelessWidget {
                         child: ListView.separated(
                             scrollDirection: Axis.horizontal,
                             itemBuilder: (context, index) => Material(
-                              borderRadius: BorderRadius.circular(5),
-                              clipBehavior: Clip.antiAlias,
-                              child: InkWell(
-                                onTap: (){
-                                  Navigator.pushReplacementNamed(context,
-                                      Routes.movieDetailsScreenRouteName,
-                                      arguments: SelectedMovie(
-                                          id: movies[index].id ?? 0,
-                                          title: movies[index].title ?? ""));
-                                },
-                                child: MovieCard(
+                                  borderRadius: BorderRadius.circular(5),
+                                  clipBehavior: Clip.antiAlias,
+                                  child: InkWell(
+                                    onTap: () {
+                                      Navigator.pushReplacementNamed(context,
+                                          Routes.movieDetailsScreenRouteName,
+                                          arguments: SelectedMovie(
+                                              id: movies[index].id ?? 0,
+                                              title:
+                                                  movies[index].title ?? ""));
+                                    },
+                                    child: MovieCardOld(
                                       movie: movies[index],
                                       isFullView: false,
                                     ),
-                              ),
-                            ),
+                                  ),
+                                ),
                             separatorBuilder: (context, index) =>
                                 SizedBox(width: 10.w),
                             itemCount: movies.length),

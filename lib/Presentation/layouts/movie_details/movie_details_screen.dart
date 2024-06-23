@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies_app/Presentation/layouts/movie_details/widgets/poster_details.dart';
 import 'package:movies_app/Presentation/layouts/movie_details/widgets/similer_builder.dart';
+import 'package:movies_app/core/reusable%20components/movie_card.dart';
 
-import '../../../core/reusable components/movie_card.dart';
+import '../../../core/reusable components/movie_card_old.dart';
 
 class MovieDetailsScreen extends StatelessWidget {
   const MovieDetailsScreen({super.key});

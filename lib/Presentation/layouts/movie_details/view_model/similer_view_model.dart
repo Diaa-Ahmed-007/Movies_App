@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
-import 'package:movies_app/domain/entities/SimilerEntitie.dart';
-import 'package:movies_app/domain/use_cases/remote/similer_usecase.dart';
+import 'package:movies_app/domain/entities/movies/SimilerEntitie.dart';
+import 'package:movies_app/domain/use_cases/remote/movies/similer_usecase.dart';
 
 @injectable
 class SimilerHomeTabViewModel extends Cubit<SimilerHomeTabStates> {

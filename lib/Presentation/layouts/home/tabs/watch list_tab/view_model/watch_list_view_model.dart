@@ -1,6 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
-import 'package:movies_app/data/models/firebase_movie_model.dart';
+import 'package:movies_app/data/models/firsbase_model/firebase_movie_model.dart';
 import 'package:movies_app/domain/use_cases/Local/fire_store_movie_use_case.dart';
 
 @injectable

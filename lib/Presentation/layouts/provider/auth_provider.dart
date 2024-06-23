@@ -3,7 +3,7 @@ import 'dart:developer';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:movies_app/core/firebase/firestore_helper.dart';
-import 'package:movies_app/data/models/user_model.dart';
+import 'package:movies_app/data/models/firsbase_model/user_model.dart';
 
 class AuthProvider extends ChangeNotifier {
   User? fireBaseUserAuth;

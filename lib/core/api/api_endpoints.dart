@@ -9,6 +9,7 @@ class EndPoints {
   static String filterEndPoint = "/3/discover/movie";
   static String videoTrailler({required num movieId}) =>
       "/3/movie/$movieId/videos";
-        static String rating({required num movieId}) =>
+  static String rating({required num movieId}) =>
       "/3/movie/$movieId/release_dates";
+  static String topRatedSeriesEndPoint = "/3/tv/top_rated";
 }

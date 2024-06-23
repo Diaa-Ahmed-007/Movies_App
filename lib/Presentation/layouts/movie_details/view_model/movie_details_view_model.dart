@@ -1,29 +1,36 @@
+import 'dart:developer';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
-import 'package:movies_app/data/models/rating/Results.dart';
-import 'package:movies_app/domain/entities/MovieDetailsEntitie.dart';
-import 'package:movies_app/domain/repository_contract/remote/rating_repository.dart';
-import 'package:movies_app/domain/use_cases/remote/movie_details_usecase.dart';
+import 'package:movies_app/data/models/movies/rating/Results.dart';
+import 'package:movies_app/domain/entities/movies/MovieDetailsEntitie.dart';
+import 'package:movies_app/domain/use_cases/remote/movies/movie_details_usecase.dart';
+import 'package:movies_app/domain/use_cases/remote/movies/rate_usecase.dart';
 
 @injectable
 class MovieDetailsHomeTabViewModel extends Cubit<MovieDetailsHomeTabStates> {
-  MovieDetailsHomeTabViewModel(this.movieDetailsUseCase, this.ratingRepository)
+  MovieDetailsHomeTabViewModel(this.movieDetailsUseCase, this.ratingUseCase)
       : super(MovieDetailsHomeTabInitialState());
   @factoryMethod
   MovieDetailsUseCase movieDetailsUseCase;
-  RatingRepository ratingRepository;
+  RatingUseCase ratingUseCase;
   getMovieDetails({required num movieId}) async {
     emit(MovieDetailsHomeTabLoadingState());
     var result = await movieDetailsUseCase.call(movieId: movieId);
-    var rate= await ratingRepository.getRate(movieId: movieId);
+    var rate = await ratingUseCase.call(movieId: movieId);
+    late List<RateResults> rateResults;
+
+    rate.fold(
+      (response) {
+        rateResults = response;
+      },
+      (error) {
+        emit(MovieDetailsHomeTabErrorState(error));
+      },
+    );
     result.fold(
       (details) {
-        rate.fold((rateResults) {
-          emit(MovieDetailsHomeTabSuccessState(details, rateResults));
-        } ,(error) {
-          emit(MovieDetailsHomeTabErrorState(error));
-        } ,);
-        
+        emit(MovieDetailsHomeTabSuccessState(details, rateResults));
       },
       (error) {
         emit(MovieDetailsHomeTabErrorState(error));
