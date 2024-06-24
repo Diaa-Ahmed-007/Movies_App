@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:movies_app/core/constants.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
@@ -19,7 +17,7 @@ class _ThrillerWidgetState extends State<ThrillerWidget> {
     videoURL = Constants.youtubeUrl(videoKey: widget.videoKey);
     final videoID = YoutubePlayer.convertUrlToId(videoURL);
     _controller = YoutubePlayerController(
-        initialVideoId: videoID??"",
+        initialVideoId: videoID ?? "",
         flags: const YoutubePlayerFlags(
           autoPlay: false,
         ));

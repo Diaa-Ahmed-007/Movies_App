@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:injectable/injectable.dart';
@@ -17,8 +15,7 @@ class LoginRepositoryImpl extends LoginRepository {
     var credenetial =
         await loginDataSource.login(email: email, password: password);
     return credenetial.fold((error) {
-      
-    return  Left(error);
+      return Left(error);
     }, (usercredenetial) => Right(usercredenetial));
   }
 }

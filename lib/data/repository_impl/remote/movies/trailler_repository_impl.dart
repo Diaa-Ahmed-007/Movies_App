@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
 import 'package:movies_app/data/data_source_contract/remote/movies/trailler_datasource.dart';
@@ -16,9 +14,9 @@ class TraillerRepositoryImpl extends TraillerRepository {
       {required num movieId}) async {
     var response = await traillerDataSource.getTrailler(movieId: movieId);
     return response.fold((trailler) {
-      List<TraillerEntity> videoKey = trailler.results
-          ?.map((key) => key.toTraillerEntity()).toList()??[] ;
-      
+      List<TraillerEntity> videoKey =
+          trailler.results?.map((key) => key.toTraillerEntity()).toList() ?? [];
+
       return Left(videoKey);
     }, (error) {
       return Right(error);

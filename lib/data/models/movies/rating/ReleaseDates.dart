@@ -1,19 +1,19 @@
-import 'package:movies_app/data/models/movies/rating/RatingResponse.dart';
-
 /// certification : "R18+"
 /// descriptors : []
 /// iso_639_1 : ""
 /// note : ""
 /// release_date : "1983-05-06T00:00:00.000Z"
 /// type : 3
+library;
 
 class ReleaseDates {
   ReleaseDates({
-      this.certification,
-      this.iso6391, 
-      this.note, 
-      this.releaseDate, 
-      this.type,});
+    this.certification,
+    this.iso6391,
+    this.note,
+    this.releaseDate,
+    this.type,
+  });
 
   ReleaseDates.fromJson(dynamic json) {
     certification = json['certification'];
@@ -37,5 +37,4 @@ class ReleaseDates {
     map['type'] = type;
     return map;
   }
-
 }

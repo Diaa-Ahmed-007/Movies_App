@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:injectable/injectable.dart';
 
@@ -15,10 +13,11 @@ class AuthHelper {
     return credential;
   }
 
-  Future<UserCredential> login({required String email,required String password}) async {
+  Future<UserCredential> login(
+      {required String email, required String password}) async {
     UserCredential credential = await FirebaseAuth.instance
         .signInWithEmailAndPassword(email: email, password: password);
- 
+
     return credential;
   }
 }

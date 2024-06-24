@@ -4,8 +4,6 @@ import 'package:movies_app/Presentation/layouts/movie_details/widgets/poster_det
 import 'package:movies_app/Presentation/layouts/movie_details/widgets/similer_builder.dart';
 import 'package:movies_app/core/reusable%20components/movie_card.dart';
 
-import '../../../core/reusable components/movie_card_old.dart';
-
 class MovieDetailsScreen extends StatelessWidget {
   const MovieDetailsScreen({super.key});
 

@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
 import 'package:movies_app/core/api/api_endpoints.dart';
@@ -14,8 +12,8 @@ class TopRatedSeriesDataSourceImpl extends TopRatedSeriesDataSource {
   TopRatedSeriesDataSourceImpl(this.apiManger);
   @override
   Future<Either<TopRatedSeriesResponse, String>> getTopRatedSeries() async {
-    Random random = Random();
-int randomNumber = random.nextInt(100);
+    // Random random = Random();
+    // int randomNumber = random.nextInt(100);
     try {
       var response = await apiManger.getRequest(
           endPoints: EndPoints.topRatedSeriesEndPoint,
