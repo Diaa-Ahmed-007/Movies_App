@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movies_app/Presentation/layouts/home/tabs/home_tab/view_model/popular_home_tab_view_model.dart';
 import 'package:movies_app/Presentation/layouts/home/tabs/home_tab/widgets/popular/popular_item_widget.dart';
 import 'package:movies_app/core/DI/Di.dart';
+import 'package:movies_app/core/reusable%20components/List_title_widget.dart';
 
 class PopularWidgetBuilder extends StatelessWidget {
   const PopularWidgetBuilder({super.key});
@@ -11,24 +12,7 @@ class PopularWidgetBuilder extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
-              Text("Most Popular",
-                  style: Theme.of(context).textTheme.headlineLarge),
-              GestureDetector(
-                onTap: () {},
-                child:  Text(
-                  "See All >",
-                  style: Theme.of(context).textTheme.titleLarge,
-                ),
-              )
-            ],
-          ),
-        ),
+         ListTitleWidget(title:"Most Popular",onTap: () {},),
         const SizedBox(
           height: 20,
         ),

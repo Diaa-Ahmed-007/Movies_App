@@ -1,5 +1,5 @@
 class EndPoints {
-  static const String populerEndPoint = "/3/movie/popular";
+  static const String populerEndPoint = "/3/trending/movie/day";
   static const String upcomingEndPoint = "/3/movie/upcoming";
   static const String topRatedEndPoint = "/3/movie/top_rated";
   static const String categoryEndPoint = "/3/genre/movie/list";
@@ -11,5 +11,7 @@ class EndPoints {
       "/3/movie/$movieId/videos";
   static String rating({required num movieId}) =>
       "/3/movie/$movieId/release_dates";
-  static String topRatedSeriesEndPoint = "/3/tv/top_rated";
+  static String topRatedSeriesEndPoint = "/3/tv/popular";
+  static String popularSeriesEndPoint = "/3/trending/tv/day";
+  static String nowPlayingEndPoint = "/3/movie/now_playing";
 }

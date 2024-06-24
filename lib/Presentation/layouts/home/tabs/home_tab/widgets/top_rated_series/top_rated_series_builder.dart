@@ -35,20 +35,16 @@ class TopRatedSeriesBuilder extends StatelessWidget {
                       ),
                   itemCount: TopRatedSeriesViewModel.topRatedSeries.length,
                   options: CarouselOptions(
-                    height: MediaQuery.sizeOf(context).height * 0.27,
+                    height: MediaQuery.sizeOf(context).height * 0.6,
                     autoPlay: true,
                     enlargeCenterPage: true,
                     viewportFraction: 0.8,
-                    autoPlayInterval: const Duration(seconds: 5),
+                    autoPlayInterval: const Duration(seconds: 2),
                   )),
             );
           }
           return SizedBox(
             height: MediaQuery.sizeOf(context).height * 0.25,
-            width: double.infinity,
-            child: const Center(
-              child: CircularProgressIndicator.adaptive(),
-            ),
           );
         },
       ),

@@ -35,7 +35,8 @@ class HomeScreen extends StatelessWidget {
       resizeToAvoidBottomInset: false,
       bottomNavigationBar: Container(
         clipBehavior: Clip.hardEdge,
-        decoration: BoxDecoration(borderRadius: BorderRadius.circular(50)),
+        decoration: BoxDecoration(
+            color: Colors.transparent, borderRadius: BorderRadius.circular(50)),
         margin: const EdgeInsets.only(bottom: 10, left: 5, right: 5),
         child: BottomNavigationBar(
           enableFeedback: false,
@@ -96,6 +97,7 @@ class HomeScreen extends StatelessWidget {
       ),
       appBar: AppBar(
         backgroundColor: Colors.transparent,
+        surfaceTintColor: Colors.purple[900],
         elevation: 0,
         title: Image.asset("assets/images/FILMORA-appbar.png"),
         centerTitle: false,

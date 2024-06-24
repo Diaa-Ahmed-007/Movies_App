@@ -9,10 +9,13 @@ class UpcomingHomeTabViewModel extends Cubit<UpcomingHomeTabStates> {
       : super(UpcomingHomeTabInitialState());
   @factoryMethod
   UpcomingUseCase upcomingUseCase;
-List<UpcomingEntitie> upcoming=[];
-getUpcomingDirctly(){
-  emit(UpcomingHomeTabSuccessState(upcoming));
-}
+  static List<UpcomingEntitie> upComingList = [];
+
+ 
+  getUpcomingDirectly() {
+    emit(UpcomingHomeTabSuccessState(upComingList));
+  }
+
   getUpcoming() async {
     emit(UpcomingHomeTabLoadingState());
     var result = await upcomingUseCase.call();
@@ -39,3 +42,5 @@ class UpcomingHomeTabErrorState extends UpcomingHomeTabStates {
   String error;
   UpcomingHomeTabErrorState(this.error);
 }
+
+

@@ -13,7 +13,7 @@ class PopularDataSourceImpl extends PopularDataSource {
   @factoryMethod
   PopularDataSourceImpl({required this.apiManger});
   @override
-  Future<Either<PopularResponse, String>> getPopulerMovies() async {
+  Future<Either<PopularResponse, String>> getPopulerSeries() async {
     try {
       var response = await apiManger.getRequest(
           endPoints: EndPoints.populerEndPoint, queryParameters: {"page": 1});

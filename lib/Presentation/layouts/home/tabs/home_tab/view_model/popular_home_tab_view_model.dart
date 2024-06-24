@@ -9,10 +9,11 @@ class PopularHomeTabViewModel extends Cubit<PopularHomeTabStates> {
       : super(PopularHomeTabInitialState());
   @factoryMethod
   PoplularUseCase popularUseCase;
-static List<PopularEntitie> popularList = [];
-getPopularDirectly(){
-  emit(PopularHomeTabSuccessState(popularList));
-}
+  static List<PopularEntitie> popularList = [];
+  getPopularDirectly() {
+    emit(PopularHomeTabSuccessState(popularList));
+  }
+
   getPopular() async {
     emit(PopularHomeTabLoadingState());
     var result = await popularUseCase.call();

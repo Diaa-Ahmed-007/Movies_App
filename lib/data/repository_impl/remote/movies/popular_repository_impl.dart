@@ -11,7 +11,7 @@ class PopularRepositoryImpl extends PopularRepository {
   PopularRepositoryImpl(this.popularMovie);
   @override
   Future<Either<List<PopularEntitie>, String>> getPopulerMovies() async {
-    var result = await popularMovie.getPopulerMovies();
+    var result = await popularMovie.getPopulerSeries();
     return result.fold(
       (response) {
         var popularList = response.results ?? [];
