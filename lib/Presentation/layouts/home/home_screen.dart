@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:movies_app/Presentation/layouts/home/tabs/browse_tab/browse_tab.dart';
-import 'package:movies_app/Presentation/layouts/home/tabs/browse_tab/view_model/browse_view_model.dart';
 import 'package:movies_app/Presentation/layouts/home/tabs/home_tab/home_tab.dart';
-import 'package:movies_app/Presentation/layouts/home/tabs/search_tab/search_tab.dart';
-import 'package:movies_app/Presentation/layouts/home/tabs/search_tab/view_model/search_view_model.dart';
+import 'package:movies_app/Presentation/layouts/home/tabs/profile/profile_tab.dart';
+import 'package:movies_app/Presentation/layouts/home/tabs/search_feature/widgets/custom_search_icon_button.dart';
+import 'package:movies_app/Presentation/layouts/home/tabs/watch%20list_tab/provider/watch_list_provider.dart';
 import 'package:movies_app/Presentation/layouts/home/tabs/watch%20list_tab/watch_list_tab.dart';
 import 'package:movies_app/Presentation/layouts/provider/home_provider.dart';
-import 'package:movies_app/core/DI/Di.dart';
 import 'package:provider/provider.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -18,27 +16,31 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //  UserModel movie =
-    //     ModalRoute.of(context)?.settings.arguments as UserModel;
     final List<Widget> navWidget = [
       const HomeTab(),
-      BlocProvider(
-        create: (context) => getIt<SearchTabViewModel>(),
-        child: const SearchTab(),
-      ),
-      BlocProvider(
-          create: (BuildContext context) =>
-              getIt<BrowseTabViewModel>()..getCategory(),
-          child: const BrowseTab()),
-      const WatchListTab(),
+      ChangeNotifierProvider(
+          create: (context) => WatchListProvider(), child: const BrowseTab()),
+      ChangeNotifierProvider(
+          create: (context) => WatchListProvider(),
+          child: const WatchListTab()),
+      const ProfileTab()
     ];
     HomeProvider provider = Provider.of<HomeProvider>(context);
     return Scaffold(
-        resizeToAvoidBottomInset: false,
-        bottomNavigationBar: BottomNavigationBar(
+      resizeToAvoidBottomInset: false,
+      bottomNavigationBar: Container(
+        clipBehavior: Clip.hardEdge,
+        decoration: BoxDecoration(
+          color: Colors.transparent,
+          borderRadius: BorderRadius.circular(50),
+        ),
+        margin: const EdgeInsets.only(bottom: 10, left: 5, right: 5),
+        child: BottomNavigationBar(
           enableFeedback: false,
           type: BottomNavigationBarType.fixed,
           currentIndex: provider.homeTapIndex,
+          showSelectedLabels: false,
+          showUnselectedLabels: false,
           onTap: (value) {
             provider.changeHomeTapIndex(value);
           },
@@ -57,7 +59,7 @@ class HomeScreen extends StatelessWidget {
             BottomNavigationBarItem(
                 backgroundColor: Theme.of(context).colorScheme.secondary,
                 icon: SvgPicture.asset(
-                  "assets/Icons/search.svg",
+                  "assets/Icons/discover.svg",
                   colorFilter: ColorFilter.mode(
                       provider.homeTapIndex == 1
                           ? Theme.of(context).colorScheme.primary
@@ -68,7 +70,7 @@ class HomeScreen extends StatelessWidget {
             BottomNavigationBarItem(
                 backgroundColor: Theme.of(context).colorScheme.secondary,
                 icon: SvgPicture.asset(
-                  "assets/Icons/browse.svg",
+                  "assets/Icons/bookmark.svg",
                   colorFilter: ColorFilter.mode(
                       provider.homeTapIndex == 2
                           ? Theme.of(context).colorScheme.primary
@@ -79,7 +81,7 @@ class HomeScreen extends StatelessWidget {
             BottomNavigationBarItem(
                 backgroundColor: Theme.of(context).colorScheme.secondary,
                 icon: SvgPicture.asset(
-                  "assets/Icons/watchList.svg",
+                  "assets/Icons/profile.svg",
                   colorFilter: ColorFilter.mode(
                       provider.homeTapIndex == 3
                           ? Theme.of(context).colorScheme.primary
@@ -89,6 +91,24 @@ class HomeScreen extends StatelessWidget {
                 label: 'WATCHLIST'),
           ],
         ),
-        body: navWidget[provider.homeTapIndex]);
+      ),
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        surfaceTintColor: Colors.purple[900],
+        elevation: 0,
+        title: SizedBox(
+          // height: MediaQuery.sizeOf(context).height * 0.07,
+          width: MediaQuery.sizeOf(context).width * 0.15,
+          child: SvgPicture.asset("assets/images/Claquette_app_bar.svg"),
+        ),
+        centerTitle: false,
+        actions: const [
+          SearchButtonWidget(),
+        ],
+      ),
+      body: SafeArea(
+        child: navWidget[provider.homeTapIndex],
+      ),
+    );
   }
 }

@@ -3,16 +3,20 @@ import 'dart:developer';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:movies_app/core/firebase/firestore_helper.dart';
-import 'package:movies_app/data/models/user_model.dart';
+import 'package:movies_app/data/models/firsbase_model/user_model.dart';
 
 class AuthProvider extends ChangeNotifier {
   User? fireBaseUserAuth;
-  UserModel?dataBaseUser;
+  UserModel? dataBaseUser;
   void setUsers(User? newFireBaseUserAuth, UserModel? newDataBaseUser) {
     fireBaseUserAuth = newFireBaseUserAuth;
     dataBaseUser = newDataBaseUser;
   }
 
+  void changeUserData(UserModel? newDataBaseUser) {
+    dataBaseUser = newDataBaseUser;
+    notifyListeners();
+  }
 
   bool isFirebaseUserLoggedIn() {
     if (FirebaseAuth.instance.currentUser == null) return false;
@@ -20,12 +24,10 @@ class AuthProvider extends ChangeNotifier {
     return true;
   }
 
-
   Future<void> retrieveDatabaseUserData() async {
     try {
       dataBaseUser =
-          await FireStoreHelper.getUser(userId:fireBaseUserAuth!.uid);
-          
+          await FireStoreHelper.getUser(userId: fireBaseUserAuth!.uid);
     } catch (e) {
       log(e.toString());
     }
@@ -43,7 +45,7 @@ class AuthProvider extends ChangeNotifier {
     isShowPasswordLogin = newIsShowPassword;
     notifyListeners();
   }
-  
+
   bool isShowPasswordRegister = true;
   changeIsShowPasswordRegister(bool newIsShowPassword) {
     if (isShowPasswordRegister == newIsShowPassword) return;

@@ -44,38 +44,38 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyCYIn0yddAug4GTW_G6WPWpaFOfnUrpysA',
-    appId: '1:1006715825786:web:41bffe642d5e74ae6895c3',
-    messagingSenderId: '1006715825786',
-    projectId: 'moviesapp-25b64',
-    authDomain: 'moviesapp-25b64.firebaseapp.com',
-    storageBucket: 'moviesapp-25b64.appspot.com',
-    measurementId: 'G-YXL5NG5889',
+    apiKey: 'AIzaSyCQFz-7-y6y92EaKJI_V3CQ4IA0H-l6GWE',
+    appId: '1:388114013097:web:e1f17d693350a12168c2b8',
+    messagingSenderId: '388114013097',
+    projectId: 'movie-app-7c43c',
+    authDomain: 'movie-app-7c43c.firebaseapp.com',
+    storageBucket: 'movie-app-7c43c.appspot.com',
+    measurementId: 'G-HQ53JHX1Y9',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyA1r496T8T5S1y0sJcWZ0XJz2D0k3Z57aQ',
-    appId: '1:1006715825786:android:7132de4d338fe8ca6895c3',
-    messagingSenderId: '1006715825786',
-    projectId: 'moviesapp-25b64',
-    storageBucket: 'moviesapp-25b64.appspot.com',
+    apiKey: 'AIzaSyBTk_BHupnQrb6lxqK76aetT1SArLIp6vs',
+    appId: '1:388114013097:android:0ae88130c8032b5068c2b8',
+    messagingSenderId: '388114013097',
+    projectId: 'movie-app-7c43c',
+    storageBucket: 'movie-app-7c43c.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyBuUJxT68hZ9vmzw9lkOJsdw7vobMIRk8E',
-    appId: '1:1006715825786:ios:d95cb706a56653d66895c3',
-    messagingSenderId: '1006715825786',
-    projectId: 'moviesapp-25b64',
-    storageBucket: 'moviesapp-25b64.appspot.com',
+    apiKey: 'AIzaSyBYu_DyAh0creccNSwibQ91X4OFP2pKi38',
+    appId: '1:388114013097:ios:5f46842335bb7bf768c2b8',
+    messagingSenderId: '388114013097',
+    projectId: 'movie-app-7c43c',
+    storageBucket: 'movie-app-7c43c.appspot.com',
     iosBundleId: 'com.example.moviesApp',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyBuUJxT68hZ9vmzw9lkOJsdw7vobMIRk8E',
-    appId: '1:1006715825786:ios:3352f8d2e8905bc56895c3',
-    messagingSenderId: '1006715825786',
-    projectId: 'moviesapp-25b64',
-    storageBucket: 'moviesapp-25b64.appspot.com',
-    iosBundleId: 'com.example.moviesApp.RunnerTests',
+    apiKey: 'AIzaSyBYu_DyAh0creccNSwibQ91X4OFP2pKi38',
+    appId: '1:388114013097:ios:cee751fd280a6f4e68c2b8',
+    messagingSenderId: '388114013097',
+    projectId: 'movie-app-7c43c',
+    storageBucket: 'movie-app-7c43c.appspot.com',
+    iosBundleId: 'com.',
   );
 }

@@ -14,7 +14,8 @@ class LoginRepositoryImpl extends LoginRepository {
       {required String email, required String password}) async {
     var credenetial =
         await loginDataSource.login(email: email, password: password);
-    return credenetial.fold(
-        (error) => Left(error), (usercredenetial) => Right(usercredenetial));
+    return credenetial.fold((error) {
+      return Left(error);
+    }, (usercredenetial) => Right(usercredenetial));
   }
 }
