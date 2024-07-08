@@ -15,7 +15,9 @@ class MovieDetailsDataSourceImpl extends MovieDetailsDataSource {
       {required num movieId}) async {
     try {
       var response = await apiManger.getRequest(
-          endPoints: EndPoints.movieDetailsEndPoint(movieId: movieId));
+          endPoints: EndPoints.movieDetailsEndPoint(movieId: movieId),queryParameters: {
+            // "language": "ar",
+          });
       MovieDetailsModel details = MovieDetailsModel.fromJson(response.data);
       return Left(details);
     } catch (e) {

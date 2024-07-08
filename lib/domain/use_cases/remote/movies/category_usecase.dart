@@ -8,5 +8,5 @@ class CategoryUseCase{
   CategoriesRepository categoriesRepository;
   @factoryMethod
   CategoryUseCase(this.categoriesRepository);
-  Future<Either<List<Genres>, String>> call()=> categoriesRepository.getCategories();
+  Future<Either<List<Genres>, String>> call({required String mediaType})=> categoriesRepository.getCategories(mediaType: mediaType);
 }

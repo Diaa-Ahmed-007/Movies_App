@@ -9,10 +9,12 @@ class SimilerDataSourceImpl extends SimilerDataSource {
   @factoryMethod
   SimilerDataSourceImpl(this.apiManger);
   @override
-  Future<Either<SimilarResponse, String>> getSimiler({required movieId}) async {
+  Future<Either<SimilarResponse, String>> getSimiler({required movieId,required int page}) async {
     try {
       var response =
-          await apiManger.getRequest(endPoints: "/3/movie/$movieId/similar");
+          await apiManger.getRequest(endPoints: "/3/movie/$movieId/similar",queryParameters: {
+            "page":page
+          });
       SimilarResponse similarResponse = SimilarResponse.fromJson(response.data);
       return Left(similarResponse);
     } catch (e) {

@@ -10,10 +10,21 @@ class FireStoreMovieDateSourceImpl extends FireStoreMovieDataSource {
   @factoryMethod
   FireStoreMovieDateSourceImpl(this.fireStoreHelper);
   @override
-  Future<Either<Stream<List<FireBaseMovieModel>>, String>> getMovie(
+  Future<Either<Stream<List<FireBaseMovieModel>>, String>> getMovieAndSeries(
       {required String userId}) async {
     try {
-      var response = fireStoreHelper.listenMovies(userid: userId);
+      var response = fireStoreHelper.listenMoviesAndSeries(userid: userId);
+      Stream<List<FireBaseMovieModel>> result = response;
+      return Left(result);
+    } catch (e) {
+      return Right(e.toString());
+    }
+  }
+  
+  @override
+  Future<Either<Stream<List<FireBaseMovieModel>>, String>> getMovieOrSeries({required String userId, required String type}) async{
+   try {
+      var response = fireStoreHelper.listenMoviesOrSeries(userid: userId, type: type);
       Stream<List<FireBaseMovieModel>> result = response;
       return Left(result);
     } catch (e) {

@@ -6,14 +6,14 @@ class AppColors {
   static const Color appBarColor = Color(0xff1D1E1D);
   static const Color navigatorBarColor = Color(0xff38354B);
   static const Color unselectedNavigatorBarIconColor = Color(0xff8C8B97);
-  static const Color detailsForMovieColor = Color(0xffB5B4B4);
-  static const Color horizontalScrollableAreaColor = Color(0xff282A28);
+  static const Color detailsForMovieColor = Color(0xff777777);
+  static const Color horizontalScrollableAreaColor = Color(0xff242135);
   static const Color
       unselectedBookmarkAndBoarderMovieCategoryAndFilledSearchTextFieldColor =
       Color(0xff514F4F);
   static const Color movieCardWithDetailsColor = Color(0xff343534);
   static const Color movieCategoryInBorderTitleAndMovieDescriptionColor =
-      Color(0xffCBCBCB);
+      Color(0xffDEDDDF);
   static Color searchBoarderAndTextFieldHintColor =
       Colors.white.withOpacity(0.58);
   static Color movieDetailsInSearchAndWatchListColor =

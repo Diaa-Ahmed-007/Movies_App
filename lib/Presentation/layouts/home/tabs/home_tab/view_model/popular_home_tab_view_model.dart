@@ -14,10 +14,14 @@ class PopularHomeTabViewModel extends Cubit<PopularHomeTabStates> {
     emit(PopularHomeTabSuccessState(popularList));
   }
 
-  getPopular() async {
+  getPopular({required int page}) async {
     emit(PopularHomeTabLoadingState());
-    var result = await popularUseCase.call();
+    var result = await popularUseCase.call(page: page);
     result.fold((categories) {
+      if (page == 1) {
+        popularList.clear();
+      }
+      popularList.addAll(categories);
       emit(PopularHomeTabSuccessState(categories));
     }, (error) {
       emit(PopularHomeTabErrorState(error));

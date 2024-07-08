@@ -7,7 +7,7 @@ class SimilerUseCase {
   SimilerRepository similerRepository;
   @factoryMethod
    SimilerUseCase(this.similerRepository);
-  Future<Either<List<SimilerEntitie>, String>> call({required num movieId}) {
-   return similerRepository.getSimiler(movieId: movieId);
+  Future<Either<List<SimilerEntitie>, String>> call({required num movieId,required int page}) {
+   return similerRepository.getSimiler(movieId: movieId,page:page);
   }
 }

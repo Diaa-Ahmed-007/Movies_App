@@ -11,7 +11,6 @@ class UpcomingHomeTabViewModel extends Cubit<UpcomingHomeTabStates> {
   UpcomingUseCase upcomingUseCase;
   static List<UpcomingEntitie> upComingList = [];
 
- 
   getUpcomingDirectly() {
     emit(UpcomingHomeTabSuccessState(upComingList));
   }
@@ -42,5 +41,3 @@ class UpcomingHomeTabErrorState extends UpcomingHomeTabStates {
   String error;
   UpcomingHomeTabErrorState(this.error);
 }
-
-

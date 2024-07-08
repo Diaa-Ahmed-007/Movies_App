@@ -15,8 +15,13 @@ class PopularItemWidget extends StatelessWidget {
           physics: const BouncingScrollPhysics(),
           scrollDirection: Axis.horizontal,
           itemBuilder: (context, index) {
+            PopularEntitie movie = popularList[index];
             return MovieCard(
-              imageBath: popularList[index].posterPath ?? "", title: popularList[index].title??"",id: popularList[index].id?.toInt()??0,
+              imageBath: movie.posterPath ?? "",
+              id: movie.id?.toInt() ?? 0,
+              title: movie.title ?? "",
+              releaseDate: movie.releaseDate ?? "",
+              backdropPath: movie.backdropPath ?? "",
             );
           },
           separatorBuilder: (context, index) => const SizedBox(

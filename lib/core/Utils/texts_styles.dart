@@ -44,7 +44,7 @@ class TextsStyles {
       fontFamily: "Inter");
   static const TextStyle movieMiniDetails = TextStyle(
       color: AppColors.detailsForMovieColor,
-      fontSize: 10,
+      fontSize: 14,
       fontWeight: FontWeight.w400,
       fontFamily: "Inter");
   static const TextStyle movieRating = TextStyle(

@@ -4,17 +4,45 @@ import 'package:movies_app/core/Utils/routes.dart';
 import 'package:movies_app/core/constants.dart';
 
 class MovieCard extends StatelessWidget {
-  const MovieCard({super.key, required this.imageBath, required this.title, required this.id});
+  const MovieCard(
+      {super.key,
+      required this.imageBath,
+      this.isSimilar = false,
+      required this.id,
+      required this.title,
+      required this.releaseDate,
+      required this.backdropPath});
   final String imageBath;
-  final String title;
   final int id;
+  final String title;
+  final bool isSimilar;
+  final String releaseDate;
+  final String backdropPath;
   @override
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
     return GestureDetector(
       onTap: () {
-        Navigator.pushNamed(context, Routes.movieDetailsScreenRouteName,
-            arguments: SelectedMovie(id: id, title: title));
+        if (isSimilar) {
+          Navigator.pushReplacementNamed(
+              context, Routes.movieDetailsScreenRouteName,
+              arguments: SelectedMovie(
+                id: id,
+                title: title,
+                backdropPath: backdropPath,
+                releaseDate: releaseDate,
+                mediaType: "movie",
+              ));
+        } else {
+          Navigator.pushNamed(context, Routes.movieDetailsScreenRouteName,
+              arguments: SelectedMovie(
+                id: id,
+                title: title,
+                backdropPath: backdropPath,
+                releaseDate: releaseDate,
+                mediaType: "movie",
+              ));
+        }
       },
       child: Container(
         width: width * 0.4,
@@ -37,7 +65,16 @@ class MovieCard extends StatelessWidget {
 }
 
 class SelectedMovie {
-  String title;
-  num id;
-  SelectedMovie({required this.id, required this.title});
+  final String title;
+  final num id;
+  final String backdropPath;
+  final String releaseDate;
+  final String mediaType;
+  const SelectedMovie({
+    required this.id,
+    required this.title,
+    required this.backdropPath,
+    required this.releaseDate,
+    required this.mediaType,
+  });
 }

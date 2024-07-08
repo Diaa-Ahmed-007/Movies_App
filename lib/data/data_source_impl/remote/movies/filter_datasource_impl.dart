@@ -13,11 +13,11 @@ class FilterDataSourceImpl extends FilterDataSource {
 
   @override
   Future<Either<FilterResponse, String>> filter(
-      {required int categoryId}) async {
+      {required int categoryId,required String mediaType,required int page}) async {
     try {
       var response = await apiManger.getRequest(
-          endPoints: EndPoints.filterEndPoint,
-          queryParameters: {"with_genres": categoryId});
+          endPoints: EndPoints.filterEndPoint(mediaType: mediaType),
+          queryParameters: {"with_genres": categoryId,"page":page});
       FilterResponse filterResponse = FilterResponse.fromJson(response.data);
       return Left(filterResponse);
     } catch (e) {

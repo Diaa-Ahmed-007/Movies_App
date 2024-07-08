@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:movies_app/data/data_source_contract/remote/series/popular_series_datasource.dart';
-import 'package:movies_app/domain/entities/movies/PopularEntitie.dart';
+import 'package:movies_app/domain/entities/series/TopRatedSeriesEntity.dart';
 
 @injectable
 class PopularSeriesViewModel extends Cubit<PopularSeriesStates> {
@@ -9,15 +9,19 @@ class PopularSeriesViewModel extends Cubit<PopularSeriesStates> {
       : super(PopularSeriesInitialState());
   @factoryMethod
   PopularSeriesDatasource popularSeriesDatasource;
-  static List<PopularEntitie> popularList = [];
+  static List<TopRatedSeriesEntity> popularList = [];
   getPopularDirectly() {
     emit(PopularSeriesSuccessState(popularList));
   }
 
-  getPopular() async {
+  getPopular({required int page}) async {
     emit(PopularSeriesLoadingState());
-    var result = await popularSeriesDatasource.getPopularSeries();
+    var result = await popularSeriesDatasource.getPopularSeries(page: page);
     result.fold((categories) {
+      if (page == 1) {
+        popularList.clear();
+      }
+      popularList.addAll(categories);
       emit(PopularSeriesSuccessState(categories));
     }, (error) {
       emit(PopularSeriesErrorState(error));
@@ -32,7 +36,7 @@ class PopularSeriesInitialState extends PopularSeriesStates {}
 class PopularSeriesLoadingState extends PopularSeriesStates {}
 
 class PopularSeriesSuccessState extends PopularSeriesStates {
-  List<PopularEntitie> categories;
+  List<TopRatedSeriesEntity> categories;
   PopularSeriesSuccessState(this.categories);
 }
 

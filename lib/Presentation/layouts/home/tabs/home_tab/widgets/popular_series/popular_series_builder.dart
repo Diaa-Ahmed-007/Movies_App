@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movies_app/Presentation/layouts/home/tabs/home_tab/view_model/popular_series_view_model.dart';
-import 'package:movies_app/Presentation/layouts/home/tabs/home_tab/widgets/popular/popular_item_widget.dart';
+import 'package:movies_app/Presentation/layouts/home/tabs/home_tab/widgets/popular_series/popular_series_item_widget.dart';
+import 'package:movies_app/Presentation/layouts/home/tabs/home_tab/widgets/popular_series/see_all_popular_series.dart';
 import 'package:movies_app/core/DI/di.dart';
 import 'package:movies_app/core/reusable%20components/List_title_widget.dart';
 
@@ -13,7 +14,7 @@ class PopularSeriesBuilder extends StatelessWidget {
     return BlocProvider<PopularSeriesViewModel>(
       create: (context) {
         if (PopularSeriesViewModel.popularList.isEmpty) {
-          return getIt<PopularSeriesViewModel>()..getPopular();
+          return getIt<PopularSeriesViewModel>()..getPopular(page: 1);
         }
         return getIt<PopularSeriesViewModel>()..getPopularDirectly();
       },
@@ -25,13 +26,25 @@ class PopularSeriesBuilder extends StatelessWidget {
               children: [
                 ListTitleWidget(
                   title: "Best Series",
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => BlocProvider(
+                          create: (context) => getIt<PopularSeriesViewModel>()
+                            ..getPopular(page: 1),
+                          child: const SeeAllPopularSeries(),
+                        ),
+                      ),
+                    );
+                  },
                 ),
                 const SizedBox(
                   height: 20,
                 ),
-                PopularItemWidget(
-                    popularList: PopularSeriesViewModel.popularList),
+                PopularSeriesItemWidget(
+                  topRatedSeriesEntityList: PopularSeriesViewModel.popularList,
+                ),
               ],
             );
           }

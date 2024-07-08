@@ -12,10 +12,10 @@ class TraillerDataSourceImpl extends TraillerDataSource {
   TraillerDataSourceImpl(this.apiManger);
   @override
   Future<Either<TraillerResponse, String>> getTrailler(
-      {required num movieId}) async {
+      {required num movieId,required String mediaType}) async {
     try {
       var response = await apiManger.getRequest(
-          endPoints: EndPoints.videoTrailler(movieId: movieId));
+          endPoints: EndPoints.videoTrailler(movieId: movieId, mediaType: mediaType));
       TraillerResponse result = TraillerResponse.fromJson(response.data);
       return Left(result);
     } catch (e) {

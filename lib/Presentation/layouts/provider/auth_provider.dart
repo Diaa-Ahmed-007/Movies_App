@@ -13,6 +13,11 @@ class AuthProvider extends ChangeNotifier {
     dataBaseUser = newDataBaseUser;
   }
 
+  void changeUserData(UserModel? newDataBaseUser) {
+    dataBaseUser = newDataBaseUser;
+    notifyListeners();
+  }
+
   bool isFirebaseUserLoggedIn() {
     if (FirebaseAuth.instance.currentUser == null) return false;
     fireBaseUserAuth = FirebaseAuth.instance.currentUser;

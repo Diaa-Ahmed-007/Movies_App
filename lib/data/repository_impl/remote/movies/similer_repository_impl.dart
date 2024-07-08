@@ -11,8 +11,8 @@ class SimilerRepositoryImpl extends SimilerRepository {
   SimilerRepositoryImpl(this.similerDataSource);
   @override
   Future<Either<List<SimilerEntitie>, String>> getSimiler(
-      {required num movieId}) async {
-    var result = await similerDataSource.getSimiler(movieId: movieId);
+      {required num movieId,required int page}) async {
+    var result = await similerDataSource.getSimiler(movieId: movieId,page:page);
   return  result.fold(
       (respose) {
         var similer =

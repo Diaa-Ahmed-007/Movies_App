@@ -11,8 +11,8 @@ class CategoriesRepositoryImpl extends CategoriesRepository{
   @factoryMethod
   CategoriesRepositoryImpl(this.categoriesDataSource);
   @override
-  Future<Either<List<Genres>, String>> getCategories() async {
-    var result = await categoriesDataSource.getCategories();
+  Future<Either<List<Genres>, String>> getCategories({required String mediaType}) async {
+    var result = await categoriesDataSource.getCategories(mediaType: mediaType);
     return result.fold((response) {
       CategoryResponse categoryResponse = response;
       return Left(categoryResponse.genres??[]);

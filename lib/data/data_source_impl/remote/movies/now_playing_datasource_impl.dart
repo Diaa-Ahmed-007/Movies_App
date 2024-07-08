@@ -12,10 +12,15 @@ class NowPlayingDatasourceImpl extends NowPlayingDatasource {
   @factoryMethod
   NowPlayingDatasourceImpl(this.apiManger);
   @override
-  Future<Either<List<PopularEntitie>, String>> getNowPlaying() async {
+  Future<Either<List<PopularEntitie>, String>> getNowPlaying(
+      {required int page}) async {
     try {
-      var response =
-          await apiManger.getRequest(endPoints: EndPoints.nowPlayingEndPoint);
+      var response = await apiManger.getRequest(
+        endPoints: EndPoints.nowPlayingEndPoint,
+        queryParameters: {
+          "page": page,
+        },
+      );
       List<PopularEntitie> nowPlaying = PopularResponse.fromJson(response.data)
               .results
               ?.map(

@@ -14,7 +14,7 @@ class UpcomingDataSourceImpl extends UpcomingDataSorce {
   Future<Either<UpcomingResponse, String>> getUpcomingMovies() async {
     try {
       var response = await apiManger.getRequest(
-          endPoints: EndPoints.upcomingEndPoint, queryParameters: {"page": 5});
+          endPoints: EndPoints.upcomingEndPoint, queryParameters: {"page": 1});
       UpcomingResponse upcomingResponse =
           UpcomingResponse.fromJson(response.data);
       return Left(upcomingResponse);

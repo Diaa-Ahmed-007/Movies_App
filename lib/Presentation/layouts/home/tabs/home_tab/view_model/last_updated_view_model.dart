@@ -2,6 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:movies_app/data/data_source_contract/remote/movies/now_playing_datasource.dart';
 import 'package:movies_app/domain/entities/movies/PopularEntitie.dart';
+
 @injectable
 class LastUpdatedViewModel extends Cubit<LastUpdatedViewModelState> {
   LastUpdatedViewModel(this.nowPlayingDatasource)
@@ -9,14 +10,20 @@ class LastUpdatedViewModel extends Cubit<LastUpdatedViewModelState> {
   @factoryMethod
   NowPlayingDatasource nowPlayingDatasource;
   static List<PopularEntitie> lastUpdatedList = [];
-    getPopularDirectly() {
-    emit(LastUpdatedViewModelSuccess(lastUpdatedList));
-  }
-  getlastUpdatedMovies() async {
+  getPopularDirectly() async {
+      emit(LastUpdatedViewModelSuccess(lastUpdatedList));
+    }
+  
+
+   getlastUpdatedMovies({required int page}) async {
     emit(LastUpdatedViewModelLoaded());
-    var response = await nowPlayingDatasource.getNowPlaying();
+    var response = await nowPlayingDatasource.getNowPlaying(page: page);
     response.fold((result) {
-      emit(LastUpdatedViewModelSuccess(result));
+      if (page == 1) {
+        lastUpdatedList.clear();
+      }
+      lastUpdatedList.addAll(result);
+      emit(LastUpdatedViewModelSuccess(lastUpdatedList));
     }, (error) {
       emit(LastUpdatedViewModelError(error));
     });

@@ -17,6 +17,7 @@ class PopularEntitie {
     this.posterPath,
     this.releaseDate,
     this.title,
+    this.overview
   });
 
   PopularEntitie.fromJson(dynamic json) {
@@ -28,10 +29,12 @@ class PopularEntitie {
     posterPath = json['poster_path'];
     releaseDate = json['release_date'];
     title = json['title'];
+    overview=json['overview'];
   }
   bool? adult;
   String? backdropPath;
   List<num>? genreIds;
+  String? overview;
   num? id;
   String? originalTitle;
   String? posterPath;
@@ -48,6 +51,7 @@ class PopularEntitie {
     map['poster_path'] = posterPath;
     map['release_date'] = releaseDate;
     map['title'] = title;
+    map['overview']=overview;
     return map;
   }
 }

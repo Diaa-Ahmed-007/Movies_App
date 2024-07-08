@@ -12,9 +12,9 @@ class CategoriesDataSourceImpl extends CategoriesDataSource{
   @factoryMethod
   CategoriesDataSourceImpl(this.apiManger);
   @override
-  Future<Either<CategoryResponse, String>> getCategories() async {
+  Future<Either<CategoryResponse, String>> getCategories({required String mediaType}) async {
     try{
-      var response = await apiManger.getRequest(endPoints: EndPoints.categoryEndPoint);
+      var response = await apiManger.getRequest(endPoints: EndPoints.categoryEndPoint(mediaType: mediaType));
       CategoryResponse categoryResponse = CategoryResponse.fromJson(response.data);
       return Left(categoryResponse);
     }catch(e){

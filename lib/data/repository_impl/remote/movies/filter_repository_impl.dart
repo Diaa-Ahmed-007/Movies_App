@@ -11,8 +11,8 @@ class FilterRepositoryImpl extends FilterRepository {
   FilterRepositoryImpl(this.filterDataSource);
   @override
   Future<Either<List<FilterEntitie>, String>> filter(
-      {required int categoryId}) async {
-    var result = await filterDataSource.filter(categoryId: categoryId);
+      {required int categoryId,required String mediaType,required int page}) async {
+    var result = await filterDataSource.filter(categoryId: categoryId, mediaType: mediaType,page: page);
     return result.fold((filter) {
       List<FilterEntitie> filterEntiteList =
           filter.results!.map((e) => e.toFilterEntite()).toList();

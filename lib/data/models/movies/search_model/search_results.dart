@@ -1,93 +1,96 @@
-import 'package:movies_app/domain/entities/movies/SearchEntitie.dart';
-
-/// adult : false
-/// backdrop_path : "/6tuNQ16hC4Qp7wjTweKzUnnLBkI.jpg"
-/// genre_ids : [27,9648]
-/// id : 565
-/// original_language : "en"
-/// original_title : "The Ring"
-/// overview : "Rachel Keller is a journalist investigating a videotape that may have killed four teenagers. There is an urban legend about this tape: the viewer will die seven days after watching it. Rachel tracks down the video... and watches it. Now she has just seven days to unravel the mystery of the Ring so she can save herself and her son."
-/// popularity : 36.754
-/// poster_path : "/gghD2ZIPjMzLnnBuT3AZQGYnIW9.jpg"
-/// release_date : "2002-10-18"
-/// title : "The Ring"
-/// video : false
-/// vote_average : 6.664
-/// vote_count : 5919
+import 'package:movies_app/domain/entities/SearchEntity.dart';
 
 class SearchResults {
   SearchResults({
-    this.adult,
     this.backdropPath,
-    this.genreIds,
     this.id,
-    this.originalLanguage,
-    this.originalTitle,
+    this.originalName,
     this.overview,
-    this.popularity,
     this.posterPath,
-    this.releaseDate,
+    this.mediaType,
+    this.adult,
+    this.name,
     this.title,
-    this.video,
+    this.originalLanguage,
+    this.genreIds,
+    this.popularity,
+    this.firstAirDate,
+    this.releaseDate,
     this.voteAverage,
     this.voteCount,
+    this.originCountry,
   });
 
   SearchResults.fromJson(dynamic json) {
-    adult = json['adult'];
     backdropPath = json['backdrop_path'];
-    genreIds = json['genre_ids'] != null ? json['genre_ids'].cast<num>() : [];
     id = json['id'];
-    originalLanguage = json['original_language'];
-    originalTitle = json['original_title'];
+    originalName = json['original_name'];
     overview = json['overview'];
-    popularity = json['popularity'];
     posterPath = json['poster_path'];
-    releaseDate = json['release_date'];
+    mediaType = json['media_type'];
+    adult = json['adult'];
+    name = json['name'];
     title = json['title'];
-    video = json['video'];
+    originalLanguage = json['original_language'];
+    genreIds = json['genre_ids'] != null ? json['genre_ids'].cast<num>() : [];
+    popularity = json['popularity'];
+    firstAirDate = json['first_air_date'];
+    releaseDate = json['release_date'];
     voteAverage = json['vote_average'];
     voteCount = json['vote_count'];
+    originCountry = json['origin_country'] != null
+        ? json['origin_country'].cast<String>()
+        : [];
   }
-  bool? adult;
   String? backdropPath;
-  List<num>? genreIds;
   num? id;
-  String? originalLanguage;
-  String? originalTitle;
+  String? originalName;
   String? overview;
-  num? popularity;
   String? posterPath;
-  String? releaseDate;
+  String? mediaType;
+  bool? adult;
+  String? name;
   String? title;
-  bool? video;
+  String? originalLanguage;
+  List<num>? genreIds;
+  num? popularity;
+  String? releaseDate;
+  String? firstAirDate;
   num? voteAverage;
   num? voteCount;
+  List<String>? originCountry;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
-    map['adult'] = adult;
     map['backdrop_path'] = backdropPath;
-    map['genre_ids'] = genreIds;
     map['id'] = id;
-    map['original_language'] = originalLanguage;
-    map['original_title'] = originalTitle;
+    map['original_name'] = originalName;
     map['overview'] = overview;
-    map['popularity'] = popularity;
     map['poster_path'] = posterPath;
-    map['release_date'] = releaseDate;
+    map['media_type'] = mediaType;
+    map['adult'] = adult;
+    map['name'] = name;
     map['title'] = title;
-    map['video'] = video;
+    map['original_language'] = originalLanguage;
+    map['genre_ids'] = genreIds;
+    map['popularity'] = popularity;
+    map['first_air_date'] = firstAirDate;
+    map['release_date'] = releaseDate;
     map['vote_average'] = voteAverage;
     map['vote_count'] = voteCount;
+    map['origin_country'] = originCountry;
     return map;
   }
 
-  SearchEntitie toSearchEntitie() {
-    return SearchEntitie(
-        backdropPath: backdropPath,
-        id: id,
-        releaseDate: releaseDate,
-        title: title);
+  SearchEntity toSearchEntity() {
+    return SearchEntity(
+      firstAirDate: firstAirDate,
+      id: id,
+      mediaType: mediaType,
+      name: name,
+      posterPath: posterPath,
+      releaseDate: releaseDate,
+      backdropPath:backdropPath,
+    );
   }
 }

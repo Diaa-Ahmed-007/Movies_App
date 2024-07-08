@@ -11,8 +11,8 @@ class TraillerRepositoryImpl extends TraillerRepository {
   TraillerRepositoryImpl(this.traillerDataSource);
   @override
   Future<Either<List<TraillerEntity>, String>> getTrailler(
-      {required num movieId}) async {
-    var response = await traillerDataSource.getTrailler(movieId: movieId);
+      {required num movieId,required String mediaType}) async {
+    var response = await traillerDataSource.getTrailler(movieId: movieId, mediaType: mediaType);
     return response.fold((trailler) {
       List<TraillerEntity> videoKey =
           trailler.results?.map((key) => key.toTraillerEntity()).toList() ?? [];

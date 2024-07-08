@@ -8,7 +8,7 @@ class PoplularUseCase {
   PopularRepository popularMovie;
   @factoryMethod
   PoplularUseCase(this.popularMovie);
-  Future<Either<List<PopularEntitie>, String>> call() {
-    return popularMovie.getPopulerMovies();
+  Future<Either<List<PopularEntitie>, String>> call({required int page}) {
+    return popularMovie.getPopulerMovies(page: page);
   }
 }

@@ -4,7 +4,9 @@ import 'package:movies_app/core/api/api_endpoints.dart';
 import 'package:movies_app/core/api/api_manger.dart';
 import 'package:movies_app/data/data_source_contract/remote/series/popular_series_datasource.dart';
 import 'package:movies_app/data/models/movies/popular_model/popular_response.dart';
+import 'package:movies_app/data/models/series/top_rated_top_rated_series/TopRatedSeriesResponse.dart';
 import 'package:movies_app/domain/entities/movies/PopularEntitie.dart';
+import 'package:movies_app/domain/entities/series/TopRatedSeriesEntity.dart';
 
 @Injectable(as: PopularSeriesDatasource)
 class PopularSeriesDatasourceImpl extends PopularSeriesDatasource {
@@ -13,15 +15,17 @@ class PopularSeriesDatasourceImpl extends PopularSeriesDatasource {
   PopularSeriesDatasourceImpl(this.apiManger);
 
   @override
-  Future<Either<List<PopularEntitie>, String>> getPopularSeries() async {
+  Future<Either<List<TopRatedSeriesEntity>, String>> getPopularSeries({required int page}) async {
     try {
       var response = await apiManger.getRequest(
-          endPoints: EndPoints.popularSeriesEndPoint);
-      List<PopularEntitie> topRatedSeriesResponse =
-          PopularResponse.fromJson(response.data)
+          endPoints: EndPoints.popularSeriesEndPoint,queryParameters: {
+            "page":page
+          });
+      List<TopRatedSeriesEntity> topRatedSeriesResponse =
+          TopRatedSeriesResponse.fromJson(response.data)
                   .results
                   ?.map(
-                    (e) => e.toPopularEntitie(),
+                    (e) => e.toTopRatedSeriesEntity(),
                   )
                   .toList() ??
               [];

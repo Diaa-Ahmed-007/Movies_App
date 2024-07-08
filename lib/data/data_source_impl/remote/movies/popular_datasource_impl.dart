@@ -9,12 +9,12 @@ import 'package:movies_app/data/models/movies/popular_model/popular_response.dar
 class PopularDataSourceImpl extends PopularDataSource {
   ApiManger apiManger;
   @factoryMethod
-  PopularDataSourceImpl({required this.apiManger});
+  PopularDataSourceImpl({required this.apiManger,});
   @override
-  Future<Either<PopularResponse, String>> getPopulerSeries() async {
+  Future<Either<PopularResponse, String>> getPopulerSeries({required int page}) async {
     try {
       var response = await apiManger.getRequest(
-          endPoints: EndPoints.populerEndPoint, queryParameters: {"page": 1});
+          endPoints: EndPoints.populerEndPoint, queryParameters: {"page": page});
 
       PopularResponse populerMovieModel =
           PopularResponse.fromJson(response.data);

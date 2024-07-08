@@ -32,11 +32,14 @@ class MovieSmallDetails extends StatelessWidget {
             MovieDetailsEntitie movie = state.details;
             return Row(
               children: [
-                Text("${toYearFormat(movie.releaseDate)}  ", style: style),
-                RateDisplay(
+                Text(
+                  "${toYearFormat(movie.releaseDate)} ",
                   style: style,
+                  overflow: TextOverflow.ellipsis,
                 ),
-                Text(durationToString(movie.timeOfMovie!.toInt()), style: style)
+                const RateDisplay(),
+                Text(durationToString(movie.timeOfMovie!.toInt()),
+                    style: style, overflow: TextOverflow.ellipsis)
               ],
             );
           }
@@ -49,7 +52,10 @@ class MovieSmallDetails extends StatelessWidget {
   String durationToString(int? minutes) {
     var d = Duration(minutes: minutes ?? 0);
     List<String> parts = d.toString().split(':');
-    return '${parts[0].padLeft(2, '')}h ${parts[1].padLeft(2, '')}m';
+    if (parts[0].padLeft(1, '') == "0" && parts[1].padLeft(2, '') == "00") {
+      return "";
+    }
+    return '${parts[0].padLeft(1, '')} hour ${parts[1].padLeft(2, '')} minute(s)';
   }
 
   String toYearFormat(String? date) {
@@ -63,15 +69,19 @@ class MovieSmallDetails extends StatelessWidget {
 }
 
 class RateDisplay extends StatelessWidget {
-  const RateDisplay({super.key, required this.style});
-  final TextStyle? style;
+  const RateDisplay({super.key});
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<RateViewModel, RateStates>(
       builder: (context, state) {
         if (state is RateSuccessState) {
-          return Text("${checkIsUS(rateList: state.rate)}  ", style: style);
+          return Text("${checkIsUS(rateList: state.rate)} ",
+              style: TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w400,
+                  color: Theme.of(context).colorScheme.primary),
+              overflow: TextOverflow.ellipsis);
         }
         return const Text("");
       },

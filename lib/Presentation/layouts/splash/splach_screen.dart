@@ -1,7 +1,7 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:movies_app/Presentation/layouts/provider/auth_provider.dart';
 import 'package:movies_app/core/Utils/routes.dart';
 import 'package:provider/provider.dart';
@@ -25,6 +25,7 @@ class _SplashScreenState extends State<SplashScreen> {
       const Duration(seconds: 2),
       () {
         checkAutoLogin();
+        // Navigator.of(context).pushReplacementNamed(Routes.loginRouteName);
       },
     );
   }
@@ -44,12 +45,10 @@ class _SplashScreenState extends State<SplashScreen> {
               fit: BoxFit.fill,
             ),
           ),
-          Image.asset(
-            "assets/images/FILMORA_splash.png",
-          ),
+          SvgPicture.asset("assets/images/Claquette_app.svg"),
           Container(
             alignment: Alignment.bottomCenter,
-            margin: EdgeInsets.only(bottom: 50.h),
+            margin: const EdgeInsets.only(bottom: 50),
             child: Text("Enjoy your watching",
                 style: Theme.of(context)
                     .textTheme

@@ -8,6 +8,6 @@ class TraillerUseCase {
   TraillerRepository traillerRepository;
   @factoryMethod
   TraillerUseCase(this.traillerRepository);
-  Future<Either<List<TraillerEntity>, String>> call({required num movieId}) =>
-      traillerRepository.getTrailler(movieId: movieId);
+  Future<Either<List<TraillerEntity>, String>> call({required num movieId,required String mediaType}) =>
+      traillerRepository.getTrailler(movieId: movieId, mediaType: mediaType);
 }

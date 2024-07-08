@@ -91,6 +91,7 @@ class Results {
       id: id,
       posterPath: posterPath,
       name: name,
+      firstAirDate: firstAirDate,
     );
   }
 }

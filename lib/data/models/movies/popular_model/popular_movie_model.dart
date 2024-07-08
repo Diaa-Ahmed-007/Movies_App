@@ -48,7 +48,6 @@ class PopularMovieModel {
   bool? video;
   num? voteAverage;
   num? voteCount;
-
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
     map['adult'] = adult;
@@ -67,6 +66,7 @@ class PopularMovieModel {
     map['vote_count'] = voteCount;
     return map;
   }
+
   PopularEntitie toPopularEntitie() {
     return PopularEntitie(
       adult: adult,
@@ -76,7 +76,8 @@ class PopularMovieModel {
       releaseDate: releaseDate,
       title: title,
       genreIds: genreIds,
-      originalTitle: originalTitle
+      originalTitle: originalTitle,
+      overview: overview,
     );
   }
 }
