@@ -14,7 +14,7 @@
 /// vote_count : 165
 library;
 
-import 'package:movies_app/domain/entities/FilterEntitie.dart';
+import 'package:movies_app/domain/entities/movies/FilterEntitie.dart';
 
 class FilterResults {
   FilterResults({
@@ -32,6 +32,8 @@ class FilterResults {
     this.video,
     this.voteAverage,
     this.voteCount,
+    this.firstAirDate,
+    this.name,
   });
 
   FilterResults.fromJson(dynamic json) {
@@ -49,6 +51,8 @@ class FilterResults {
     video = json['video'];
     voteAverage = json['vote_average'];
     voteCount = json['vote_count'];
+    firstAirDate = json['first_air_date'];
+    name = json['name'];
   }
   bool? adult;
   String? backdropPath;
@@ -61,6 +65,9 @@ class FilterResults {
   String? posterPath;
   String? releaseDate;
   String? title;
+
+  String? name;
+  String? firstAirDate;
   bool? video;
   num? voteAverage;
   num? voteCount;
@@ -81,6 +88,8 @@ class FilterResults {
     map['video'] = video;
     map['vote_average'] = voteAverage;
     map['vote_count'] = voteCount;
+    map['first_air_date'] = firstAirDate;
+    map['name'] = name;
     return map;
   }
 
@@ -92,6 +101,9 @@ class FilterResults {
       releaseDate: releaseDate,
       title: title,
       voteAverage: voteAverage,
+      posterPath: posterPath,
+      firstAirDate: firstAirDate,
+      name: name,
     );
   }
 }

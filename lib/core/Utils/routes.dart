@@ -5,4 +5,5 @@ class Routes {
   static const String loginRouteName = "loginScreen";
   static const String registerRouteName = "registerScreen";
   static const String categoryFilterRouteName = "categoryFilterScreen";
+  static const String seriesDetailsScreen = "seriesDetailsScreen";
 }

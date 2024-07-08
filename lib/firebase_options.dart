@@ -72,10 +72,10 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions macos = FirebaseOptions(
     apiKey: 'AIzaSyBYu_DyAh0creccNSwibQ91X4OFP2pKi38',
-    appId: '1:388114013097:ios:d9a1036214ba6f9068c2b8',
+    appId: '1:388114013097:ios:cee751fd280a6f4e68c2b8',
     messagingSenderId: '388114013097',
     projectId: 'movie-app-7c43c',
     storageBucket: 'movie-app-7c43c.appspot.com',
-    iosBundleId: 'com.example.movie-app',
+    iosBundleId: 'com.',
   );
 }

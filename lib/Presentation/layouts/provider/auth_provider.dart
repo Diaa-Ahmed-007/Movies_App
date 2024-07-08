@@ -3,7 +3,7 @@ import 'dart:developer';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:movies_app/core/firebase/firestore_helper.dart';
-import 'package:movies_app/data/models/user_model.dart';
+import 'package:movies_app/data/models/firsbase_model/user_model.dart';
 
 class AuthProvider extends ChangeNotifier {
   User? fireBaseUserAuth;
@@ -11,6 +11,11 @@ class AuthProvider extends ChangeNotifier {
   void setUsers(User? newFireBaseUserAuth, UserModel? newDataBaseUser) {
     fireBaseUserAuth = newFireBaseUserAuth;
     dataBaseUser = newDataBaseUser;
+  }
+
+  void changeUserData(UserModel? newDataBaseUser) {
+    dataBaseUser = newDataBaseUser;
+    notifyListeners();
   }
 
   bool isFirebaseUserLoggedIn() {

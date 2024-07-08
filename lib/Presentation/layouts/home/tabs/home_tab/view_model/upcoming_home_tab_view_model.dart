@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
-import 'package:movies_app/domain/entities/UpcomingEntitie.dart';
-import 'package:movies_app/domain/use_cases/remote/upcoming_usecase.dart';
+import 'package:movies_app/domain/entities/movies/UpcomingEntitie.dart';
+import 'package:movies_app/domain/use_cases/remote/movies/upcoming_usecase.dart';
 
 @injectable
 class UpcomingHomeTabViewModel extends Cubit<UpcomingHomeTabStates> {
@@ -9,6 +9,11 @@ class UpcomingHomeTabViewModel extends Cubit<UpcomingHomeTabStates> {
       : super(UpcomingHomeTabInitialState());
   @factoryMethod
   UpcomingUseCase upcomingUseCase;
+  static List<UpcomingEntitie> upComingList = [];
+
+  getUpcomingDirectly() {
+    emit(UpcomingHomeTabSuccessState(upComingList));
+  }
 
   getUpcoming() async {
     emit(UpcomingHomeTabLoadingState());

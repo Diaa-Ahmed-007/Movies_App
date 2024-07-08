@@ -1,6 +1,5 @@
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
 import 'package:movies_app/core/firebase/auth_helper.dart';
 import 'package:movies_app/data/data_source_contract/local/register_data_source.dart';
@@ -18,7 +17,7 @@ class registerDataSourceImpl extends RegisterDataSource {
     try {
       UserCredential reg =
           await authHelper.createNewUser(email: email, password: password);
-          return Right(reg);
+      return Right(reg);
     } on FirebaseAuthException catch (e) {
       return Left(e.message ?? "");
     } catch (e) {
